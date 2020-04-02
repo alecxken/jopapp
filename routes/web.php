@@ -15,6 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/apply', function () {
+    return view('apply');
+});
+Route::get('/applynow', function () {
+    return view('step');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/job', 'JobController@create');
+
+Route::post('/job-reg', 'JobController@store')->name('cert');
+Route::post('/cert', 'ApplicationController@cert')->name('cert');
+Route::post('/education', 'ApplicationController@education')->name('education');
+Route::post('/membership', 'ApplicationController@membership')->name('membership');
+Route::post('/other', 'ApplicationController@other')->name('other');
+Route::post('/employee', 'ApplicationController@employee')->name('employee');
+Route::post('/referee', 'ApplicationController@referee')->name('referee');
+Route::post('/attach', 'ApplicationController@attach')->name('attach');
+
