@@ -5,23 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EKE-NET</title>
-<link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{{asset('images/logo.png')}}" type="image/x-icon">
+<link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
 <!-- bootstrap styles-->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 <!-- google font -->
-{{-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
- --}}<!-- ionicons font -->
-<link href="css/ionicons.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+<!-- ionicons font -->
+<link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet">
+
+ <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
 <!-- animation styles -->
-<link rel="stylesheet" href="css/animate.css" />
+<link rel="stylesheet" href="{{asset('css/animate.css')}}" />
 <!-- custom styles -->
-<link href="css/custom-green.css" rel="stylesheet" id="style">
+<link href="{{asset('css/custom-green.css')}}" rel="stylesheet" id="style">
 <!-- owl carousel styles-->
-<link rel="stylesheet" href="css/owl.carousel.css">
-<link rel="stylesheet" href="css/owl.transitions.css">
+<link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
+<link rel="stylesheet" href="{{asset('css/owl.transitions.css')}}">
 <!-- magnific popup styles -->
-<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,36 +109,36 @@
 <!-- wrapper end --> 
 
 <!-- jQuery --> 
-<script src="js/jquery.min.js"></script> 
+<script src="{{asset('js/jquery.min.js')}}"></script> 
 <!--jQuery easing--> 
-<script src="js/jquery.easing.1.3.js"></script> 
+<script src="{{asset('js/jquery.easing.1.3.js')}}"></script> 
 <!-- bootstrab js --> 
-<script src="js/bootstrap.js"></script> 
+<script src="{{asset('js/bootstrap.js')}}"></script> 
 <!--style switcher--> 
-<script src="js/style-switcher.js"></script> <!--wow animation--> 
-<script src="js/wow.min.js"></script> 
+<script src="{{asset('js/style-switcher.js')}}"></script> <!--wow animation--> 
+<script src="{{asset('js/wow.min.js')}}"></script> 
 <!-- time and date --> 
-<script src="js/moment.min.js"></script> 
+<script src="{{asset('js/moment.min.js')}}"></script> 
 <!--news ticker--> 
-<script src="js/jquery.ticker.js"></script> 
+<script src="{{asset('js/jquery.ticker.js')}}"></script> 
 <!-- owl carousel --> 
-<script src="js/owl.carousel.js"></script> 
+<script src="{{asset('js/owl.carousel.js')}}"></script> 
 <!-- magnific popup --> 
-<script src="js/jquery.magnific-popup.js"></script> 
+<script src="{{asset('js/jquery.magnific-popup.js')}}"></script> 
 <!-- weather --> 
-<script src="js/jquery.simpleWeather.min.js"></script> 
+<script src="{{asset('js/jquery.simpleWeather.min.js')}}"></script> 
 <!-- calendar--> 
-<script src="js/jquery.pickmeup.js"></script> 
+<script src="{{asset('js/jquery.pickmeup.js')}}"></script> 
 <!-- go to top --> 
-<script src="js/jquery.scrollUp.js"></script> 
+<script src="{{asset('js/jquery.scrollUp.js')}}"></script> 
 <!-- scroll bar --> 
-<script src="js/jquery.nicescroll.js"></script> 
-<script src="js/jquery.nicescroll.plus.js"></script> 
+<script src="{{asset('js/jquery.nicescroll.js')}}"></script> 
+<script src="{{asset('js/jquery.nicescroll.plus.js')}}"></script> 
 <!--masonry--> 
-<script src="js/masonry.pkgd.js"></script> 
+<script src="{{asset('js/masonry.pkgd.js')}}"></script> 
 <!--media queries to js--> 
-<script src="js/enquire.js"></script> 
+<script src="{{asset('js/enquire.js')}}"></script> 
 <!--custom functions--> 
-<script src="js/custom-fun.js"></script>
+<script src="{{asset('js/custom-fun.js')}}"></script>
 </body>
 </html>

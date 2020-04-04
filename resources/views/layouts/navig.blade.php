@@ -4,15 +4,17 @@
       <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
           <div class="row">
-            <div class="col-sm-16"> <a href="javascript:;" class="toggle-search pull-right"><span class="ion-ios7-search"></span></a>
+            <div class="col-sm-16"> <a href="javascript:;" class="toggle-search pull-right"><span class="fa fa-search"></span></a>
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
               </div>
               <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav text-uppercase main-nav ">
                   <li class="active"><a href="{{URL('/home')}}">Home</a></li>
+                  @auth
                   <li> <a href="{{URL('/apply')}}">Apply</a></li>
                   <li> <a href="{{URL('/links')}}">My Application</a></li>
+                  @endauth
          {{--            <li class="dropdown"> <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Opportunities<span class="ion-ios7-arrow-down nav-icn"></span></a>
                     <ul class="dropdown-menu text-capitalize" role="menu">
                       <li><a href="javascript:void(0)"><span class="ion-ios7-arrow-right nav-sub-icn"></span>World News</a></li>

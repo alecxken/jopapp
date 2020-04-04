@@ -26,6 +26,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/job', 'JobController@create');
 
+
+
+Route::get('/apply-now/{id}', 'JobController@applynow');
+Route::post('/startapp', 'JobController@startapp')->name('cert');
+
+
 Route::post('/job-reg', 'JobController@store')->name('cert');
 Route::post('/cert', 'ApplicationController@cert')->name('cert');
 Route::post('/education', 'ApplicationController@education')->name('education');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Token;
 use Auth;
 use App\Job;
+use App\Jobapp;
+
 class JobController extends Controller
 {
     /**
@@ -100,6 +102,51 @@ class JobController extends Controller
     {
         //
     }
+
+
+    public function applynow($id)
+    {
+       
+                    $token = Token::Unique('jobs','token',5);
+                    $t = date("Y-M",strtotime("now"));
+                    $token = strtoupper('AP-'.$token.'-'.$t); 
+                    $check = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                          ->where('app_email',\Auth::user()->email)
+                                          ->where('status','Success')
+                                          ->first();
+                      $email=\Auth::user()->email;
+
+                                          
+        if (!empty($check)) {
+        $data =  Jobapp::findorfail($check->id);
+        $data->ref_token = $id;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = \Auth::user()->email;
+        $data->app_id = \Auth::id();
+        $data->status ='Success';
+        $data->save();
+      
+        }
+        else
+        {
+        $data = new Jobapp();
+        $data->token = $token;
+        $data->ref_token = $id;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = \Auth::user()->email;
+        $data->app_id = \Auth::id();
+        $data->status ='Success';
+        $data->save();
+        }
+       
+        $email=\Auth::user()->email;
+
+        return view('apply',compact('token','email'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
