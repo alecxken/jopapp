@@ -46,7 +46,27 @@
                   <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse-1"><span class="fa fa-check"></span> {{$jobs->title}} </a> </h4>
                 </div>
                 <div id="collapse-1" class="panel-collapse collapse in">
-                  <div class="panel-body"> {{$jobs->requirements}}. <a href="" class="label label-success">Job Details</a> </div>
+                  <div class="panel-body">
+                    @if(!empty($jobs->responsibility))
+                  <h5>Responsibility</h5>
+                 
+                      @foreach(explode(';', $jobs->responsibility) as $item)
+                        {{$item}}<br>
+                      @endforeach
+                  
+                  @endif
+                  @if(!empty($jobs->requirements))
+                  <h5>Requirement</h5>
+                  <ol>
+                      @foreach(explode('||', $jobs->requirements) as $items)
+                        <li>{{$items}}</li>
+                      @endforeach
+                  </ol>
+                  @endif
+                  
+
+                    <a href="" class="label label-success">Job Details</a> 
+                  </div>
                   <div class="panel-footer"> @auth <a class="btn btn-warning btn-sm"  href="{{url('apply-now/'.$jobs->token)}}">Apply Now</a> @else <a class="btn btn-success btn-sm" href="{{url('login')}}">Login/Signup to Apply </a> @endauth </div>
                 </div>
               </div>

@@ -20,7 +20,7 @@
                                 <th class="text-center">
                                   Name
                                 </th>
-                                 
+                                                               
                                
                               </tr>
                             </thead>
@@ -41,7 +41,7 @@
                             </tbody>
                               <tfoot>
                             <tr>
-                                <td colspan="3" style="text-align: left;">
+                                <td colspan="2" style="text-align: left;">
                                     <input type="button" class="btn btn-sm btn-block " id="addrowref" value="Add Requirement " />
                                 </td>
                             </tr>

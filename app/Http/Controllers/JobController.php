@@ -7,7 +7,7 @@ use Token;
 use Auth;
 use App\Job;
 use App\Jobapp;
-
+use App\Creteria;
 class JobController extends Controller
 {
     /**
@@ -55,21 +55,15 @@ class JobController extends Controller
         $job->token = $token;
         $job->title = $request->input('title');
         $job->responsibility = $request->input('responsibility');
-        $job->requirements = $request->input('requirements');
         $job->qualification = $request->input('qualification');
         $job->deadline = $request->input('deadline');
         $job->applicants = $request->input('applicants');
         $job->status = 'Active';
         $job->applicants =0;
-                     $media = $request->file('file');
-
-               
+         $media = $request->file('file');               
 
                           if($request->hasfile('file'))
                           {  
-
-                          
-                             
                                 if (!empty($media)) {
                                     $destinationPath = storage_path('files');
                                     $filename = time().'.'.$media->getClientOriginalExtension();
@@ -79,15 +73,37 @@ class JobController extends Controller
                                   }
                                  
                              }
+                             $requires = [];
+             foreach ($request->input('name') as $key => $value)
+                                 {
+                                $requires[] = $request->input('name')[$key];
+                               $insert[] =
+                                     [
+                                      'ref_token' => $token,                                      
+                                      'requirement'  => $request->input('name')[$key],
+                                      'status'  => 'ok'
+                                     ];
+                                 }
+             $rq = implode('||', $requires);
+            $job->requirements = $rq;
+         
+        $critic = new Creteria();
+        $critic->ref_token = $token;
+        $critic->cert_state = $request->input('cert_state');
+        $critic->cert_body = $request->input('cert_body');
+        $critic->cert_samples = $request->input('cert_samples');
+        $critic->memb_state = $request->input('memb_state');
+        $critic->memb_body = $request->input('memb_body');
+        $critic->memb_samples = $request->input('memb_samples');
+        $critic->state_edu = $request->input('state_edu');
+        $critic->edu_field = implode(',', $request->input('edu_field'));
+        $critic->sample_edu = $request->input('sample_edu');
+      //  $critic->status = 'Cheers';
+        $critic->save();
+        $job->save();
+        $critic->save(); 
+        $requires = \DB::table('requireds')->insert($insert);
 
-                          //     if(!empty($files))
-                          // {
-
-                          //   $job->file = implode(';',$files);
-
-                          // }
-
-            $job->save();
 
             return back()->with('status','Successfully Uploaded');
     }
