@@ -168,7 +168,23 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $applicant = new KurraApp();
+            $applicant->token = $request->input('token');
+            $applicant->title = $request->input('title');
+            $applicant->fname = $request->input('fname');
+            $applicant->lname = $request->input('lname');
+            $applicant->oname = $request->input('oname');
+            $applicant->po_box = $request->input('po_box');
+            $applicant->postal_code = $request->input('postal_code');
+            $applicant->phone_no = $request->input('phone_no');
+            $applicant->email = $request->input('email');
+            $applicant->dob = $request->input('dob');
+            $applicant->gender = $request->input('gender');
+            $applicant->passport = $request->input('passport');
+            $applicant->county = $request->input('county');
+            $applicant->district = $request->input('district');
+            $applicant->is_disabled = $request->input('is_disabled');
+            $applicant->disability = $request->input('disability');
     }
 
     /**

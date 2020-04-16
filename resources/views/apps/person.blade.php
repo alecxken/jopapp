@@ -146,13 +146,13 @@
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('name', ' Home District') }}
-                                {{ Form::text('rate', '', array('class' => 'form-control input-sm')) }}
+                                {{ Form::text('district', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Any Disability') }}
-                               <select class="form-control input-sm" name="ccy" required="">
+                               <select class="form-control input-sm" name="is_disabled" required="">
                                  <option value="">Choose option</option>
                                  <option>No</option>
                                  <option>Yes</option>
@@ -160,8 +160,8 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                {{ Form::label('name', ' Description Of Disability') }}
-                                {{ Form::text('rate', '', array('class' => 'form-control input-sm')) }}
+                                {{ Form::label('disability', ' Description Of Disability') }}
+                                {{ Form::text('disability', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
                           

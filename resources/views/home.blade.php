@@ -17,7 +17,7 @@
                 </div>
                 <div class="panel-body"style="text-align: right;">
 
-                    <a href="http://www.jquery2dotnet.com/" class="btn btn-success btn-sm btn-block" role="button"><span class="fa fa-globe"></span> Home</a>
+                    <a href="{{url('job')}}/" class="btn btn-success btn-sm btn-block" role="button"><span class="fa fa-globe"></span> Job Admin</a>
                     
                     <a href="http://www.jquery2dotnet.com/" class="btn btn-primary btn-sm btn-block" role="button"><span class="fa fa-globe"></span> Opportunities</a>
                   

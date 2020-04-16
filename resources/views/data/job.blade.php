@@ -1,53 +1,54 @@
 @extends('layouts.template')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-   
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
   
 
-<div class="card-body">
+<div class="box-body">
   
 <div class="row">
-<div class="col-md-6">
-    <div class="card card-danger">
-            <div class="card-header with-border bg-danger disabled">
-                <h6 class="card-title ">Job Registration</h6>
+<div class="col-md-12">
+    <div class="box box-danger">
+            <div class="box-header with-border bg-danger disabled">
+                <h6 class="box-title ">Job Registration</h6>
             </div> 
-           <div class="card-body">
+           <div class="box-body">
               {!! Form::open(['method'=> 'post','url' => 'job-reg' ,'files' => true]) !!}
            
-                 <div class="form-group  ">
+                 <div class="form-group col-md-4 ">
                     {!! Form::label('C_Name', 'Job Title', ['class' => 'col-form-label '])!!}
                     {!!Form::text('title',Null,['class' => 'form-control' ])!!}
                 </div>
-                 <div class="form-group  ">
-                    {!! Form::label('C_Name', 'Responsibilty:', ['class' => 'col-form-label '])!!}
-                    {!!Form::textarea('responsibility',Null,['class' => 'form-control','rows'=>'2' ])!!}
+                
+                 <div class="form-group col-md-4 ">
+                    {!! Form::label('C_Name', 'Experience (Yrs):', ['class' => 'col-form-label '])!!}
+                    {!!Form::number('qualification',Null,['class' => 'form-control','placeholder'=>'2' ])!!}
                 </div>  
-                 <div class="form-group  ">
-                    {!! Form::label('C_Name', 'Job requirements', ['class' => 'col-form-label '])!!}
-                    {!!Form::textarea('requirements',Null,['class' => 'form-control','rows'=>'2' ])!!}
-                </div>
-                 <div class="form-group  ">
-                    {!! Form::label('C_Name', 'Job qualification:', ['class' => 'col-form-label '])!!}
-                    {!!Form::textarea('qualification',Null,['class' => 'form-control','rows'=>'2' ])!!}
-                </div>  
-                 <div class="form-group  ">
+                 <div class="form-group col-md-4 ">
                     {!! Form::label('C_Name', 'Job applicantation deadline', ['class' => 'col-form-label '])!!}
                     {!!Form::date('deadline',Null,['class' => 'form-control' ])!!}
                 </div>
-                 <div class="form-group  ">
+                 <div class="form-group col-md-4 ">
                     {!! Form::label('C_Name', 'Document Name:', ['class' => 'col-form-label '])!!}
                     <input type="file" name="file" class="form-control" >
                    
+                </div>
+                 <div class="form-group col-md-8  ">
+                    {!! Form::label('C_Name', 'Responsibilty:', ['class' => 'col-form-label '])!!}
+                    {!!Form::textarea('responsibility',Null,['class' => 'form-control','rows'=>'1' ])!!}
                 </div>  
+                
+                
+                 <div class="form-group  ">
+                    {!! Form::label('C_Name', 'Job requirements', ['class' => 'col-form-label '])!!}
+                     @include('data.require')
+                </div>
+                  <div class="form-group  ">
+                     {!! Form::label('C_Name', 'Job Creteria', ['class' => 'col-form-label '])!!}
+                    @include('data.qualify')
+                  </div>  
                  
           </div>
-           <div class="card-footer">
+           <div class="box-footer">
               <button type="submit" class="btn btn-primary ">Submit Document Head</button>
             </div>
            {!!Form::close()!!}
@@ -58,15 +59,15 @@
 
 
 
-   <div class="col-md-6">  
-       <div class="card card-primary">
-            <div class="card-header with-border">
-              <h3 class="card-title">Jobs Created</h3>
+   <div class="col-md-12">  
+       <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Jobs Created</h3>
             </div>
-         <div class="card-body table-responsive">
+         <div class="box-body table-responsive">
           <table id="example1" class="table table-bordered table-striped">
           <thead>
-             <tr class="card-success">  
+             <tr class="box-success">  
                <th>Reference</th>
                <th>Title</th>
                <th>Dealine</th>
@@ -95,12 +96,9 @@
 
            </div>
        </div>
-
+     </div>
    </div>
-</div>
-    </div>
-  </div>
-
+   
  <script >
 
 
