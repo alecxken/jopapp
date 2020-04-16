@@ -32,8 +32,8 @@
           <li class="header">HEADER</li>
           <!-- Optionally, you can add icons to the links -->
           <li  class="{{ (request()->is('home')) ? 'active' : '' }}"><a href="#"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-          <li  class="{{ (request()->is('home')) ? 'active' : '' }}"><a href="#"><i class="fa fa-link text-green"></i> <span>New Advert</span></a></li>
-          <li class="treeview {{ (request()->is('gallery')) ? 'active' : '' }} {{ (request()->is('data')) ? 'active' : '' }} {{ (request()->is('create-content')) ? 'active' : '' }}">
+          <li  class="{{ (request()->is('job')) ? 'active' : '' }}"><a href="{{url('job')}}"><i class="fa fa-link text-green"></i> <span>New Advert</span></a></li>
+         {{--  <li class="treeview {{ (request()->is('gallery')) ? 'active' : '' }} {{ (request()->is('data')) ? 'active' : '' }} {{ (request()->is('create-content')) ? 'active' : '' }}">
             <a href="#"><i class="fa fa-link"></i> <span>Content Manager</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -45,7 +45,7 @@
               <li><a href="{{url('gallery')}}"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
               <li><a href="{{url('category-create')}}"><i class="fa fa-link"></i> <span>Category</span></a></li>
             </ul>
-          </li>
+          </li> --}}
         </ul>
         <!-- /.sidebar-menu -->
       </section>

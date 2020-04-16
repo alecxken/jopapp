@@ -22,10 +22,10 @@
              <div  class="col-sm-8 banner-outer wow fadeInLeft animated" data-wow-delay="1s" data-wow-offset="50">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ __('Registration Page') }}</div>
-
-                <div class="panel-body">
-                    <form method="POST" action="{{ route('register') }}">
+                  <form method="POST" action="{{ route('register') }}">
                         @csrf
+                <div class="panel-body">
+                  
 
                         <div class="form-group row">
                             <label for="name" class=" col-form-label ">{{ __('Name') }}</label>
@@ -78,7 +78,7 @@
                         </div>
 
                         
-                    </form>
+                    
                 </div>
                 <div class="panel-footer">
                             <div class=" ">
@@ -87,6 +87,7 @@
                                 </button>
                             </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
