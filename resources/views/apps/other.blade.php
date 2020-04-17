@@ -3,7 +3,7 @@
               <div class="card-header">
                 <h5 class="m-0">Other Training</h5>
               </div>
-                  {{ Form::open(array('url' => '')) }}
+               
                <div class="card-body ">
                     <div class="row">
 
@@ -39,13 +39,13 @@
                                 <input type="text" name='training[]' placeholder='Training' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='cert[]' placeholder='Certificate' class="form-control"/>
+                                <input type="text" name='cert2[]' placeholder='Certificate' class="form-control"/>
                                 </td>
                                  <td>
-                                <input type="text" name='institution[]' placeholder='Institution' class="form-control"/>
+                                <input type="text" name='institution2[]' placeholder='Institution' class="form-control"/>
                                 </td>
                                  <td>
-                                <input type="number" name='year[]' placeholder='Year' class="form-control"/>
+                                <input type="number" name='year2[]' placeholder='Year' class="form-control"/>
                                 </td>
                                
                               </tr>

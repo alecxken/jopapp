@@ -13,7 +13,7 @@
                   <li class="active"><a href="{{URL('/home')}}">Home</a></li>
                   @auth
                   <li> <a href="{{URL('/apply')}}">Apply</a></li>
-                  <li> <a href="{{URL('/links')}}">My Application</a></li>
+                  <li> <a href="{{URL('/my-apps')}}">My Application</a></li>
                   @endauth
          {{--            <li class="dropdown"> <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Opportunities<span class="ion-ios7-arrow-down nav-icn"></span></a>
                     <ul class="dropdown-menu text-capitalize" role="menu">

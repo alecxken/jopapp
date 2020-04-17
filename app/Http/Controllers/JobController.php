@@ -8,6 +8,7 @@ use Auth;
 use App\Job;
 use App\Jobapp;
 use App\Creteria;
+use App\KurraApp;
 class JobController extends Controller
 {
     /**
@@ -114,9 +115,14 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = Jobapp::all()->where('app_id',\Auth::id())
+                                          ->where('app_email',\Auth::user()->email)
+                                          ->where('status','Success');
+        // return $data;
+
+        return view('data.my',compact('data'));
     }
 
 
@@ -128,13 +134,17 @@ class JobController extends Controller
                     $token = strtoupper('AP-'.$token.'-'.$t); 
                     $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('app_id',\Auth::id())
-                                          ->where('app_email',\Auth::user()->email)
-                                          ->where('status','Success')
                                           ->first();
+
                       $email=\Auth::user()->email;
 
-                                          
+                           
         if (!empty($check)) {
+         $exist = KurraApp::all()->where('token',$check->token)->first();
+        if (!empty($exist)) {
+            $token = $check->token;
+            return view('apps.cert',compact('token'));
+        }
         $data =  Jobapp::findorfail($check->id);
         $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
@@ -182,11 +192,11 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+           
     public function update(Request $request, $id)
     {
             $applicant = new KurraApp();
             $applicant->token = $request->input('token');
-            $applicant->title = $request->input('title');
             $applicant->fname = $request->input('fname');
             $applicant->lname = $request->input('lname');
             $applicant->oname = $request->input('oname');

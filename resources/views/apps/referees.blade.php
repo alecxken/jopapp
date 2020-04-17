@@ -65,7 +65,7 @@
                             </tbody>
                               <tfoot>
                             <tr>
-                                <td colspan="5" style="text-align: left;">
+                                <td colspan="6" style="text-align: left;">
                                     <input type="button" class="btn btn-sm btn-block " id="addrowref" value="Add Referee " />
                                 </td>
                             </tr>

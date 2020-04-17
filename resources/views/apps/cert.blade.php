@@ -1,7 +1,7 @@
 @extends('layouts.templates')
 @section('content')
 <BR>
-<H1><center>JOB APPLICATION : EDUCATION DETAILS</center></H1>
+<H1><center>STEP II: EDUCATION DETAILS ({{$token}})</center></H1>
 <br>
 
             <div class="card card-primary card-outline">
@@ -10,6 +10,7 @@
               </div>
               <div class="card-body ">
                    {!! Form::open(['method'=> 'post','url' => 'employee', 'files' => true ]) !!}
+                   <input type="hidden" name="token" value="{{$token}}">
                          <div>
                             @include('apps.education')
 
