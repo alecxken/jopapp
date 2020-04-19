@@ -1,15 +1,16 @@
 @extends('layouts.templates')
 @section('content')
 <BR>
-<H1><center>JOB APPLICATION : ATACHMENT SECTION</center></H1>
+<H1><center>Final Step : ATTACHMENT SECTION ({{$token}})</center></H1>
 <br>
   <div class="col-lg-16">
    
             <div class="card card-success card-outline">
               <div class="card-header">
-                <h5 class="m-0">Attachments </h5>
+                <h5 class="m-0">Attachments {{$token}} </h5>
               </div>
           {!! Form::open(['method'=> 'post','url' => 'attachment', 'files' => true ]) !!}
+          <input type="hidden" name="token" value="{{$token}}">
                <div class="card-body ">
                     <div class="row">
 
@@ -38,7 +39,7 @@
                                 	Curriculum Vitae
                                 </td>
                                 <td>
-                                <input type="file" name='CV[]' placeholder='Position' class="form-control"/>
+                                <input type="file" name='cv' placeholder='Position' class="form-control"/>
                                 </td>
                               </tr>
 
@@ -50,7 +51,7 @@
                                 	Education Certificates
                                 </td>
                                 <td>
-                                <input type="file" name='education[]' placeholder='Position' class="form-control"/>
+                                <input type="file" name='files[]' multiple="" placeholder='Position' class="form-control"/>
                                 </td>
                               </tr>
 
@@ -59,6 +60,7 @@
                           </table>
                    
                     </div>
+
                 </div>
                  <div class="card-footer">
                   <br>

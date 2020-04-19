@@ -9,7 +9,7 @@
                 <h5 class="m-0"></h5>
               </div>
               <div class="card-body ">
-                   {!! Form::open(['method'=> 'post','url' => 'attach', 'files' => true ]) !!}
+                   {!! Form::open(['method'=> 'post','url' => 'referee', 'files' => true ]) !!}
                    <input type="hidden" name="token" value="{{$token}}">
                          <div>
                             @include('apps.employer')

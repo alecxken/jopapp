@@ -31,7 +31,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
           <!-- Optionally, you can add icons to the links -->
-          <li  class="{{ (request()->is('home')) ? 'active' : '' }}"><a href="#"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+          <li  class="{{ (request()->is('dashboard')) ? 'active' : '' }}"><a href="{{url('dashboard')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
           <li  class="{{ (request()->is('job')) ? 'active' : '' }}"><a href="{{url('job')}}"><i class="fa fa-link text-green"></i> <span>New Advert</span></a></li>
          {{--  <li class="treeview {{ (request()->is('gallery')) ? 'active' : '' }} {{ (request()->is('data')) ? 'active' : '' }} {{ (request()->is('create-content')) ? 'active' : '' }}">
             <a href="#"><i class="fa fa-link"></i> <span>Content Manager</span>

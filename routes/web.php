@@ -28,6 +28,7 @@ Route::get('/applynow', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
 Route::get('/job', 'JobController@create');
 
 
@@ -44,5 +45,5 @@ Route::post('/membership', 'ApplicationController@membership')->name('membership
 Route::post('/other', 'ApplicationController@other')->name('other');
 Route::post('/employee', 'ApplicationController@employee')->name('employee');
 Route::post('/referee', 'ApplicationController@referee')->name('referee');
-Route::post('/attach', 'ApplicationController@attach')->name('attach');
+Route::post('/attachment', 'ApplicationController@attach')->name('attach');
 

@@ -55,7 +55,10 @@
                                 </th>
                             
                                  <th class="text-center">
-                                  Status
+                                  Application Status
+                                </th>
+                                <th class="text-center">
+                                  Shortlisted
                                 </th>
                                  <th class="text-center">
                                  Action
@@ -69,8 +72,15 @@
                               <tr id='t0'>
                                 <td>{{$apps->token}}</td> 
                                 <td>{{$apps->ref_token}}</td>   
-                                <td>{{$apps->app_status}}</td>  
-                                <td><a href="{{url('apply-now/'.$apps->ref_token)}}" class="btn btn-primary">Proceed</a></td>                            
+                                <td>{{$apps->app_status}}</td>
+                                <td></td>  
+                                <td>
+                                  @if($apps->app_status == 'Complete')
+                                  no action
+                                  @else
+                                  <a href="{{url('apply-now/'.$apps->ref_token)}}" class="btn btn-primary">Proceed</a>
+                                  @endif
+                                </td>                            
                               </tr>
                               @endforeach
 

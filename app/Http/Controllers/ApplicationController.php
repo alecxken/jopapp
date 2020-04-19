@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\KurraApp;
 use App\JobApp;
+use App\KuraAttachment;
 class ApplicationController extends Controller
 {
     /**
@@ -154,29 +155,137 @@ class ApplicationController extends Controller
 
                     
         
-           // if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
-           // if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
-           // if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
-           // if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
-           // $app = JobApp::all()->where('token',$token)->first();
-           // if (!empty($app)) 
-           //  {
-           //      $apps = JobApp::findorfail($app->id);
-           //      $apps->app_status = 'Stage2';
-           //      $apps->save();
-           //  }
+           if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+           if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+           if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
+           if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
+           $app = JobApp::all()->where('token',$token)->first();
+           if (!empty($app)) 
+            {
+                $apps = JobApp::findorfail($app->id);
+                $apps->app_status = 'Stage2';
+                $apps->save();
+            }
        return view('apps.employee',compact('token')); //
     }
 
 
-   public function referee()
+   public function referee(Request $request)
     {
-       return view('apps.referee'); //
+       $token = $request->input('token');
+               foreach ($request->input('ref_name') as $key => $value)
+                     {
+                        $empty2 = $request->input('ref_name')[$key];
+                        if(is_null($empty2))
+                        {
+                            $insert2 = [];
+                        }
+                         else
+                         {
+                                             
+                            $insert2[] =
+                                     [
+                                      'ref_name'=>$request->input('ref_name')[$key],
+                                      'ref_company' =>$request->input('ref_company')[$key],
+                                      'ref_position'=>$request->input('ref_position')[$key],
+                                      'ref_email'=>$request->input('ref_email')[$key],
+                                      'ref_phone'=>$request->input('ref_phone')[$key],
+                                      'token' => $token,                              
+                                     ];
+                         }
+                     }
+                         foreach ($request->input('employer') as $key => $value)
+                     {
+                        $empty = $request->input('employer')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert3 = [];
+                        }
+                         else
+                         {
+                              $insert3[] =
+                                     [
+                                      'token' => $token,  
+                                       'employer'  => $request->input('employer')[$key],     
+                                      'position'  => $request->input('position')[$key],
+                                      'from'  => $request->input('from')[$key],
+                                      'to'  => $request->input('to')[$key],
+                                       'contact_person' => $request->input('contact_person')[$key],
+                      
+                                     ];                      # code...
+                         }                    
+                     
+                     }
+
+                    
+        
+           // if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+           // if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+           if(!empty($insert2)){\DB::table('kura_referees')->insert($insert2);}
+           if(!empty($insert3)){\DB::table('kura_employers')->insert($insert3);}
+           $app = JobApp::all()->where('token',$token)->first();
+           if (!empty($app)) 
+            {
+                $apps = JobApp::findorfail($app->id);
+                $apps->app_status = 'Stage3';
+                $apps->save();
+            }
+       return view('apps.attach',compact('token')); //
     }
 
-     public function attach()
+     public function attach(Request $request)
+
     {
-       return view('apps.attach'); //
+      $token = $request->input('token');
+      $media = $request->file('cv');
+       $at = $request->file('files');                
+
+                          if($request->hasfile('cv'))
+                          { 
+                           $attach = new KuraAttachment();
+                           $attach->token = $token;
+                           $attach->type = 'CV';
+                             if (!empty($media)) {
+                                    $destinationPath = storage_path('app_files');
+                                    $filename = ''.$token.'-CV-'.time().'.'.$media->getClientOriginalExtension();
+                                    $media->move($destinationPath, $filename);
+                                    $files = $filename;
+                                    $attach->file = $files;
+                                  }
+                              $attach->save();
+                                 
+                             }
+
+                               $files1=[];
+ // return $request;
+         if($request->hasfile('files'))
+          { 
+             $upl = new KuraAttachment();
+             $upl->token = $token; 
+             $upl->type = 'Support'; 
+            foreach ($at as $files) 
+              {             
+                if (!empty($files)) 
+                {
+                    $destinationPath = storage_path('app_files');
+                    $filename1 = time().'-SUPPORT-'.$token.'.'.$files->getClientOriginalExtension();
+                    // $filename = $media->getClientOriginalName();
+                    $files->move($destinationPath, $filename1);
+                    $files1[] = $filename1;
+                  }
+                }
+              $upl->file = implode(';', $files1);
+              $upl->save();
+             }
+         $app = JobApp::all()->where('token',$token)->first();
+           if (!empty($app)) 
+            {
+                $apps = JobApp::findorfail($app->id);
+                $apps->app_status = 'Complete';
+                $apps->save();
+            }
+
+       return redirect('my-apps')->with('status','Completed Successfully'); //
     }
 
 

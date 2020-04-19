@@ -135,12 +135,28 @@ class JobController extends Controller
                     $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('app_id',\Auth::id())
                                           ->first();
+                    $check1 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                          ->where('app_status','Stage2')
+                                          ->first();
+                    $check2 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                           ->where('app_status','Stage3')
+                                          ->first();
 
                       $email=\Auth::user()->email;
-
+         if (!empty($check2) ){
+             $token = $check->token;
+            return view('apps.attach',compact('token'));
+        }
+        if (!empty($check1) ){
+             $token = $check->token;
+            return view('apps.employee',compact('token'));
+        }
                            
         if (!empty($check)) {
          $exist = KurraApp::all()->where('token',$check->token)->first();
+
         if (!empty($exist)) {
             $token = $check->token;
             return view('apps.cert',compact('token'));
