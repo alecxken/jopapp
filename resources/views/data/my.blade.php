@@ -73,7 +73,7 @@
                                 <td>{{$apps->token}}</td> 
                                 <td>{{$apps->ref_token}}</td>   
                                 <td>{{$apps->app_status}}</td>
-                                <td></td>  
+                                <td><label class="label label-warning"> Pending</label></td>  
                                 <td>
                                   @if($apps->app_status == 'Complete')
                                   no action
