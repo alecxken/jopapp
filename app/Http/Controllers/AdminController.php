@@ -21,20 +21,13 @@ class AdminController extends Controller
         $jobs = Job::all()->count();
         $jobapp = Jobapp::all()->count();
          
-$post = ApplicantsView::all()->pluck('title');
+              $post = ApplicantsView::all()->pluck('title');
               $num = ApplicantsView::all()->pluck('num');
-
-// $chart = new SampleChart;
-// $chart->labels(['One', 'Two', 'Three', 'Four']);
-// $chart->dataset('My dataset', 'line', [1, 2, 3, 4]);
-// $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
-
 
                //return $post;
                 $chart = new ApplicantsChart;
                 $chart->labels($post);
-                $chart->dataset('Number of Applicants', 'bar', $num)
-                 ;
+                $chart->dataset('Number of Applicants', 'bar', $num);
 
                  $sam = new SampleChart;
                 $sam->labels($post);
@@ -42,32 +35,7 @@ $post = ApplicantsView::all()->pluck('title');
      
                 // $chart = Chart::create('pie', 'highcharts')
 
-                //             ->title('TRANSACTIONS DISTRIBUTION PER STAGE')
-
-                //             ->labels($post)
-
-                //             ->values($num)
-
-                             // ->colors(['#FF5733','#33FF42','#33B3FF','#C70039','#FF3351','#FFC300','#7B33FF','#FF33B7','#3D3D3D', '#985689'])
-
-                            // ->dimensions(1000,500)
-
-                            // ->responsive(true);
-
-                 // $sam = Chart::create('bar', 'highcharts')
-
-                 //            ->title('TRANSACTIONS DISTRIBUTION PER STAGE')
-
-                 //            ->labels($post)
-
-                 //            ->values($num)
-
-                 //             ->colors(['#FF5733','#33FF42','#33B3FF','#C70039','#FF3351','#FFC300','#7B33FF','#FF33B7','#3D3D3D', '#985689'])
-
-                 //            ->dimensions(1000,500)
-
-                 //            ->responsive(true);
- // return view('home',compact('chart','sam'));
+                //  
         return view('data.dashboard',compact('jobs','jobapp','chart','sam'));
     }
 
@@ -79,6 +47,11 @@ $post = ApplicantsView::all()->pluck('title');
     public function create()
     {
         //
+    }
+
+       public function analyze()
+    {
+       $creteria;
     }
 
     /**
