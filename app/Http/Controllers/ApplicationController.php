@@ -13,6 +13,108 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      public function cert1(Request $request)
+    {
+
+      $email = $request->input('email');
+      $id =  $request->input('job_id');
+                    // $token = Token::Unique('jobs','token',5);
+                    // $t = date("Y-M",strtotime("now"));
+                    $token = $request->input('token');; 
+                    $check = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_email',$email)
+                                          ->first();
+
+                                          //return $check;
+                    $check1 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_email',$email)
+                                          ->where('app_status','Stage2')
+                                          ->first();
+                    $check2 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_email',$email)
+                                           ->where('app_status','Stage3')
+                                          ->first();
+
+                     
+         if (!empty($check2) ){
+             $token = $check->token;
+            return view('backapp.attach',compact('token'));
+        }
+        if (!empty($check1) ){
+             $token = $check->token;
+            return view('backapp.employee',compact('token'));
+        }
+                           
+        if (!empty($check)) {
+         $exist = KurraApp::all()->where('token',$check->token)->first();
+
+        if (!empty($exist)) {
+            $token = $check->token;
+            return view('backapp.cert',compact('token'));
+        }
+        $data =  Jobapp::findorfail($check->id);
+        $data->ref_token = $id;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = $email;
+        $data->app_id = $email;
+        $data->status ='Success';
+        $data->save();
+      
+        }
+        else
+        {
+        $data = new Jobapp();
+        $data->token = $token;
+        $data->ref_token = $token;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = $email;
+        $data->app_id = $email;
+        $data->status ='Success';
+        $data->save();
+        }
+       
+        
+
+     
+        $exist = KurraApp::all()->where('token',$request->input('token'))->first();
+        if (!empty($exist)) {
+
+            return view('apps.cert',compact('token'));
+        }
+          $this->validate($request, [
+                                       'token' => 'required|unique:kurra_apps',
+                                      'phone_no' => 'required:numeric',
+                                      'title' => 'required',
+                                      'fname' => 'required',
+                                      'lname' => 'required'
+                                  ]
+                                ); 
+        $person = new KurraApp();
+        $person->token = $request->input('token');
+        $person->title = $request->input('title');
+        $person->fname = $request->input('fname');
+        $person->lname = $request->input('lname');
+        $person->oname = $request->input('oname');
+        $person->po_box = $request->input('po_box');
+        $person->postal_code = $request->input('postal_code');
+        $person->phone_no = $request->input('phone_no');
+        $person->email = $request->input('email');
+        $person->dob = $request->input('dob');
+        $person->gender = $request->input('gender');
+        $person->passport = $request->input('passport');
+        $person->county = $request->input('county');
+        $person->district = $request->input('district');
+        $person->is_disabled = $request->input('is_disabled');
+        $person->disability = $request->input('disability');
+        $person->save();
+
+      return view('backapp.cert',compact('token'));  //
+
+        return view('apply1',compact('token','email'));
+    }
     public function cert(Request $request)
     {
         $token =$request->input('token');

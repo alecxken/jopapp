@@ -32,20 +32,21 @@
           <li class="header">HEADER</li>
           <!-- Optionally, you can add icons to the links -->
           <li  class="{{ (request()->is('dashboard')) ? 'active' : '' }}"><a href="{{url('dashboard')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-          <li  class="{{ (request()->is('job')) ? 'active' : '' }}"><a href="{{url('job')}}"><i class="fa fa-link text-green"></i> <span>New Advert</span></a></li>
-         {{--  <li class="treeview {{ (request()->is('gallery')) ? 'active' : '' }} {{ (request()->is('data')) ? 'active' : '' }} {{ (request()->is('create-content')) ? 'active' : '' }}">
-            <a href="#"><i class="fa fa-link"></i> <span>Content Manager</span>
+          <li  class="{{ (request()->is('job-app')) ? 'active' : '' }}"><a href="{{url('job-app')}}"><i class="fa fa-link text-green"></i> <span>Apply Now</span></a></li>
+           <li><a href="{{url('jobs-apps')}}"><i class="fa fa-link"></i> <span>Job Application</span></a></li>
+
+          <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
+            <a href="#"><i class="fa fa-cog"></i> <span>Job Setting Sections</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{url('data')}}"><i class="fa fa-link"></i> <span>Slides</span></a></li>
-              <li><a href="{{url('create-content')}}"><i class="fa fa-globe"></i> <span>Content</span></a></li>
-              <li><a href="{{url('gallery')}}"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
-              <li><a href="{{url('category-create')}}"><i class="fa fa-link"></i> <span>Category</span></a></li>
+            <li><a href="{{url('job')}}"><i class="fa fa-link"></i> <span>New Job Advert</span></a></li>
+           
             </ul>
-          </li> --}}
+          </li>
+
         </ul>
         <!-- /.sidebar-menu -->
       </section>

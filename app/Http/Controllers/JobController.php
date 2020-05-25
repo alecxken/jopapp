@@ -32,6 +32,12 @@ class JobController extends Controller
         return view('data.job',compact('data'));
     }
 
+      public function create1()
+    {
+        $data = Job::all();
+        return view('backapp.job',compact('data'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -115,6 +121,16 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+          public function show1()
+    {
+        $data = Jobapp::all()->where('app_id',\Auth::id())
+                                          ->where('app_email',\Auth::user()->email)
+                                          ->where('status','Success');
+        return view('backapp.myapp',compact('data'));
+    }
+
+
     public function show()
     {
         $data = Jobapp::all()->where('app_id',\Auth::id())
@@ -124,6 +140,8 @@ class JobController extends Controller
 
         return view('data.my',compact('data'));
     }
+
+
 
 
     public function applynow($id)
@@ -188,6 +206,83 @@ class JobController extends Controller
 
         return view('apply',compact('token','email'));
     }
+
+    public function applyjobnow($id)
+    {
+                    $token = Token::Unique('jobs','token',5);
+                    $t = date("Y-M",strtotime("now"));
+                    $token = strtoupper('AP-'.$token.'-'.$t); 
+                    $job_id = $id;
+                    return view('apply1',compact('token','job_id')); 
+
+    }
+     
+
+      public function applynow1($id)
+    {
+       
+                    $token = Token::Unique('jobs','token',5);
+                    $t = date("Y-M",strtotime("now"));
+                    $token = strtoupper('AP-'.$token.'-'.$t); 
+                    $check = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                          ->first();
+
+                                          //return $check;
+                    $check1 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                          ->where('app_status','Stage2')
+                                          ->first();
+                    $check2 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_id',\Auth::id())
+                                           ->where('app_status','Stage3')
+                                          ->first();
+
+                      $email=\Auth::user()->email;
+         if (!empty($check2) ){
+             $token = $check->token;
+            return view('backapp.attach',compact('token'));
+        }
+        if (!empty($check1) ){
+             $token = $check->token;
+            return view('backapp.employee',compact('token'));
+        }
+                           
+        if (!empty($check)) {
+         $exist = KurraApp::all()->where('token',$check->token)->first();
+
+        if (!empty($exist)) {
+            $token = $check->token;
+            return view('backapp.cert',compact('token'));
+        }
+        $data =  Jobapp::findorfail($check->id);
+        $data->ref_token = $id;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = \Auth::user()->email;
+        $data->app_id = \Auth::id();
+        $data->status ='Success';
+        $data->save();
+      
+        }
+        else
+        {
+        $data = new Jobapp();
+        $data->token = $token;
+        $data->ref_token = $id;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+        $data->app_email = \Auth::user()->email;
+        $data->app_id = \Auth::id();
+        $data->status ='Success';
+        $data->save();
+        }
+       
+        $email=\Auth::user()->email;
+
+        return view('apply1',compact('token','email'));
+    }
+
 
 
     /**
