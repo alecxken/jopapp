@@ -32,8 +32,9 @@
           <li class="header">HEADER</li>
           <!-- Optionally, you can add icons to the links -->
           <li  class="{{ (request()->is('dashboard')) ? 'active' : '' }}"><a href="{{url('dashboard')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-          <li  class="{{ (request()->is('job-app')) ? 'active' : '' }}"><a href="{{url('job-app')}}"><i class="fa fa-link text-green"></i> <span>Apply Now</span></a></li>
-           <li><a href="{{url('jobs-apps')}}"><i class="fa fa-link"></i> <span>Job Application</span></a></li>
+          
+           <li><a href="{{url('jobs-apps')}}"><i class="fa fa-link"></i> <span>New Applicant</span></a></li>
+           <li  class="{{ (request()->is('my-apps1')) ? 'active' : '' }}"><a href="{{url('my-apps1')}}"><i class="fa fa-link text-green"></i> <span>Job Applicants List</span></a></li>
 
           <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
             <a href="#"><i class="fa fa-cog"></i> <span>Job Setting Sections</span>

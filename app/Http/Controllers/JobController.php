@@ -124,10 +124,8 @@ class JobController extends Controller
 
           public function show1()
     {
-        $data = Jobapp::all()->where('app_id',\Auth::id())
-                                          ->where('app_email',\Auth::user()->email)
-                                          ->where('status','Success');
-        return view('backapp.myapp',compact('data'));
+        $data = Jobapp::all()->where('status','Success');
+        return view('data.applicants',compact('data'));
     }
 
 
@@ -143,6 +141,50 @@ class JobController extends Controller
 
 
 
+
+public function stage($ref,$token)
+{
+    $id = $ref;
+
+         $check = Jobapp::all()->where('ref_token',$id)
+                                          ->where('token',$token)
+                                          ->first();
+                    $check1 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('token',$token)
+                                          ->where('app_status','Stage2')
+                                          ->first();
+                    $check2 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('token',$token)
+                                           ->where('app_status','Stage3')
+                                          ->first();
+
+                     
+         if (!empty($check2) ){
+             $token = $check->token;
+            return view('backapp.attach',compact('token'));
+        }
+        if (!empty($check1) ){
+             $token = $check->token;
+            return view('backapp.employee',compact('token'));
+        }
+                           
+        if (!empty($check)) {
+         $exist = KurraApp::all()->where('token',$check->token)->first();
+
+        if (!empty($exist)) {
+            $token = $check->token;
+            return view('backapp.cert',compact('token'));
+        }
+        else
+        {
+            return back()->with('danger','not found');
+        }
+    }
+      else
+        {
+            return back()->with('danger','not found');
+        }
+}
 
     public function applynow($id)
     {

@@ -55,10 +55,12 @@ Route::post('/attachment', 'ApplicationController@attach')->name('attach');
 
 Route::get('/jobs-apps', 'JobController@create1');
 Route::get('/my-apps1', 'JobController@show1');
-
+Route::get('/my-ref/{ref}/{token}', 'JobController@stage');
+// stage
 // Route::get('/apply1/{id}', 'JobController@apply1');
 Route::get('/apply-job1/{id}', 'JobController@applynow1');
 Route::get('/apply-jobnow/{id}', 'JobController@applyjobnow');
+Route::get('/applicants', 'JobController@applicants');
 Route::post('/startapp1', 'JobController@startapp1')->name('cert');
 
 

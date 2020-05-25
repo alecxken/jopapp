@@ -1,27 +1,27 @@
 @extends('layouts.template')
 @section('content')
-<BR>
-<h5><center>STEP II: EDUCATION DETAILS ({{$token}})</center></h5>
-<br>
+
 
             <div class="box box-primary box-outline">
-              <div class="box-header">
-                <h5 class="m-0"></h5>
+          
+                  <div class="box-header with-border">
+                   <h5><center>STEP II: EDUCATION DETAILS ({{$token}})</center></h5>
               </div>
+            
               <div class="box-body ">
                    {!! Form::open(['method'=> 'post','url' => 'employee', 'files' => true ]) !!}
                    <input type="hidden" name="token" value="{{$token}}">
-                         <div>
+                         <div class="box-body">
                             @include('apps.education')
 
                         </div>
-                          <div>
+                          <div class="box-body">
                           @include('apps.membership')
                         </div>
-                        <div>
+                        <div class="box-body">
                           @include('apps.certificate')
                         </div>
-                          <div>
+                          <div class="box-body">
                           @include('apps.other')
                         </div>
               </div>
