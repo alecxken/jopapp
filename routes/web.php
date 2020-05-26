@@ -75,3 +75,39 @@ Route::post('/employee1', 'ApplicationController@employee1')->name('employee');
 Route::post('/referee1', 'ApplicationController@referee1')->name('referee');
 Route::post('/attachment1', 'ApplicationController@attach1')->name('attach');
 
+//permissions and Roles
+Route::resource('admin', 'UserController');
+Route::resource('roles', 'RoleController');
+//roles RouteServiceProvider
+Route::get('/roles_index','RoleController@index');
+Route::get('/roles_create','RoleController@create');
+
+Route::post('/roles_store','RoleController@store');
+Route::post('/roles_update/{id}','RoleController@update');
+Route::post('/roles_destroy/{id}','RoleController@destroy');
+Route::post('/roles_edit/{id}','RoleController@edit');
+Route::post('/roles_show/{id}','RoleController@show');
+
+//permissions and Roles
+Route::get('/user_index','UserController@index');
+Route::get('/user_create','UserController@create');
+Route::get('/users_create','UserController@create');
+Route::post('/user_stores','UserController@storez');
+
+Route::post('/user_store','UserController@store');
+Route::post('/user_update/{id}','UserController@update');
+Route::get('/user_destroy/{id}','UserController@destroy');
+Route::post('/user_edit/{id}','UserController@edit');
+Route::post('/user_show/{id}','UserController@show');
+
+//permissions and Roles
+Route::get('/permissions_index','PermissionController@index');
+Route::get('/permission_create','PermissionController@create');
+Route::post('/permissions_store','PermissionController@store');
+Route::post('/permissions_update/{id}','PermissionController@update');
+Route::post('/permissions_destroy/{id}','PermissionController@destroy');
+Route::post('/permission_edit/{id}','PermissionController@edit');
+Route::post('/permission_show/{id}','PermissionController@show');
+Route::resource('/permissions', 'PermissionController');
+
+

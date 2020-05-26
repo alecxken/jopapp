@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.0",
         "laravelcollective/html": "^6.1",
+        "spatie/laravel-permission": "^3.13",
         "wyndow/fuzzywuzzy": "^0.6.0"
     },
     "require-dev": {
