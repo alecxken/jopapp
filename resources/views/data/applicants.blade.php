@@ -25,6 +25,9 @@
                                 <th class="text-center">
                                   Applicant Email
                                 </th>
+                                <th class="text-center">
+                                  Applicant ID
+                                </th>
                             
                                  <th class="text-center">
                                   Application Status
@@ -44,9 +47,18 @@
                               <tr id='t0'>
                                 <td>{{$apps->token}}</td> 
                                 <td>{{$apps->ref_token}}</td>
-                                <td>{{$apps->app_email}}</td>      
+                                <td>{{$apps->app_email}}</td>
+                                <td>{{$apps->app_id}}</td>           
                                 <td>{{$apps->app_status}}</td>
-                                <td><label class="label label-warning"> Pending</label></td>  
+                                <td>
+                                   @if($apps->app_status == 'Complete')
+                    @php $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();@endphp
+                  
+                    <label class="label label-success"> Done {{$a->percentage}}%</label>
+                                  @else
+                                  <label class="label label-warning"> Pending</label>
+                                  @endif
+                                </td>  
                                 <td>
                                   @if($apps->app_status == 'Complete')
                                   no action

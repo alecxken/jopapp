@@ -40,7 +40,17 @@ class ApplicationController extends Controller
                                           ->where('app_email',$email)
                                            ->where('app_status','Stage3')
                                           ->first();
- 
+
+                     $check3 = Jobapp::all()->where('ref_token',$id)
+                                          ->where('app_email',$email)
+                                           ->where('app_status','Complete')
+                                          ->first();
+                      
+                  //    dd($check3);
+         if (!empty($check3) ){
+             
+            return redirect('jobs-apps')->with('danger','Applicant Already Completed Application');
+        }
                      
          if (!empty($check2) ){
              $token = $check->token;
@@ -109,7 +119,7 @@ class ApplicationController extends Controller
         }
         $data = new Jobapp();
         $data->token = $token;
-        $data->ref_token = $token;
+        $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
         $data->app_email = $email;
