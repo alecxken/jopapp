@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('home');
 });
 
+Route::get('/register', function () {
+    return redirect('home');
+});
+
 Route::get('/test', function () {
     return view('test');
 });
