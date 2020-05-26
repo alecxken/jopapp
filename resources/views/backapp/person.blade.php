@@ -175,7 +175,7 @@
    </div> 
                 <div class="box-footer">
                     
-                    {{ Form::submit('Submit & Procceed', array('class' => 'btn btn-success pull-right')) }}
+                    {{ Form::submit('Procceed', array('class' => 'btn btn-success pull-right')) }}
                 </div>
                             
 
