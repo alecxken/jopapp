@@ -1,4 +1,4 @@
-@extends('layouts.templates')
+@extends('layouts.template')
 @section('content')
 <BR>
 <H1><center>Final Step : ATTACHMENT SECTION ({{$token}})</center></H1>

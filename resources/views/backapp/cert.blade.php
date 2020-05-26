@@ -4,25 +4,24 @@
 
             <div class="box box-primary box-outline">
           
-                  <div class="box-header with-border">
+                  <div class="box-header with-border bg-info">
                    <h5><center>STEP II: EDUCATION DETAILS ({{$token}})</center></h5>
               </div>
             
               <div class="box-body ">
-                   {!! Form::open(['method'=> 'post','url' => 'employee', 'files' => true ]) !!}
+                   {!! Form::open(['method'=> 'post','url' => 'employee1', 'files' => true ]) !!}
                    <input type="hidden" name="token" value="{{$token}}">
                          <div class="box-body">
-                            @include('apps.education')
+                            @include('backapp.education')
 
-                        </div>
-                          <div class="box-body">
-                          @include('apps.membership')
-                        </div>
-                        <div class="box-body">
-                          @include('apps.certificate')
-                        </div>
-                          <div class="box-body">
-                          @include('apps.other')
+                        
+                          @include('backapp.membership')
+                     
+                          @include('backapp.certificate')
+                      
+                          @include('backapp.other')
+
+                          @include('backapp.checklist')
                         </div>
               </div>
                 <div class="box-footer">

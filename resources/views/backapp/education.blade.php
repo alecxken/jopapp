@@ -1,9 +1,9 @@
   <div class="col-md-12">
-            <div class="box box-success box-outline">
-              <div class="box-header">
-                <h5 class="m-0">EDUCATION</h5>
-                <br>
+            <div class="box box-success ">
+               <div class="box-header with-border">
+                   <h5 class="m-0">Education Details</h5>
               </div>
+            
                  
                <div class="box-body ">
                     <div class="">
@@ -86,7 +86,7 @@
                             cols += '<td> <select required="" class="form-control" name="edu[]"><option>Choose Education</option><option>Doctorate</option><option>Masters</option><option>Post Graduate Diploma</option><option>Bachelors</option>  <option>Advanced/Higher Diploma</option><option>Diploma</option><option>Advanced Certificate</option><option>Certificate</option><option>A level</option><option>O Level</option></select></td>';
                             cols += '<td><input type="text" name="cert[]" placeholder="Certificate" class="form-control"/></td>';
                                cols += '<td><input type="text" class="form-control"  placeholder="Institution" name="institution[]"/></td>';
-                                  cols += '<td><input type="number" min="1950" max="{{date('Y')}}" class="form-control"  placeholder="Year" name="post[]"/></td>';
+                                  cols += '<td><input type="number" min="1950" max="{{date('Y')}}" class="form-control"  placeholder="Year" name="year[]"/></td>';
 
                             cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);

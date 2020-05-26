@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\KurraApp;
 use App\JobApp;
+use App\Job;
+use Auth;
 use App\KuraAttachment;
 class ApplicationController extends Controller
 {
@@ -19,6 +21,9 @@ class ApplicationController extends Controller
 
       $email = $request->input('email');
       $id =  $request->input('job_id');
+        $job = Job::all()->where('token',$id)->first();
+         $req = \App\Required::all()->where('ref_token',$id);
+           $app = Jobapp::all()->where('ref_token',$id)->count() +1;
                     // $token = Token::Unique('jobs','token',5);
                     // $t = date("Y-M",strtotime("now"));
                     $token = $request->input('token');; 
@@ -35,7 +40,7 @@ class ApplicationController extends Controller
                                           ->where('app_email',$email)
                                            ->where('app_status','Stage3')
                                           ->first();
-
+ 
                      
          if (!empty($check2) ){
              $token = $check->token;
@@ -45,45 +50,74 @@ class ApplicationController extends Controller
              $token = $check->token;
             return view('backapp.employee',compact('token'));
         }
-                           
+            
+
         if (!empty($check)) {
          $exist = KurraApp::all()->where('token',$check->token)->first();
-
+      
         if (!empty($exist)) {
             $token = $check->token;
-            return view('backapp.cert',compact('token'));
+        
+            return view('backapp.cert',compact('token','req'));
         }
+
         $data =  Jobapp::findorfail($check->id);
         $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
         $data->app_email = $email;
-        $data->app_id = $email;
+        $data->captured_by = Auth::id();
         $data->status ='Success';
         $data->save();
       
+        $this->validate($request, [
+                                       'token' => 'required|unique:kurra_apps',
+                                      'phone_no' => 'required:numeric',
+                                      'title' => 'required',
+                                      'fname' => 'required',
+                                      'lname' => 'required'
+                                  ]
+                                ); 
+        $person = new KurraApp();
+        $person->token = $request->input('token');
+        $person->title = $request->input('title');
+        $person->fname = $request->input('fname');
+        $person->lname = $request->input('lname');
+        $person->oname = $request->input('oname');
+        $person->po_box = $request->input('po_box');
+        $person->postal_code = $request->input('postal_code');
+        $person->phone_no = $request->input('phone_no');
+        $person->email = $request->input('email');
+        $person->dob = $request->input('dob');
+        $person->gender = $request->input('gender');
+        $person->passport = $request->input('passport');
+        $person->county = $request->input('county');
+        $person->district = $request->input('district');
+        $person->is_disabled = $request->input('is_disabled');
+        $person->disability = $request->input('disability');
+        $person->save();
+
+      return view('backapp.cert',compact('token','req'));  //
+
         }
         else
         {
+           $exist = KurraApp::all()->where('token',$request->input('token'))->first();
+        if (!empty($exist)) {
+          
+            return view('backapp.cert',compact('token','req'));
+        }
         $data = new Jobapp();
         $data->token = $token;
         $data->ref_token = $token;
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
         $data->app_email = $email;
-        $data->app_id = $email;
+         $data->captured_by = Auth::id();
+        $data->app_id =   $job->prefix.'/'.$app;; 
         $data->status ='Success';
         $data->save();
-        }
-       
-        
 
-     
-        $exist = KurraApp::all()->where('token',$request->input('token'))->first();
-        if (!empty($exist)) {
-
-            return view('apps.cert',compact('token'));
-        }
           $this->validate($request, [
                                        'token' => 'required|unique:kurra_apps',
                                       'phone_no' => 'required:numeric',
@@ -111,9 +145,16 @@ class ApplicationController extends Controller
         $person->disability = $request->input('disability');
         $person->save();
 
-      return view('backapp.cert',compact('token'));  //
+      return view('backapp.cert',compact('token','req'));  //
+        }
+       
+        
 
-        return view('apply1',compact('token','email'));
+     
+       
+        
+
+       
     }
     public function cert(Request $request)
     {
@@ -272,6 +313,188 @@ class ApplicationController extends Controller
     }
 
 
+     public function employee1(Request $request)
+    {
+        
+             $token = $request->input('token');
+             $cert1 = array_filter($request->input('cert1'));
+             $member = array_filter($request->input('member')); 
+             $training = array_filter($request->input('training'));
+          //   $chk4 = array_filter($request->input('checklist'));
+
+             $v  =  array_count_values($request->input('passed'));
+              $pass = $v['Yes'];
+              $fail = $v['No'];
+              $total = $pass + $fail;
+              $percentage = round(($pass*100)/$total);
+                      
+                
+             foreach ($request->input('edu') as $key => $value)
+                     {
+                        
+                         $emptys = $request->input('edu')[$key];
+                        if(is_null($emptys))
+                        {
+                            $insert = [];
+                        }
+                         else
+                         {                    
+                        $insert[] =
+                                     [
+                                      'token' => $token,    
+                                      'edu'  => $request->input('edu')[$key],                                  
+                                      'cert1'  => $request->input('cert')[$key],
+                                      'institution1'  => $request->input('institution')[$key],
+                                      'year1'  => $request->input('year')[$key],
+                                      ];
+                         }
+                    }
+
+                    //certificate validation
+                    if (is_null($cert1))
+                     {
+                      $insert1 = [];
+                     }
+                    else
+                    {
+                        foreach ($request->input('cert1') as $key => $value)
+                     {
+                        $empty1 = $request->input('cert')[$key];
+                        if(is_null($empty1))
+                        {
+                            $insert1 = [];
+                        }
+                         else
+                         {
+                                             
+                        $insert1[] =
+                                     [
+                                      'token' => $token,       
+                                      'cert'  => $request->input('cert1')[$key],
+                                      'institution'  => $request->input('institution1')[$key],
+                                      'year'  => $request->input('year1')[$key],                             
+                                     ];
+                            }
+                     }
+                    }
+                     
+                  if (is_null($member))
+                     {
+                      $insert2 = [];
+                     }
+                    else
+                    {
+                     foreach ($request->input('member') as $key => $value)
+                     {
+                        $empty2 = $request->input('member')[$key];
+                        if(is_null($empty2))
+                        {
+                            $insert2 = [];
+                        }
+                         else
+                         {
+                                             
+                            $insert2[] =
+                                     [
+                                      'token' => $token,       
+                                      'member'  => $request->input('member')[$key],
+                                      'body'  => $request->input('body')[$key],
+                                      'membno'  => $request->input('membno')[$key],                             
+                                     ];
+                         }
+                     }
+                    }
+
+                 if (is_null($training))
+                     {
+                      $insert3 = [];
+                     }
+                    else
+                    {
+                         foreach ($request->input('training') as $key => $value)
+                     {
+                        $empty = $request->input('training')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert3 = [];
+                        }
+                         else
+                         {
+                              $insert3[] =
+                                     [
+                                      'token' => $token,  
+                                       'training'  => $request->input('training')[$key],     
+                                      'cert2'  => $request->input('cert2')[$key],
+                                      'institution2'  => $request->input('institution2')[$key],
+                                      'year2'  => $request->input('year2')[$key], 
+                      
+                                     ];                      # code...
+                         }                    
+                     
+                     }
+                   }
+
+                       foreach ($request->input('checklist') as $key => $value)
+                     {
+                        $empty = $request->input('checklist')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert4 = [];
+                        }
+                         else
+                         {
+                              $insert4[] =
+                                     [
+                                      'app_token' => $token,  
+                                       'job_token'  => $request->input('job_ref')[$key],     
+                                      'passed'  => $request->input('passed')[$key],
+                                      'requirement'  => $request->input('checklist')[$key],
+                                      'comments'  => $request->input('comments')[$key],
+                                      
+                      
+                                     ];                      # code...
+                         }                    
+                     
+                     }
+
+                  $re =  \App\ApplicantMark::all()->where('job_token',$token)->first();       
+                  if (empty($re)) 
+                  {
+                     $app = new \App\ApplicantMark();
+                      $app->job_token = $token;
+                      $app->total = $total;
+                      $app->passed = $pass;
+                      $app->percentage = $percentage;
+                      $app->save();
+                  }
+                  else
+                  {
+                       $app =  \App\ApplicantMark::findorfail($re->id);
+                        $app->job_token = $token;
+                        $app->total = $total;
+                        $app->passed = $pass;
+                        $app->percentage = $percentage;
+                        $app->save();
+                  }
+           
+                    
+        
+           if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+           if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+           if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
+           if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
+           if(!empty($insert4)){\DB::table('applicant_creterias')->insert($insert4);}
+           $app = JobApp::all()->where('token',$token)->first();
+           if (!empty($app)) 
+            {
+                $apps = JobApp::findorfail($app->id);
+                $apps->app_status = 'Stage2';
+                $apps->save();
+            }
+       return view('backapp.employee',compact('token')); //
+    }
+
+
    public function referee(Request $request)
     {
        $token = $request->input('token');
@@ -333,6 +556,69 @@ class ApplicationController extends Controller
                 $apps->save();
             }
        return view('apps.attach',compact('token')); //
+    }
+
+      public function referee1(Request $request)
+    {
+       $token = $request->input('token');
+               foreach ($request->input('ref_name') as $key => $value)
+                     {
+                        $empty2 = $request->input('ref_name')[$key];
+                        if(is_null($empty2))
+                        {
+                            $insert2 = [];
+                        }
+                         else
+                         {
+                                             
+                            $insert2[] =
+                                     [
+                                      'ref_name'=>$request->input('ref_name')[$key],
+                                      'ref_company' =>$request->input('ref_company')[$key],
+                                      'ref_position'=>$request->input('ref_position')[$key],
+                                      'ref_email'=>$request->input('ref_email')[$key],
+                                      'ref_phone'=>$request->input('ref_phone')[$key],
+                                      'token' => $token,                              
+                                     ];
+                         }
+                     }
+                         foreach ($request->input('employer') as $key => $value)
+                     {
+                        $empty = $request->input('employer')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert3 = [];
+                        }
+                         else
+                         {
+                              $insert3[] =
+                                     [
+                                      'token' => $token,  
+                                       'employer'  => $request->input('employer')[$key],     
+                                      'position'  => $request->input('position')[$key],
+                                      'from'  => $request->input('from')[$key],
+                                      'to'  => $request->input('to')[$key],
+                                       'contact_person' => $request->input('contact_person')[$key],
+                      
+                                     ];                      # code...
+                         }                    
+                     
+                     }
+
+                    
+        
+           // if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+           // if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+           if(!empty($insert2)){\DB::table('kura_referees')->insert($insert2);}
+           if(!empty($insert3)){\DB::table('kura_employers')->insert($insert3);}
+           $app = JobApp::all()->where('token',$token)->first();
+           if (!empty($app)) 
+            {
+                $apps = JobApp::findorfail($app->id);
+                $apps->app_status = 'Complete';
+                $apps->save();
+            }
+        return redirect('my-apps1')->with('status','Completed Successfully'); //
     }
 
      public function attach(Request $request)

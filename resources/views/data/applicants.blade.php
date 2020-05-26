@@ -17,7 +17,7 @@
                             <thead class="bg-primary small">
                               <tr >
                                 <th class="text-center">
-                                  AppRef
+                                  AppRef 
                                 </th>
                                 <th class="text-center">
                                   JobID

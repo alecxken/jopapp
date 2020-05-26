@@ -43,6 +43,7 @@ Route::get('/job', 'JobController@create');
 Route::get('/my-apps', 'JobController@show');
 Route::get('/apply-now/{id}', 'JobController@applynow');
 Route::post('/startapp', 'JobController@startapp')->name('cert');
+Route::get('/deletejob/{id}', 'JobController@deletejob');
 
 
 Route::post('/job-reg', 'JobController@store')->name('cert');

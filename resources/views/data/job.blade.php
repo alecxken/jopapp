@@ -14,16 +14,20 @@
            <div class="box-body">
               {!! Form::open(['method'=> 'post','url' => 'job-reg' ,'files' => true]) !!}
            
-                 <div class="form-group col-md-4 ">
+                 <div class="form-group col-md-3 ">
                     {!! Form::label('C_Name', 'Job Title', ['class' => 'col-form-label '])!!}
                     {!!Form::text('title',Null,['class' => 'form-control' ])!!}
                 </div>
                 
-                 <div class="form-group col-md-4 ">
+                 <div class="form-group col-md-3 ">
                     {!! Form::label('C_Name', 'Experience (Yrs):', ['class' => 'col-form-label '])!!}
                     {!!Form::number('qualification',Null,['class' => 'form-control','placeholder'=>'2' ])!!}
+                </div> 
+                 <div class="form-group col-md-3 ">
+                    {!! Form::label('C_Name', 'Job App Prefix:', ['class' => 'col-form-label '])!!}
+                    {!!Form::text('prefix',Null,['placeholder'=>'KURA/DE/TR/1','class' => 'form-control','required' ])!!}
                 </div>  
-                 <div class="form-group col-md-4 ">
+                 <div class="form-group col-md-3 ">
                     {!! Form::label('C_Name', 'Job applicantation deadline', ['class' => 'col-form-label '])!!}
                     {!!Form::date('deadline',Null,['class' => 'form-control' ])!!}
                 </div>
@@ -72,6 +76,7 @@
                <th>Title</th>
                <th>Dealine</th>
                 <th>File</th>
+                <th>Action</th>
                                                            
             </tr>
           </thead>
@@ -79,10 +84,10 @@
            @foreach ($data as $user)
               <tr>
                 <td>{{$user->token}}</td>
-                <td>{{$user->title}}</td>
-            
+                <td>{{$user->title}}</td>            
                 <td>{{$user->deadline}}</td>
                 <td>{{$user->file}}</td>
+                <td><a href="{{url('deletejob/'.$user->token)}}" class="btn btn-danger">Drop</a></td>
             
               
               </tr>

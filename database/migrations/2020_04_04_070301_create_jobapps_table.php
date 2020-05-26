@@ -15,13 +15,13 @@ class CreateJobappsTable extends Migration
     {
         Schema::create('jobapps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('token')->nullabe();
-            $table->string('ref_token')->nullabe();
-            $table->string('app_date')->nullabe();
-            $table->string('app_status')->nullabe();
-            $table->string('app_email')->nullabe();
-            $table->string('app_id')->nullabe();  
-            $table->string('status')->nullabe();          
+            $table->string('token')->nullable();
+            $table->string('ref_token')->nullable();
+            $table->string('app_date')->nullable();
+            $table->string('app_status')->nullable();
+            $table->string('app_email')->nullable();
+            $table->string('app_id')->nullable();  
+            $table->string('status')->nullable();          
             $table->timestamps();
         });
     }

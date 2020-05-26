@@ -1,7 +1,8 @@
   <div class="col-md-12">
             <div class="box box-success box-outline">
-              <div class="box-header">
-                <h5 class="m-0">EMPLOYMENT RECORDS</h5>
+            
+                <div class="box-header with-border">
+                       <h5 class="m-0">EMPLOYMENT RECORDS</h5>
               </div>
         
                <div class="box-body ">

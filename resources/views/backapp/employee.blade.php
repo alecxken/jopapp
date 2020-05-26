@@ -1,4 +1,4 @@
-@extends('layouts.templates')
+@extends('layouts.template')
 @section('content')
 
 
@@ -7,21 +7,20 @@
                 <h3><center>STAGE III: EMPLOYMENT/EXPERIENCE DETAILS ({{$token}})</center></h3>
               </div>
               <div class="box-body ">
-                   {!! Form::open(['method'=> 'post','url' => 'referee', 'files' => true ]) !!}
+                   {!! Form::open(['method'=> 'post','url' => 'referee1', 'files' => true ]) !!}
                    <input type="hidden" name="token" value="{{$token}}">
                          <div class="box-body">
-                            @include('apps.employer')
+                            @include('backapp.employer')
 
-                        </div>
-                           <div class="box-body">
-                            @include('apps.referees')
+                        
+                            @include('backapp.referees')
 
                         </div>
                          
                          
               </div>
                 <div class="box-footer">
-                    {{ Form::submit('Submit & Proceed', array('class' => 'btn btn-success pull-right')) }}
+                    {{ Form::submit('Click To Complete Submission', array('class' => 'btn btn-success pull-right')) }}
                 </div>
                       {{ Form::close() }}
               </div>

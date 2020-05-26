@@ -3,9 +3,10 @@
           <div class="col-md-12" width="100%">        
 
             <div class="box box-primary box-outline">
-              <div class="box-header">
-                <h5 class="m-0">PROFESSIONAL CERTIFICATION</h5><br>
+              <div class="box-header with-border">
+                    <h5 class="m-0">PROFESSIONAL CERTIFICATION</h5>
               </div>
+             
               <div class="box-body ">
 
 

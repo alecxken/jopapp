@@ -64,6 +64,7 @@ class JobController extends Controller
         $job->responsibility = $request->input('responsibility');
         $job->qualification = $request->input('qualification');
         $job->deadline = $request->input('deadline');
+        $job->prefix = $request->input('prefix');
         $job->applicants = $request->input('applicants');
         $job->status = 'Active';
         $job->applicants =0;
@@ -115,6 +116,19 @@ class JobController extends Controller
             return back()->with('status','Successfully Uploaded');
     }
 
+      public function deletejob($request)
+        {
+          $job = Job::all()->where('token',$request)->first();
+          $jobs = Creteria::all()->where('ref_token',$request)->first();
+          $j = Job::findorfail($job->id);
+          $j->delete();
+          $js = Creteria::findorfail($jobs->id);
+          $js->delete();
+
+          return back()->with('danger','Success');
+
+        }
+
     /**
      * Display the specified resource.
      *
@@ -145,7 +159,7 @@ class JobController extends Controller
 public function stage($ref,$token)
 {
     $id = $ref;
-
+        $req = \App\Required::all()->where('ref_token',$id);
          $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('token',$token)
                                           ->first();
@@ -173,7 +187,7 @@ public function stage($ref,$token)
 
         if (!empty($exist)) {
             $token = $check->token;
-            return view('backapp.cert',compact('token'));
+            return view('backapp.cert',compact('token','req'));
         }
         else
         {
@@ -254,6 +268,7 @@ public function stage($ref,$token)
                     $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
                     $token = strtoupper('AP-'.$token.'-'.$t); 
+                    
                     $job_id = $id;
                     return view('apply1',compact('token','job_id')); 
 
