@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>EKE Internal Web System</title>
+    <title>EKE KURA</title>
 
   
     <link href="{{asset('/css/app.css')}}" rel="stylesheet">
@@ -18,7 +18,7 @@
     </script>
 </head>
 
-<body class="hold-transition login-page" style="  background: -webkit-linear-gradient(left,#005b82 15%,#0082bb 100%); background-size: cover; ">
+<body class="hold-transition login-page" style=" background-image: linear-gradient(to right,#ffff,#DFC0F6,#fff);">
     <div id="app">
         @yield('content')
     </div>
