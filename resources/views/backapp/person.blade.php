@@ -24,6 +24,9 @@
                                  <option>Mr</option>
                                  <option>Mrs</option>
                                  <option>Miss</option>
+                                 <option>Prof</option>
+                                 <option>Eng.</option>
+                                 <option>Dr.</option>
                                </select>
                             </div>
 
@@ -169,7 +172,7 @@
 
                        
 
-   </div>
+   </div> 
                 <div class="box-footer">
                     
                     {{ Form::submit('Submit & Procceed', array('class' => 'btn btn-success pull-right')) }}
