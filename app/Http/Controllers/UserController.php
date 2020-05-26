@@ -93,24 +93,7 @@ public function __construct() {
          $agent->phone = $request->input('phone');
          $agent->password = \Hash::make($request['password']);
          $agent->save();
-             $username = 'flowerbliss'; // use 'sandbox' for development in the test environment
-        $apiKey   = '251e09574b6ea23dff35d310db56b60c1459e5b3863ba85f4f716ded6f5ee641';
-            $AT       = new AfricasTalking($username, $apiKey);
-                $sms      = $AT->sms();
-                $from       = "FlowerBliss";
-                $recipients = $request->input('phone');
-                $message = 'Hello '.$request->input('name').', Your login credential for http://sell.flowerblissonline.co.ke is '.$request->input('email').' email and as '.$request->input('password').' your  password';
-                 try {
-
-                        $result   = $sms->send([
-                        'to'      => $recipients,
-                        'message' => $message,
-                        'from'=>$from
-                    ]);
-                        
-                    } catch (Exception $e) {
-                        dd("Error: ".$e->getMessage());
-                    }
+            
 
         //Redirect to the users.index view and display message
         return redirect()->route('admin.index')
