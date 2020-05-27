@@ -47,8 +47,8 @@
             <ul class="treeview-menu">
             <li><a href="{{url('job')}}"><i class="fa fa-link"></i> <span>New Job Upload</span></a></li>
             <li><a href="{{url('admin')}}"><i class="fa fa-link"></i> <span>User Management</span></a></li>
-            <li><a href="#" data-href="delete.php?id=23" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-link"></i>Delete All Records</a>
-</li>
+             <li><a href="{{url('delete-all/EKE')}}"><i class="fa fa-link"></i> <span>User Management</span></a></li>
+           
           
             </ul>
           </li>
@@ -56,22 +56,7 @@
 
         </ul>
 
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-               Delete All Applicants
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a href="{{url('delete-all')}}" class="btn btn-danger btn-ok">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
+    
         <!-- /.sidebar-menu -->
       </section>
       <!-- /.sidebar -->

@@ -506,9 +506,10 @@ class ApplicationController extends Controller
        return view('backapp.employee',compact('token')); //
     }
 
-     public function deleteall()
+     public function deleteall($id)
     {
-        \DB::table('jopapps')->truncate();
+      if ($id == 'EKE') {
+       \DB::table('jopapps')->truncate();
           \DB::table('kurra_apps')->truncate();
           \DB::table('kura_education')->truncate();
            \DB::table('kura_certs')->truncate();
@@ -516,6 +517,12 @@ class ApplicationController extends Controller
            \DB::table('kura_others')->truncate();
            \DB::table('applicant_creterias')->truncate();
         return back()->with('danger','Successfully Done');
+      }
+      else
+      {
+            return back()->with('danger','Successfully Done');
+      }
+        
     }
 
 
