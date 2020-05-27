@@ -509,7 +509,7 @@ class ApplicationController extends Controller
      public function deleteall($id)
     {
       if ($id == 'EKE') {
-       \DB::table('jopapps')->truncate();
+       \DB::table('jobapps')->truncate();
           \DB::table('kurra_apps')->truncate();
           \DB::table('kura_education')->truncate();
            \DB::table('kura_certs')->truncate();
