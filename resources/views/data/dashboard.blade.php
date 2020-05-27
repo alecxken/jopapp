@@ -40,7 +40,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Pending Devices</span>
+              <span class="info-box-text">Completed </span>
               <span class="info-box-number"></span>
             </div>
             <!-- /.info-box-content -->
@@ -53,7 +53,7 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">  Ecobank Users</span>
+              <span class="info-box-text"> Pending </span>
               <span class="info-box-number"></span>
             </div>
             <!-- /.info-box-content -->

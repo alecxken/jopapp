@@ -14,7 +14,15 @@
 
                         
                             @include('backapp.referees')
-
+                            <hr>
+                            <div class="form-group ">
+                                {{ Form::label('email', 'Application Document Signed') }}
+                               <select class="form-control input-sm" name="signed" required="">
+                                 <option value="">Choose option</option>
+                                 <option>No</option>
+                                 <option>Yes</option>
+                               </select>
+                            </div>
                         </div>
                          
                          

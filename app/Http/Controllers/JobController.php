@@ -38,6 +38,8 @@ class JobController extends Controller
         return view('backapp.job',compact('data'));
     }
 
+      
+
     /**
      * Store a newly created resource in storage.
      *

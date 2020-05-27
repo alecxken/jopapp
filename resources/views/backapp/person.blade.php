@@ -92,7 +92,7 @@
 
                               <div class="form-group col-md-4">
                                 {{ Form::label('email', 'County') }}
-                                <select class="form-control" name="county" required="">
+                                <select class="form-control input-sm select2" name="county" required="">
                                     <option value="">Choose Your County</option>
                                     <option>Mombasa</option>
                                     <option>Kwale</option>
@@ -153,6 +153,15 @@
                                 {{ Form::text('district', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
+                             <div class="form-group col-md-4">
+                                {{ Form::label('disability', ' Current Salary') }}
+                                {{ Form::number('current', '', array('class' => 'form-control input-sm')) }}
+                            </div>
+
+                             <div class="form-group col-md-4">
+                                {{ Form::label('disability', ' Expected Salary') }}
+                                {{ Form::number('expected', '', array('class' => 'form-control input-sm')) }}
+                            </div>
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Any Disability') }}
@@ -167,6 +176,11 @@
                                 {{ Form::label('disability', ' Description Of Disability') }}
                                 {{ Form::text('disability', '', array('class' => 'form-control input-sm')) }}
                             </div>
+
+                            
+
+                            
+
 
                           
 

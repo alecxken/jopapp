@@ -105,6 +105,8 @@ class ApplicationController extends Controller
         $person->district = $request->input('district');
         $person->is_disabled = $request->input('is_disabled');
         $person->disability = $request->input('disability');
+        $person->current_salary = $request->input('current_salary');
+        $person->expected_salary = $request->input('expected_salary');
         $person->save();
 
       return view('backapp.cert',compact('token','req'));  //
@@ -504,6 +506,18 @@ class ApplicationController extends Controller
        return view('backapp.employee',compact('token')); //
     }
 
+     public function deleteall()
+    {
+        \DB::table('jopapps')->truncate();
+          \DB::table('kurra_apps')->truncate();
+          \DB::table('kura_education')->truncate();
+           \DB::table('kura_certs')->truncate();
+           \DB::table('kura_memberships')->truncate();
+           \DB::table('kura_others')->truncate();
+           \DB::table('applicant_creterias')->truncate();
+        return back()->with('danger','Successfully Done');
+    }
+
 
    public function referee(Request $request)
     {
@@ -571,6 +585,7 @@ class ApplicationController extends Controller
       public function referee1(Request $request)
     {
        $token = $request->input('token');
+       $signed  =$request->input('signed');
                foreach ($request->input('ref_name') as $key => $value)
                      {
                         $empty2 = $request->input('ref_name')[$key];
@@ -625,6 +640,7 @@ class ApplicationController extends Controller
            if (!empty($app)) 
             {
                 $apps = JobApp::findorfail($app->id);
+                $apps->signed = $signed;
                 $apps->app_status = 'Complete';
                 $apps->save();
             }
