@@ -19,7 +19,7 @@
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Applicant Ref') }}
-                                {{ Form::text('app_id', NULL, array('class' => 'form-control input-sm')) }}
+                                {{ Form::text('app_id', NULL, array('class' => 'form-control input-sm','placeholder'=>'E.G KURA/DE/23/1')) }}
                             </div>
 
                             <div class="form-group col-md-4">
