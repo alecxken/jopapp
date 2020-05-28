@@ -19,7 +19,8 @@ class ApplicationController extends Controller
       public function cert1(Request $request)
     {
 
-      $email = $request->input('email');
+      // $email = $request->input('email');
+      $email = $request->input('app_id');
       $id =  $request->input('job_id');
         $job = Job::all()->where('token',$id)->first();
          $req = \App\Required::all()->where('ref_token',$id);
@@ -75,6 +76,7 @@ class ApplicationController extends Controller
         $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
+         $data->app_id = $request->input('app_id');
         $data->app_email = $email;
         $data->captured_by = Auth::id();
         $data->status ='Success';
@@ -126,7 +128,7 @@ class ApplicationController extends Controller
         $data->app_status = 'Pending';
         $data->app_email = $email;
          $data->captured_by = Auth::id();
-        $data->app_id =   $job->prefix.'/'.$app;; 
+        $data->app_id =   $request->input('app_id');
         $data->status ='Success';
         $data->save();
 

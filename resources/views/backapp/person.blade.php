@@ -17,12 +17,18 @@
                                 {{ Form::text('token', $token, array('class' => 'form-control input-sm','readonly')) }}
                             </div>
 
+                             <div class="form-group col-md-4">
+                                {{ Form::label('email', 'Applicant Ref') }}
+                                {{ Form::text('app_id', NULL, array('class' => 'form-control input-sm')) }}
+                            </div>
+
                             <div class="form-group col-md-4">
                                 {{ Form::label('name', 'Title') }}
                                   <select class="form-control input-sm" name="title" required="">
                                  <option value="">Choose Title</option>
                                  <option>Mr</option>
                                  <option>Mrs</option>
+                                 <option>Ms</option>
                                  <option>Miss</option>
                                  <option>Prof</option>
                                  <option>Eng.</option>
