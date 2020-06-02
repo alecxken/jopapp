@@ -207,7 +207,7 @@
                             </div>
 
                                <div class="form-group col-md-12" id="dismissed" style="display: block;">
-                                {{ Form::label('disability', 'If Yes State Nature of Offence, the year and duration of offence') }}
+                                {{ Form::label('disability', 'If Yes State State reason (s) for dismissal/removal and effective date (dd/mm/yyyy)') }}
                                 {{ Form::text('dismissed', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
