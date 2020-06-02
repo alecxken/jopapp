@@ -71,9 +71,9 @@
 
                             cols += '<td>'+ counter +'</td>';
                             cols += '<td> <input type="text" name="training[]" placeholder="Training" class="form-control"/></td>';
-                            cols += '<td><input type="text" name="cert[]" placeholder="Certificate" class="form-control"/></td>';
-                               cols += '<td><input type="text" class="form-control"  placeholder="Director Post" name="post[]"/></td>';
-                                  cols += '<td><input type="text" class="form-control"  placeholder="Director Post" name="post[]"/></td>';
+                            cols += '<td><input type="text" name="cert2[]" placeholder="Certificate" class="form-control"/></td>';
+                               cols += '<td><input type="text" class="form-control"  placeholder=" Institution" name="institution2[]"/></td>';
+                                  cols += '<td><input type="number" class="form-control"  placeholder="Year" name="year2[]"/></td>';
 
                             // cols += '<td><input type="button" class="ibtnDel4 btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);
