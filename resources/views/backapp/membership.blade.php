@@ -40,7 +40,7 @@
                                 <input type="text" name='body[]' placeholder='Membership Body' class="form-control"/>
                                 </td>
                                  <td>
-                                <input type="number" name='membno[]' placeholder='Membership No' class="form-control"/>
+                                <input type="text" name='membno[]' placeholder='Membership No' class="form-control"/>
                                 </td>
                                
                               </tr>
@@ -68,7 +68,7 @@
                          
                             cols += '<td><input type="text" name="member[]" placeholder="Membership Name" class="form-control"/></td>';
                                cols += '<td><input type="text" class="form-control"  placeholder="Membership Body" name="body[]"/></td>';
-                                  cols += '<td><input type="number" class="form-control"  placeholder="Membership No" name="membno[]"/></td>';
+                                  cols += '<td><input type="text" class="form-control"  placeholder="Membership No" name="membno[]"/></td>';
 
                             cols += '<td><input type="button" class="ibtnDel2 btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);
