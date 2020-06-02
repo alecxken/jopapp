@@ -203,6 +203,10 @@ class ApplicationController extends Controller
         $person->district = $request->input('district');
         $person->is_disabled = $request->input('is_disabled');
         $person->disability = $request->input('disability');
+         $person->is_convicted = $request->input('is_convicted');
+        $person->convicted = $request->input('convicted');
+         $person->is_dismissed = $request->input('is_dismissed');
+        $person->dismissed = $request->input('dismissed');
         $person->save();
 
       return view('apps.cert',compact('token'));  //

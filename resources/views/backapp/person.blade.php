@@ -183,9 +183,36 @@
                                 {{ Form::text('disability', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
-                            
+                             <div class="form-group col-md-12">
+                                {{ Form::label('email', 'Have You every been convicted of any criminal offence or a subject of probation?') }}
+                               <select class="form-control input-sm" id="is_convicted"  name="is_convicted" required="" onclick="convicted()">
+                                 <option value="">Choose option</option>
+                                 <option>No</option>
+                                 <option>Yes</option>
+                               </select>
+                            </div>
+
+                              <div class="form-group col-md-12" id="offence" style="display: block;">
+                                {{ Form::label('disability', 'If Yes State Nature of Offence, the year and duration of offence') }}
+                                {{ Form::text('conviction', '', array('class' => 'form-control input-sm')) }}
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                {{ Form::label('disability', ' Have you Ever been Dismissed or otherwise removed from Employment?') }}
+                                <select class="form-control input-sm"  id="is_dismissed" name="is_dismissed" required="" onclick="dismissed()">
+                                 <option value="">Choose option</option>
+                                 <option>No</option>
+                                 <option>Yes</option>
+                               </select>
+                            </div>
+
+                               <div class="form-group col-md-12" id="dismissed" style="display: block;">
+                                {{ Form::label('disability', 'If Yes State Nature of Offence, the year and duration of offence') }}
+                                {{ Form::text('dismissed', '', array('class' => 'form-control input-sm')) }}
+                            </div>
 
                             
+         
 
 
                           
@@ -204,3 +231,35 @@
           {{ Form::close() }}
               </div>
           </div>
+          <script type="text/javascript">
+    function convicted() {
+        var x = document.getElementById("is_convicted").value;
+        var mydiv = document.getElementById('convicted');
+
+        if ( x = "Yes") 
+        {
+            mydiv.style.display = "block";
+        }
+         else
+        {
+            mydiv.style.display = "none";
+        }
+
+      }
+
+         function dismissed() {
+        var x = document.getElementById("is_dismissed").value;
+        var mydiv = document.getElementById('dismissed');
+
+        if ( x = "Yes") 
+        {
+            mydiv.style.display = "block";
+        }
+         else
+        {
+            mydiv.style.display = "none";
+        }
+
+      }
+</script>
+                   
