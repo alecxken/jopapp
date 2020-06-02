@@ -70,7 +70,7 @@
                                cols += '<td><input type="text" class="form-control"  placeholder="Membership Body" name="body[]"/></td>';
                                   cols += '<td><input type="number" class="form-control"  placeholder="Membership No" name="membno[]"/></td>';
 
-                            // cols += '<td><input type="button" class="ibtnDel2 btn btn-md btn-danger "  value="Delete"></td>';
+                            cols += '<td><input type="button" class="ibtnDel2 btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);
                             $("table.order-list2").append(newRow);
                             counter++;

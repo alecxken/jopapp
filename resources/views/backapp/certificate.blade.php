@@ -84,7 +84,7 @@
                                cols += '<td><input type="text" class="form-control"  placeholder="Institution " name="institution1[]"/></td>';
                                   cols += '<td><input type="text" class="form-control"  placeholder="Year" name="year1[]"/></td>';
 
-                            // cols += '<td><input type="button" class="ibtnDelON btn btn-md btn-danger "  value="Delete"></td>';
+                            cols += '<td><input type="button" class="ibtnDelON btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);
                             $("table.order-listON").append(newRow);
                             counter++;
