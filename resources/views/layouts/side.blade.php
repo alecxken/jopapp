@@ -38,6 +38,19 @@
            <li  class="{{ (request()->is('my-apps1')) ? 'active' : '' }}"><a href="{{url('my-apps1')}}"><i class="fa fa-link text-green"></i> <span>Job Applicants List</span></a></li>
            @endrole
            @role('Admin')
+            <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
+            <a href="#"><i class="fa fa-pencil"></i> <span> Report  Section</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{url('all-apps')}}"><i class="fa fa-link"></i> <span>View All Applicants</span></a></li>
+         
+           
+          
+            </ul>
+          </li>
           <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
             <a href="#"><i class="fa fa-cog"></i> <span> Setting Sections</span>
               <span class="pull-right-container">

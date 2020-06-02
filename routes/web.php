@@ -62,6 +62,10 @@ Route::post('/attachment', 'ApplicationController@attach')->name('attach');
 
 Route::get('/jobs-apps', 'JobController@create1');
 Route::get('/my-apps1', 'JobController@show1');
+Route::get('/all-apps', 'JobController@showapps');
+Route::get('/drop-app/{id}', 'JobController@dropapp');
+Route::get('/view-app/{id}', 'JobController@viewapp');
+
 Route::get('/my-ref/{ref}/{token}', 'JobController@stage');
 // stage
 // Route::get('/apply1/{id}', 'JobController@apply1');

@@ -144,6 +144,12 @@ class JobController extends Controller
         return view('data.applicants',compact('data'));
     }
 
+       public function showapps()
+    {
+        $data = Jobapp::all()->where('status','Success');
+        return view('data.allapps',compact('data'));
+    }
+
 
     public function show()
     {
@@ -353,6 +359,27 @@ public function stage($ref,$token)
     public function edit($id)
     {
         //
+    }
+
+    public function dropapp($id)
+    {
+        $user = Jobapp::all()->where('token',$id)->first();
+        $kura = KurraApp::all()->where('token',$id)->first();
+        $jobapp = Jobapp::findorfail($user->id);
+        $jobapp->delete();
+        $kura = KurraApp::findorfail($kura->id);
+        $kura->delete();
+
+        return back()->with('danger','Successfully Dropped The Application');
+    }
+
+      public function viewapp($id)
+    {
+        $user = Jobapp::all()->where('id',$id)->first();
+        $kura = KurraApp::all()->where('id',$id)->first();
+   
+
+        return $kura;
     }
 
     /**
