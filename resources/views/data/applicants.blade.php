@@ -17,24 +17,20 @@
                             <thead class="bg-primary small">
                               <tr >
                                 <th class="text-center">
-                                  AppRef 
+                                  App-Ref 
                                 </th>
                                 <th class="text-center">
-                                  JobID
+                                  Post
                                 </th>
                                 <th class="text-center">
-                                  Applicant Email
+                                  Applicant Name
                                 </th>
-                                <th class="text-center">
-                                  Applicant ID
-                                </th>
+                           
                             
                                  <th class="text-center">
                                   Application Status
                                 </th>
-                                <th class="text-center">
-                                  Shortlisted
-                                </th>
+                              
                                  <th class="text-center">
                                  Action
                                 </th>
@@ -44,19 +40,26 @@
                             <tbody>
 
                               @foreach($data as $apps)
+                           @if(Auth::id() == $apps->captured_by)
                               <tr id='t0'>
-                                <td>{{$apps->token}}</td> 
-                                <td>{{$apps->ref_token}}</td>
-                                <td>{{$apps->app_email}}</td>
-                                <td>{{$apps->app_id}}</td>           
-                                <td>{{$apps->app_status}}</td>
+
+                            @php
+                             $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();
+                             $app = \App\KurraApp::all()->where('token',$apps->token)->first();
+                             $job = \App\Job::all()->where('token',$apps->ref_token)->first();
+                            @endphp
+
+                                <td>{{$apps->app_id}}</td>
+                                <td>{{$job->title}}</td> 
+                                <td>{{$app->fname}} {{$app->lname}}</td>
+                                
+                              
                                 <td>
-                                   @if($apps->app_status == 'Complete')
-                    @php $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();@endphp
+                                   @if($apps->app_status == 'Complete')                  
                   
-                    <label class="label label-success"> Done {{$a->percentage}}%</label>
+                                   <label class="label label-success"> {{$apps->app_status}}</label>
                                   @else
-                                  <label class="label label-warning"> Pending</label>
+                                  <label class="label label-warning"> {{$apps->app_status}}</label>
                                   @endif
                                 </td>  
                                 <td>
@@ -67,6 +70,8 @@
                                   @endif
                                 </td>                            
                               </tr>
+
+                              @endif
                               @endforeach
 
                             </tbody>
