@@ -14,6 +14,8 @@
 
                         
                             @include('backapp.referees')
+
+                            @include('backapp.checklist')
                             <hr>
                             <div class="form-group ">
                                 {{ Form::label('email', 'Application Document Signed') }}

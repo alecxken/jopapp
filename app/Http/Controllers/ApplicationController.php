@@ -59,7 +59,7 @@ class ApplicationController extends Controller
         }
         if (!empty($check1) ){
              $token = $check->token;
-            return view('backapp.employee',compact('token'));
+            return view('backapp.employee',compact('token','req'));
         }
             
 
@@ -317,13 +317,14 @@ class ApplicationController extends Controller
            if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
            $app = JobApp::all()->where('token',$token)->first();
+            $req = \App\Required::all()->where('ref_token',$id);
            if (!empty($app)) 
             {
                 $apps = JobApp::findorfail($app->id);
                 $apps->app_status = 'Stage2';
                 $apps->save();
             }
-       return view('apps.employee',compact('token')); //
+       return view('apps.employee',compact('token','req')); //
     }
 
 
@@ -334,13 +335,13 @@ class ApplicationController extends Controller
              $cert1 = array_filter($request->input('cert1'));
              $member = array_filter($request->input('member')); 
              $training = array_filter($request->input('training'));
+             $id = JobApp::all()->where('token',$token)->first();
+            // return $id;
+
+              $req = \App\Required::all()->where('ref_token',$id->ref_token);
           //   $chk4 = array_filter($request->input('checklist'));
 
-             $v  =  array_count_values($request->input('passed'));
-              $pass = $v['Yes'];
-              $fail = $v['No'];
-              $total = $pass + $fail;
-              $percentage = round(($pass*100)/$total);
+         
                       
                 
              foreach ($request->input('edu') as $key => $value)
@@ -448,56 +449,14 @@ class ApplicationController extends Controller
                      }
                    }
 
-                       foreach ($request->input('checklist') as $key => $value)
-                     {
-                        $empty = $request->input('checklist')[$key];
-                        if(is_null($empty))
-                        {
-                            $insert4 = [];
-                        }
-                         else
-                         {
-                              $insert4[] =
-                                     [
-                                      'app_token' => $token,  
-                                       'job_token'  => $request->input('job_ref')[$key],     
-                                      'passed'  => $request->input('passed')[$key],
-                                      'requirement'  => $request->input('checklist')[$key],
-                                      'comments'  => $request->input('comments')[$key],
-                                      
                       
-                                     ];                      # code...
-                         }                    
-                     
-                     }
-
-                  $re =  \App\ApplicantMark::all()->where('job_token',$token)->first();       
-                  if (empty($re)) 
-                  {
-                     $app = new \App\ApplicantMark();
-                      $app->job_token = $token;
-                      $app->total = $total;
-                      $app->passed = $pass;
-                      $app->percentage = $percentage;
-                      $app->save();
-                  }
-                  else
-                  {
-                       $app =  \App\ApplicantMark::findorfail($re->id);
-                        $app->job_token = $token;
-                        $app->total = $total;
-                        $app->passed = $pass;
-                        $app->percentage = $percentage;
-                        $app->save();
-                  }
-           
                     
         
            if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
            if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
            if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
-           if(!empty($insert4)){\DB::table('applicant_creterias')->insert($insert4);}
+      
            $app = JobApp::all()->where('token',$token)->first();
            if (!empty($app)) 
             {
@@ -505,7 +464,7 @@ class ApplicationController extends Controller
                 $apps->app_status = 'Stage2';
                 $apps->save();
             }
-       return view('backapp.employee',compact('token')); //
+       return view('backapp.employee',compact('token','req')); //
     }
 
      public function deleteall($id)
@@ -595,6 +554,11 @@ class ApplicationController extends Controller
     {
        $token = $request->input('token');
        $signed  =$request->input('signed');
+              $v  =  array_count_values($request->input('passed'));
+              $pass = $v['Yes'];
+              $fail = $v['No'];
+              $total = $pass + $fail;
+              $percentage = round(($pass*100)/$total);
                foreach ($request->input('ref_name') as $key => $value)
                      {
                         $empty2 = $request->input('ref_name')[$key];
@@ -638,6 +602,52 @@ class ApplicationController extends Controller
                          }                    
                      
                      }
+
+
+ foreach ($request->input('checklist') as $key => $value)
+                     {
+                        $empty = $request->input('checklist')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert4 = [];
+                        }
+                         else
+                         {
+                              $insert4[] =
+                                     [
+                                      'app_token' => $token,  
+                                       'job_token'  => $request->input('job_ref')[$key],     
+                                      'passed'  => $request->input('passed')[$key],
+                                      'requirement'  => $request->input('checklist')[$key],
+                                      'comments'  => $request->input('comments')[$key],
+                                      
+                      
+                                     ];                      # code...
+                         }                    
+                     
+                     }
+
+                  $re =  \App\ApplicantMark::all()->where('job_token',$token)->first();       
+                  if (empty($re)) 
+                  {
+                     $app = new \App\ApplicantMark();
+                      $app->job_token = $token;
+                      $app->total = $total;
+                      $app->passed = $pass;
+                      $app->percentage = $percentage;
+                      $app->save();
+                  }
+                  else
+                  {
+                       $app =  \App\ApplicantMark::findorfail($re->id);
+                        $app->job_token = $token;
+                        $app->total = $total;
+                        $app->passed = $pass;
+                        $app->percentage = $percentage;
+                        $app->save();
+                  }
+           
+     if(!empty($insert4)){\DB::table('applicant_creterias')->insert($insert4);}
 
                     
         

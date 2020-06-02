@@ -21,7 +21,7 @@
                       
                           @include('backapp.other')
 
-                          @include('backapp.checklist')
+                          
                         </div>
               </div>
                 <div class="box-footer">
