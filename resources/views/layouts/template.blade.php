@@ -29,6 +29,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('dist/css/skins/skin-green.min.css')}}">
     <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.min.css')}}"/>
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -242,6 +245,7 @@ desired effect
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 <!-- REQUIRED JS SCRIPTS -->
  
+<script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
 <script src="{{asset('bower_components/select2/dist/js/select2.min.js')}}"></script>
 <!-- jQuery 3 -->
 {{-- <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script> --}}

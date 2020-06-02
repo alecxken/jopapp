@@ -63,6 +63,7 @@ Route::post('/attachment', 'ApplicationController@attach')->name('attach');
 Route::get('/jobs-apps', 'JobController@create1');
 Route::get('/my-apps1', 'JobController@show1');
 Route::get('/all-apps', 'JobController@showapps');
+Route::get('/show-persons', 'JobController@showpersons');
 Route::get('/drop-app/{id}', 'JobController@dropapp');
 Route::get('/view-app/{id}', 'JobController@viewapp');
 

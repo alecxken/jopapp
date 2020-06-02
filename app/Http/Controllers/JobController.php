@@ -150,6 +150,19 @@ class JobController extends Controller
         return view('data.allapps',compact('data'));
     }
 
+    public function showpersons()
+    {
+        $data = KurraApp::all();
+        return view('data.persons',compact('data'));
+    }
+
+     public function showperson($job)
+    {
+        $data = Jobapp::all()->where('status','Success');
+        return view('data.persons',compact('data'));
+    }
+
+
 
     public function show()
     {

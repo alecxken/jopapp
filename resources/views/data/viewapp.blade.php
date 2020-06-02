@@ -1,3 +1,4 @@
+
  <div class="col-md-12" width="100%">        
 
             <div class="box box-success ">
@@ -240,35 +241,5 @@
           {{ Form::close() }}
               </div>
           </div>
-          <script type="text/javascript">
-    function convicted() {
-        var x = document.getElementById("is_convicted").value;
-        var mydiv = document.getElementById('convicted');
-
-        if ( x = "Yes") 
-        {
-            mydiv.style.display = "block";
-        }
-         else
-        {
-            mydiv.style.display = "none";
-        }
-
-      }
-
-         function dismissed() {
-        var x = document.getElementById("is_dismissed").value;
-        var mydiv = document.getElementById('dismissed');
-
-        if ( x = "Yes") 
-        {
-            mydiv.style.display = "block";
-        }
-         else
-        {
-            mydiv.style.display = "none";
-        }
-
-      }
-</script>
+       
                    
