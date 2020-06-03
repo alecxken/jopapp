@@ -636,6 +636,7 @@ class ApplicationController extends Controller
                                       'passed'  => $request->input('passed')[$key],
                                       'requirement'  => $request->input('checklist')[$key],
                                       'comments'  => $request->input('comments')[$key],
+                                      'created_at' => \Carbon\Carbon::now(),
                                       
                       
                                      ];                      # code...
