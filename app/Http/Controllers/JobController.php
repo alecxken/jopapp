@@ -200,7 +200,7 @@ public function stage($ref,$token)
         }
         if (!empty($check1) ){
              $token = $check->token;
-            return view('backapp.employee',compact('token'));
+            return view('backapp.employee',compact('token','req'));
         }
                            
         if (!empty($check)) {
@@ -246,7 +246,7 @@ public function stage($ref,$token)
         }
         if (!empty($check1) ){
              $token = $check->token;
-            return view('apps.employee',compact('token'));
+            return view('apps.employee',compact('token','req'));
         }
                            
         if (!empty($check)) {
@@ -305,6 +305,7 @@ public function stage($ref,$token)
                     $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('app_id',\Auth::id())
                                           ->first();
+                    $req = Required::all()->where('ref_token',$id);
 
                                           //return $check;
                     $check1 = Jobapp::all()->where('ref_token',$id)
@@ -323,7 +324,7 @@ public function stage($ref,$token)
         }
         if (!empty($check1) ){
              $token = $check->token;
-            return view('backapp.employee',compact('token'));
+            return view('backapp.employee',compact('token','req'));
         }
                            
         if (!empty($check)) {

@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.0",
         "laravelcollective/html": "^6.1",
+        "rap2hpoutre/fast-excel": "^1.7",
         "spatie/laravel-permission": "^3.13",
         "wyndow/fuzzywuzzy": "^0.6.0"
     },
