@@ -677,7 +677,7 @@ class ApplicationController extends Controller
             {
                 $apps = JobApp::findorfail($app->id);
                 $apps->signed = $signed;
-                $apps->comments = $request->input('comments');
+                $apps->comments = $request->input('user_comments');
                 $apps->app_status = 'Complete';
                 $apps->save();
             }

@@ -28,7 +28,7 @@
 
                               <div class="form-group ">
                                 {{ Form::label('email', 'Reviewer Remarks/Comments') }}
-                               <textarea placeholder="Any Comments To ne captured Here or left Empty " name="comments" class="form-control" rows="2"></textarea>
+                               <textarea placeholder="Any Comments To ne captured Here or left Empty " name="user_comments" class="form-control" rows="2"></textarea>
                             </div>
                         </div>
                          
