@@ -14,11 +14,11 @@ class CreateApplicantDataTable extends Migration
     {
         DB::statement("CREATE VIEW applicant_data AS SELECT DISTINCT
 a.token,a.title,a.fname,a.lname,a.oname,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,
-GROUP_CONCAT(e.cert1 ORDER BY e.year1 ASC SEPARATOR ',') as education, 
-GROUP_CONCAT(m.body ORDER BY m.body ASC SEPARATOR ',') as membership, 
-GROUP_CONCAT(c.cert ORDER BY c.cert ASC SEPARATOR ',') as certificates, 
-GROUP_CONCAT(em.employer ORDER BY em.to ASC SEPARATOR ',') as employer,
-GROUP_CONCAT(r.ref_name ORDER BY r.ref_name ASC SEPARATOR ',') as userrating
+GROUP_CONCAT(DISTINCT e.cert1 ORDER BY e.year1 ASC SEPARATOR ',') as education, 
+GROUP_CONCAT(DISTINCT m.body ORDER BY m.body ASC SEPARATOR ',') as membership, 
+GROUP_CONCAT(DISTINCT c.cert ORDER BY c.cert ASC SEPARATOR ',') as certificates, 
+GROUP_CONCAT(DISTINCT em.employer ORDER BY em.to ASC SEPARATOR ',') as employer,
+GROUP_CONCAT(DISTINCT r.ref_name ORDER BY r.ref_name ASC SEPARATOR ',') as userrating
 FROM 
 kurra_apps a, jobapps j, kura_education e,kura_memberships m, kura_certs c,kura_employers em,kura_referees r
 WHERE 
