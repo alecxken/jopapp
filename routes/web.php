@@ -41,6 +41,7 @@ Auth::routes();
 Route::get('/home', 'AdminController@index')->name('Dashboard');
 Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
 Route::get('/job', 'JobController@create');
+Route::get('/download', 'ApplicationController@report');
 
 
 

@@ -8,6 +8,8 @@ use App\JobApp;
 use App\Job;
 use Auth;
 use App\KuraAttachment;
+USE App\ApplicantData;
+use Rap2hpoutre\FastExcel\FastExcel;
 class ApplicationController extends Controller
 {
     /**
@@ -15,6 +17,15 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function report()
+    {
+        $data = ApplicantData::all();
+       $name = 'KURA-APPLICANTS-REPORT-'.\Carbon\Carbon::now()->format('d-M-Y').'.xlsx';
+      //$file = (new FastExcel($data))->down(storage_path('files/'.$name));
+       return (new FastExcel($data))->download($name);
+       //return $file;
+       return back()->with('status','succesfully');
+    }
 
       public function cert1(Request $request)
     {

@@ -47,7 +47,7 @@
             <ul class="treeview-menu">
             <li><a href="{{url('all-apps')}}"><i class="fa fa-link"></i> <span>View All Applicants</span></a></li>
              <li><a href="{{url('show-persons')}}"><i class="fa fa-link"></i> <span>View Persons</span></a></li>
-         
+            <li><a href="{{url('download')}}"><i class="fa fa-download"></i> <span>Download File</span></a></li>
            
           
             </ul>
@@ -61,7 +61,7 @@
             <ul class="treeview-menu">
             <li><a href="{{url('job')}}"><i class="fa fa-link"></i> <span>New Job Upload</span></a></li>
             <li><a href="{{url('admin')}}"><i class="fa fa-link"></i> <span>User Management</span></a></li>
-             <li><a href="{{url('delete-all/')}}"><i class="fa fa-link"></i> <span>Delete Applicants</span></a></li>
+             <li><a href="{{url('delete-alls/')}}"><i class="fa fa-link"></i> <span>Delete Applicants</span></a></li>
            
           
             </ul>
