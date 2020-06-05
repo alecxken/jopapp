@@ -123,7 +123,7 @@
                             </div>
                            
                             <div class="form-group col-sm-2">
-                                   <div class="form-group col-sm-2">
+                              
                                 {{ Form::label('disability', ' Expected Salary') }}
                                 <dd>{{$data->expected_salary}}</dd>
                             </div>
@@ -133,21 +133,33 @@
                                  <dd>{{$data->disability}}</dd>
                             </div>
                            
-                            <div class="form-group col-sm-2">
-                                   <div class="form-group col-sm-2">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Is Convicted?') }}
                                 <dd>{{$data->is_convicted}}</dd>
                             </div>
 
-                              <div class="form-group col-sm-2">
-                                   <div class="form-group col-sm-2">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Ever Dismissed?') }}
                                 <dd>{{$data->is_dismissed}}</dd>
                             </div>
-                          </div>
+
+                             <div class="form-group col-sm-12">
+                               <LABEL class="label label-success">Education Details</LABEL>
+                            </div>
+
+                              <div class="form-group col-sm-12">
+                               {{ Form::label('disability', ' Education Details') }}
+                                @foreach(explode(',', $data->education) as $edu)
+                                <dd>{{$edu}}</dd><br>
+                                @endforeach
+                            </div>
+
+                         
+
+
                         </dl>
-                       
-                      </div>
+                        </div>
+                      
                            
               </div>
                 @endforeach
