@@ -31,7 +31,7 @@ a.token = c.token AND
 a.token = em.token AND
 a.token = o.token AND
 a.token = r.token
-GROUP BY a.token,a.title,a.fname,a.lname,a.oname,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,a.is_convicted,a.is_dismissed;");
+GROUP BY a.token,a.title,a.fname,a.lname,a.oname,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,a.convicted,a.dismissed,a.is_convicted,a.is_dismissed;");
     }
 
     /**
