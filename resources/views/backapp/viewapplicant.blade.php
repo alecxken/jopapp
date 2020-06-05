@@ -39,7 +39,7 @@
                   @foreach($datas as $data)
               <div class="box box-success ">
               <div class="box-heading">
-                <h3><center> APPLICANT {{$data->token}}</center></h3>
+                <h3><center> APPLICANT {{$data->app_id}} : {{$data->fname}} {{$data->oname}}</center></h3>
               </div>
 
               <div class="box-body ">
@@ -50,7 +50,7 @@
                              <div class="form-group col-sm-2">
                                      
                                <dt>Applicant Ref</dt>
-                                <dd>{{$data->token}}</dd>
+                                <dd>{{$data->app_id}}</dd>
                             </div>
 
                             <div class="form-group col-sm-2">

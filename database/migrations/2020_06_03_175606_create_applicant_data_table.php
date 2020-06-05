@@ -13,7 +13,7 @@ class CreateApplicantDataTable extends Migration
       public function up()
     {
         DB::statement("CREATE VIEW applicant_data AS SELECT DISTINCT
-a.token,a.title,a.fname,a.lname,a.oname,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,CONCAT(a.is_convicted,'-',a.convicted) as convicted, CONCAT(a.is_dismissed,'-',a.dismissed) as dismissed,
+a.token,j.app_id,a.title,a.fname,a.lname,a.oname,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,CONCAT(a.is_convicted,'-',a.convicted) as convicted, CONCAT(a.is_dismissed,'-',a.dismissed) as dismissed,
 
 GROUP_CONCAT(DISTINCT  CONCAT(e.institution1,'-',e.cert1,'-',e.year1)  ORDER BY e.token ASC SEPARATOR ',') as education, 
 GROUP_CONCAT(DISTINCT CONCAT(m.member,'-',m.body) ORDER BY m.token ASC SEPARATOR ',') as membership, 
