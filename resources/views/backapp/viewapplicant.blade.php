@@ -4,7 +4,7 @@
 
             <div class="box box-primary ">
               <div class="box-heading">
-                <h3><center> APPLICANTS</center></h3>
+                <h3><center> Criteria Center</center></h3>
               </div>
               <div class="box-body ">
                    {!! Form::open(['method'=> 'post','url' => 'searchapplicant', 'files' => true ]) !!}
@@ -12,116 +12,149 @@
                          <div class="box-body">
                          
                           
-                            <div class="form-group ">
-                             {{ Form::label('email', 'Application Document Signed') }}
-                              {{ Form::text('app_ref',) }}
+                            <div class="form-group  col-sm-3">
+                             {{ Form::label('email', 'Applicant Reference') }}
+                               {{ Form::text('app_ref', '', array('class' => 'form-control input-sm')) }}
+                            </div>
+                             <div class="form-group  col-sm-3">
+                             {{ Form::label('email', 'Job Ref') }}
+                               {{ Form::text('app_ref', '', array('class' => 'form-control input-sm')) }}
+                            </div>
+                             <div class="form-group  col-sm-3">
+                             {{ Form::label('email', 'Keyword') }}
+                               {{ Form::text('app_ref', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
-                              <div class="form-group ">
+                              <div class="form-group col-sm-3 ">
                                 {{ Form::label('email', 'action') }}
-                              {{ Form::submit('Click To Complete Submission', array('class' => 'btn btn-success pull-right')) }}
+                              {{ Form::submit('Click To Complete Submission', array('class' => ' form-control btn btn-success ')) }}
                             </div>
                         </div>
                          
                          {{ Form::close() }}
               </div>
+            </div>
+
+     @if(!empty($datas))
+                  @foreach($datas as $data)
+              <div class="box box-success ">
+              <div class="box-heading">
+                <h3><center> APPLICANT {{$data->token}}</center></h3>
+              </div>
 
               <div class="box-body ">
 
-                @if(!empty($datas))
-                  @foreach($datas as $data)
+               
                          <dl>
                
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-sm-2">
                                      
-                               <dt> {{ Form::label('email', 'Applicant Ref') }}</dt>
-                                <dd><label>{{$data->token}}</label></dd>
+                               <dt>Applicant Ref</dt>
+                                <dd>{{$data->token}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('name', 'Title') }}
-                                <label>{{$data->title}}</label>
+                                <dd>{{$data->title}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'First Name') }}
-                                <label>{{$data->fname}}</label>
+                                <dd>{{$data->fname}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'Last Name') }}
-                               <label>{{$data->lname}}</label>
+                               <dd>{{$data->lname}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('name', 'Other Names') }}
-                              <label>{{$data->oname}}</label>
+                              <dd>{{$data->oname}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'P.O Box') }}
-                                <label>{{$data->po_box}}</label>
+                                <dd>{{$data->po_box}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'Town') }}
-                               <label>{{$data->postal_code}}</label>
+                               <dd>{{$data->postal_code}}</dd>
                             </div>
 
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'Phone No') }}
-                               <label>{{$data->phone_no}}</label>
+                               <dd>{{$data->phone_no}}</dd>
                             </div> 
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('name', 'Email Address') }}
-                               <label>{{$data->email}}</label>
+                               <dd>{{$data->email}}</dd>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('name', 'DOB') }}
-                                <label>{{$data->dob}}</label>
+                                <dd>{{$data->dob}}</dd>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'Gender') }}
-                              <label>{{$data->gender}}</label>
+                              <dd>{{$data->gender}}</dd>
                             </div>
 
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'ID/Passport ') }}
-                               <label>{{$data->passport}}</label>
+                               <dd>{{$data->passport}}</dd>
                             </div>
 
-                              <div class="form-group col-md-4">
+                              <div class="form-group col-sm-2">
                                 {{ Form::label('email', 'County') }}
-                               <label>{{$data->county}}</label>                               
+                               <dd>{{$data->county}}</dd>                               
                             </div>
 
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('name', ' Home District') }}
-                               <label>{{$data->district}}</label>
+                               <dd>{{$data->district}}</dd>
                             </div>
 
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Current Salary') }}
-                                 <label>{{$data->current_salary}}</label>
+                                 <dd>{{$data->current_salary}}</dd>
                             </div>
                            
-
-                            <div class="">
-                                   <div class="form-group col-md-4">
+                            <div class="form-group col-sm-2">
+                                   <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Expected Salary') }}
-                                <label>{{$data->expected_salary}}</label>
+                                <dd>{{$data->expected_salary}}</dd>
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                {{ Form::label('disability', ' Disabled?') }}
+                                 <dd>{{$data->disability}}</dd>
+                            </div>
+                           
+                            <div class="form-group col-sm-2">
+                                   <div class="form-group col-sm-2">
+                                {{ Form::label('disability', ' Is Convicted?') }}
+                                <dd>{{$data->is_convicted}}</dd>
+                            </div>
+
+                              <div class="form-group col-sm-2">
+                                   <div class="form-group col-sm-2">
+                                {{ Form::label('disability', ' Ever Dismissed?') }}
+                                <dd>{{$data->is_dismissed}}</dd>
                             </div>
                           </div>
                         </dl>
+                       
                       </div>
-                            @endforeach
+                           
+              </div>
+                @endforeach
                       @endif
-              </div>
+
                
-                      
-              </div>
+              
         
              
                     @endsection
