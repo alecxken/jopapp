@@ -120,6 +120,10 @@ class ApplicationController extends Controller
         $person->disability = $request->input('disability');
         $person->current_salary = $request->input('current_salary');
         $person->expected_salary = $request->input('expected_salary');
+        $person->is_convicted = $request->input('is_convicted');
+        $person->convicted = $request->input('convicted');
+         $person->is_dismissed = $request->input('is_dismissed');
+        $person->dismissed = $request->input('dismissed');
         $person->save();
 
       return view('backapp.cert',compact('token','req'));  //
@@ -168,6 +172,12 @@ class ApplicationController extends Controller
         $person->district = $request->input('district');
         $person->is_disabled = $request->input('is_disabled');
         $person->disability = $request->input('disability');
+             $person->current_salary = $request->input('current_salary');
+        $person->expected_salary = $request->input('expected_salary');
+        $person->is_convicted = $request->input('is_convicted');
+        $person->convicted = $request->input('convicted');
+         $person->is_dismissed = $request->input('is_dismissed');
+        $person->dismissed = $request->input('dismissed');
         $person->save();
 
       return view('backapp.cert',compact('token','req'));  //
@@ -214,7 +224,9 @@ class ApplicationController extends Controller
         $person->district = $request->input('district');
         $person->is_disabled = $request->input('is_disabled');
         $person->disability = $request->input('disability');
-         $person->is_convicted = $request->input('is_convicted');
+        $person->current_salary = $request->input('current_salary');
+        $person->expected_salary = $request->input('expected_salary');
+        $person->is_convicted = $request->input('is_convicted');
         $person->convicted = $request->input('convicted');
          $person->is_dismissed = $request->input('is_dismissed');
         $person->dismissed = $request->input('dismissed');
