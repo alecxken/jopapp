@@ -42,6 +42,9 @@ Route::get('/home', 'AdminController@index')->name('Dashboard');
 Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
 Route::get('/job', 'JobController@create');
 Route::get('/download', 'ApplicationController@report');
+Route::post('/view-applicant', 'ApplicationController@reportpost');
+Route::get('/view-applicants', 'ApplicationController@reportsall');
+Route::get('/view-applicant/{id}', 'ApplicationController@reportspecific');
 
 
 

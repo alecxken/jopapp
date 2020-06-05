@@ -162,7 +162,7 @@
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('disability', ' Current Salary') }}
-                                {{ Form::number('current', '', array('class' => 'form-control input-sm')) }}
+                                {{ Form::number('current_salary', '', array('class' => 'form-control input-sm')) }}
                             </div>
                             <div class="form-group col-md-12">
                                 
@@ -171,7 +171,7 @@
                             <div class="">
                                    <div class="form-group col-md-4">
                                 {{ Form::label('disability', ' Expected Salary') }}
-                                {{ Form::number('expected', '', array('class' => 'form-control input-sm')) }}
+                                {{ Form::number('expected_salary', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
                              <div class="form-group col-md-4">

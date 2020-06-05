@@ -27,6 +27,31 @@ class ApplicationController extends Controller
        return back()->with('status','succesfully');
     }
 
+    public function reportsall()
+    {
+        
+      $datas = ApplicantData::all();
+       return view('backapp.viewapplicant',compact('datas'));
+    }
+
+     public function reportpost(Request $request )
+    {
+        
+      $datas = ApplicantData::all();
+       return view('backapp.viewapplicant',compact('datas'));
+    }
+
+     public function reportspecific($id)
+    {
+        
+      $datas = ApplicantData::all();
+       return view('backapp.viewapplicant',compact('datas'));
+    }
+
+    
+
+
+
       public function cert1(Request $request)
     {
 
