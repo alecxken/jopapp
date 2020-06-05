@@ -401,7 +401,7 @@ class ApplicationController extends Controller
                     {
                         foreach ($request->input('cert1') as $key => $value)
                      {
-                        $empty1 = $request->input('cert')[$key];
+                        $empty1 = $request->input('cert1')[$key];
                         if(is_null($empty1))
                         {
                             $insert1 = [];
