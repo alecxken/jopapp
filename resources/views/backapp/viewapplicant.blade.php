@@ -146,82 +146,95 @@
                               <hr>
                             </div>
 
-                             <div class="form-group col-sm-12">
+                            @if(!empty($data->education))
+                             <div class="form-group col-sm-6">
                                 <hr>
                                <dt class="label label-success">Education Details</dt>
                           {{--   </div>
 
-                              <div class="form-group col-sm-12">
+                              <div class="form-group col-sm-6">
                                {{ Form::label('disability', ' Education Details') }} --}}
                                
                                 @foreach(explode(',', $data->education) as $edu)
                                 <dd>{{$edu}}</dd><br>
                                 @endforeach
                             </div>
+                            @endif
 
-                             <div class="form-group col-sm-12">
+                            @if(!empty($data->membership))
+                             <div class="form-group col-sm-6">
                               <hr>
                                <dt class="label label-primary">Membership Details</dt>
                             {{-- </div>
 
-                              <div class="form-group col-sm-12">
+                              <div class="form-group col-sm-6">
                                {{ Form::label('disability', ' Education Details') }} --}}
                         
                                 @foreach(explode(',', $data->membership) as $membership)
                                 <dd>{{$membership}}</dd><br>
                                 @endforeach
                             </div>
+                            @endif
 
 
-                           <div class="form-group col-sm-12">
+                            @if(!empty($data->certificates))
+                           <div class="form-group col-sm-6">
                             <hr>
                                <dt class="label label-warning">Certificate Details</dt>
                          {{--    </div>
 
-                              <div class="form-group col-sm-12">
+                              <div class="form-group col-sm-6">
                                {{ Form::label('disability', ' Education Details') }} --}}
                                
                                 @foreach(explode(',', $data->certificates) as $certificates)
                                 <dd>{{$certificates}}</dd><br>
                                 @endforeach
                             </div>
+                            @endif
 
-                              <div class="form-group col-sm-12">
+
+                             @if(!empty($data->employer))
+                              <div class="form-group col-sm-6">
                                 <hr>
                                <dt class="label label-success">Employer Details</dt>
                           {{--   </div>
 
-                              <div class="form-group col-sm-12"> --}}
+                              <div class="form-group col-sm-6"> --}}
                         
                                 @foreach(explode(',', $data->employer) as $employer)
                                 <dd>{{$employer}}</dd><br>
                                 @endforeach
-                            </div>
+                            </div>  
+                            @endif
 
-                              <div class="form-group col-sm-12">
+                             @if(!empty($data->other_training))
+
+                              <div class="form-group col-sm-6">
                                  <hr>
                                <dt class="label label-info">Other Training/Skills Details</dt>
                           {{--   </div>
 
-                              <div class="form-group col-sm-12"> --}}
+                              <div class="form-group col-sm-6"> --}}
                             
                                 @foreach(explode(',', $data->other_training) as $other_training)
                                 <dd>{{$other_training}}</dd><br>
                                 @endforeach
                             </div>
+                              @endif
 
-                              <div class="form-group col-sm-12">
+                                @if(!empty($data->referees))
+                              <div class="form-group col-sm-6">
                                      <hr>
                                <dt class="label label-primary">Referees Details</dt>
                           
                            {{--  </div>
 
-                              <div class="form-group col-sm-12"> --}}
+                              <div class="form-group col-sm-6"> --}}
                            {{--     {{ Form::label('disability', ' Education Details') }} --}}
                                 @foreach(explode(',', $data->referees) as $referees)
                                 <dd>{{$referees}}</dd><br>
                                 @endforeach
-                            </div>
+                            </div>    @endif
 
                          
 
