@@ -62,7 +62,7 @@
             <ul class="treeview-menu">
             <li><a href="{{url('job')}}"><i class="fa fa-link"></i> <span>New Job Upload</span></a></li>
             <li><a href="{{url('admin')}}"><i class="fa fa-link"></i> <span>User Management</span></a></li>
-             <li><a href="{{url('delete-alls/')}}"><i class="fa fa-link"></i> <span>Delete Applicants</span></a></li>
+             {{-- //<li><a href="{{url('delete-alls/')}}"><i class="fa fa-link"></i> <span>Delete Applicants</span></a></li> --}}
            
           
             </ul>

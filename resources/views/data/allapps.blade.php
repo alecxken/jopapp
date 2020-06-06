@@ -64,7 +64,7 @@
                                 <td>
                                  
                                  <a href="{{url('view-app/'.$apps->token)}}" class="label label-primary btn-sm">View </a> <span> |</span>
-                                  <a href="{{url('drop-app/'.$apps->token)}}" class="label label-danger btn-sm">Drop </a>
+                               {{--    <a href="{{url('drop-app/'.$apps->token)}}" class="label label-danger btn-sm">Drop </a> --}}
                                 
                                 </td>                            
                               </tr>
