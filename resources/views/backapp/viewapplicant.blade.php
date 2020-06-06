@@ -135,12 +135,12 @@
                            
                              <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Is Convicted?') }}
-                                <dd>{{$data->is_convicted}}</dd>
+                                <dd>{{$data->convicted}}</dd>
                             </div>
 
                              <div class="form-group col-sm-2">
                                 {{ Form::label('disability', ' Ever Dismissed?') }}
-                                <dd>{{$data->is_dismissed}}</dd>
+                                <dd>{{$data->dismissed}}</dd>
                             </div>
                             <div class="col-sm-12">
                               <hr>
