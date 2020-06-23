@@ -44,6 +44,8 @@ Route::get('/job', 'JobController@create');
 Route::get('/download', 'ApplicationController@report');
 Route::post('/view-applicant', 'ApplicationController@reportpost');
 Route::get('/view-applicants', 'ApplicationController@reportsall');
+Route::get('/view-experience', 'ApplicationController@experience');
+Route::get('/view-checklist', 'ApplicationController@checklist');
 Route::get('/view-applicant/{id}', 'ApplicationController@reportspecific');
 
 

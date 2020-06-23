@@ -9,6 +9,8 @@ use App\Job;
 use Auth;
 use App\KuraAttachment;
 USE App\ApplicantData;
+use App\Experience;
+use App\Checks;
 use Rap2hpoutre\FastExcel\FastExcel;
 class ApplicationController extends Controller
 {
@@ -27,6 +29,20 @@ class ApplicationController extends Controller
        return back()->with('status','succesfully');
     }
 
+
+
+    public function checklist()
+    {
+        
+      $data = Checks::all();
+       return view('data.checklist',compact('data'));
+    }
+    public function experience()
+    {
+        
+      $data = Experience::all();
+       return view('data.experience',compact('data'));
+    }
     public function reportsall()
     {
         

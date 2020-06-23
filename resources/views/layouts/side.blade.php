@@ -49,6 +49,8 @@
              <li><a href="{{url('show-persons')}}"><i class="fa fa-link"></i> <span>View Persons</span></a></li>
             <li><a href="{{url('download')}}"><i class="fa fa-download"></i> <span>Download File</span></a></li>
             <li><a href="{{url('view-applicants')}}"><i class="fa fa-link"></i> <span>Applicants Page</span></a></li>
+             <li><a href="{{url('view-experience')}}"><i class="fa fa-link"></i> <span>View Experience</span></a></li>
+              <li><a href="{{url('view-checklist')}}"><i class="fa fa-link"></i> <span>View Checklist</span></a></li>
            
           
             </ul>
