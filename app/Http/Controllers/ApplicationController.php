@@ -869,4 +869,145 @@ class ApplicationController extends Controller
     {
         //
     }
+
+    public function readtxt()
+    {
+        $test = public_path('ref\ref.txt');
+        //dd($test);
+        foreach(file($test) as $line) 
+
+        {
+
+          $searchStr3= "Acquirer Reference Nbr";
+          $searchStr4= "Destination Amount";          
+          $searchStr5= "Merchant Name";
+
+          $searchStr6= "Message Reason Code";
+          $searchStr7= "Dispute Condition";          
+        
+          $searchStr1= "Acct Number & Extension";
+          $searchStr2= "Destination Amount";          
+          $searchStr= "Merchant Country Code";
+
+            if(strpos($line,$searchStr3)) 
+
+         {
+            $p3[] = $line;
+         }
+         else
+         {
+           $p3[]= '';
+         }
+
+          if(strpos($line,$searchStr4)) 
+
+         {
+            $p4[] = $line;
+         }
+         else
+         {
+           $p4[]= '';
+         }
+
+
+           if(strpos($line,$searchStr5)) 
+
+         {
+            $p5[] = $line;
+         }
+         else
+         {
+           $p5[]= '';
+         }
+
+           if(strpos($line,$searchStr6)) 
+
+         {
+            $p6[] = $line;
+         }
+         else
+         {
+           $p6[]= '';
+         }
+
+
+           if(strpos($line,$searchStr7)) 
+
+         {
+            $p7[] = $line;
+         }
+         else
+         {
+           $p7[]= '';
+         }
+
+         
+
+         if(strpos($line,$searchStr2)) 
+
+         {
+            $p2[] = $line;
+         }
+         else
+         {
+           $p2[]= '';
+         }
+
+         if(strpos($line,$searchStr1)) 
+
+         {
+            $p1[] = $line;
+         }
+         else
+         {
+           $p1[]= '';
+         }
+
+         if(strpos($line,$searchStr)) 
+
+         {
+            $p[] = $line;
+         }
+         else
+         {
+           $p[]= '';
+         }
+
+         $k[] = !empty($p1).'-'.!empty($p2).'-'.!empty($p);
+
+        
+
+        }
+        $arr = array_filter($p1);
+        $arr2 = array_filter($p2);
+        $arr3 = array_filter($p);
+        $arr4 = array_filter($p4);
+        $arr5 = array_filter($p5);
+        $arr6 = array_filter($p6);
+        $arr7 = array_filter($p7);
+
+       // dd(count($arr).'-'.count($arr4).'-'.count($arr5).'-'.count($arr6).'-'.count($arr7).'-'.count($arr3));
+         // dd($arr5);
+
+        $f = array_merge($arr,$arr3);
+        dd($f);
+foreach(array_combine($arr, $arr4) as $f => $n) {
+    echo $f.$n;
+    echo "<br/>";
+}
+
+
+    //      $full = array();
+    // foreach($arr3 as $key=>$val)
+    // {
+    //   dd($arr2[$key]);
+    //      $full[] = array_merge($val, $arr2[$key]);
+    // }
+    // echo "<pre>";
+    // print_r($full);
+
+    //     dd(array_filter($p1));
+    }
+
+
 }

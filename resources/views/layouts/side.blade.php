@@ -36,8 +36,7 @@
            <li><a href="{{url('jobs-apps')}}"><i class="fa fa-link"></i> <span>New Applicant</span></a></li>
            @role('Reports')
            <li  class="{{ (request()->is('my-apps1')) ? 'active' : '' }}"><a href="{{url('my-apps1')}}"><i class="fa fa-link text-green"></i> <span>Job Applicants List</span></a></li>
-           @endrole
-           @role('Admin')
+          {{--  --}}
             <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
             <a href="#"><i class="fa fa-pencil"></i> <span> Report  Section</span>
               <span class="pull-right-container">
@@ -55,6 +54,8 @@
           
             </ul>
           </li>
+          @endrole
+          @role('Admin')
           <li class="treeview {{ (request()->is('job')) ? 'active' : '' }} ">
             <a href="#"><i class="fa fa-cog"></i> <span> Setting Sections</span>
               <span class="pull-right-container">

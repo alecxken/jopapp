@@ -1,0 +1,1151 @@
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      1
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4306792100030357000                     Merchant ZIP Code         00000                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74523430118118031287254                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    10                                      
+ Purchase Date             20200426                                Settlement Flag           0                                       
+ Destination Amount        000000009498                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        026595                                  
+ Source Amount             000000009498                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ESICIA LTD                              Collection-Only Flag                                              
+ Merchant City             KIGALI                                  POS Entry Mode            01                                      
+ Merchant Country Code     RW                                      Central Processing Date   20200506                                
+ Merchant Category Code    7296                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          646700000601737                         Installment Payment Count                                         
+ Terminal ID               ECORWA05                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 7                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         10.4-0127                               
+ Business Format Code      DF                                      VROL Case Number          1915824528                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         4                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      2
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300117614919723                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000095                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                A                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4306792100030357000                     Merchant ZIP Code         00000                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74523430118116014724731                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    10                                      
+ Purchase Date             20200424                                Settlement Flag           0                                       
+ Destination Amount        000000012252                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        024056                                  
+ Source Amount             000000012252                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ESICIA LTD                              Collection-Only Flag                                              
+ Merchant City             KIGALI                                  POS Entry Mode            01                                      
+ Merchant Country Code     RW                                      Central Processing Date   20200506                                
+ Merchant Category Code    7296                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      3
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          646700000601737                         Installment Payment Count                                         
+ Terminal ID               ECORWA05                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 7                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         10.4-0127                               
+ Business Format Code      DF                                      VROL Case Number          1915814966                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         4                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    380115547000130                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000123                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                A                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      4
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111109082717572                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200418                                Settlement Flag           0                                       
+ Destination Amount        000000003270                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        478854                                  
+ Source Amount             000000003270                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916112533                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      5
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300109317290038                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000033                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111109132707516                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200418                                Settlement Flag           0                                       
+ Destination Amount        000000002268                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        811305                                  
+ Source Amount             000000002268                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      6
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916112576                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    460109475697942                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000023                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      7
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111109132781016                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200418                                Settlement Flag           0                                       
+ Destination Amount        000000003920                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        425218                                  
+ Source Amount             000000003920                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916112860                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      8
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580109476567969                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000039                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111109142728726                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200418                                Settlement Flag           0                                       
+ Destination Amount        000000003531                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        652504                                  
+ Source Amount             000000003531                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE      9
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916112948                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580109537411597                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000035                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     10
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110082707969                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000004928                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        874920                                  
+ Source Amount             000000004928                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916112991                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     11
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300110289497755                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000049                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110092771088                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000033382                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        964616                                  
+ Source Amount             000000033382                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     12
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119566                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300110357055695                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000334                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     13
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110122792682                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000001867                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        626142                                  
+ Source Amount             000000001867                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119602                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     14
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300110452019461                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000019                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110132761040                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000006981                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        965992                                  
+ Source Amount             000000006981                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     15
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119642                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    380110473770389                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000070                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     16
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110132729468                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000001652                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        899905                                  
+ Source Amount             000000001652                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119688                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     17
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    460110481943645                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000017                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110132781881                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000003061                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        458249                                  
+ Source Amount             000000003061                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     18
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119738                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580110493388108                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000031                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     19
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200111110072792310                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200419                                Settlement Flag           0                                       
+ Destination Amount        000000004246                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        699186                                  
+ Source Amount             000000004246                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119791                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     20
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300110260994321                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000042                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4026520200067717000                     Merchant ZIP Code         00100                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200112111092572079                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    13                                      
+ Purchase Date             20200420                                Settlement Flag           0                                       
+ Destination Amount        000000002996                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        924770                                  
+ Source Amount             000000002996                            POS Terminal Capability   0                                       
+ Source Currency Code      840                                     Cardholder ID Method      4                                       
+ Merchant Name             ECART TRADING - JUMIA                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    5399                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     21
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000603016                         Installment Payment Count                                         
+ Terminal ID               ECOKEN20                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 6                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         13.1-0127                               
+ Business Format Code      DF                                      VROL Case Number          1916119818                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         1                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580111349677399                         Merchant Volume Indicator                                         
+ Authorized Amount         000000000030                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          840                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     22
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4772143010432066000                     Merchant ZIP Code         00505                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200119118132533865                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    10                                      
+ Purchase Date             20200427                                Settlement Flag           0                                       
+ Destination Amount        000000251201                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        093539                                  
+ Source Amount             000005970237                            POS Terminal Capability   0                                       
+ Source Currency Code      484                                     Cardholder ID Method      4                                       
+ Merchant Name             DIRECT PAY ONLINE USD                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    8999                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000602919                         Installment Payment Count                                         
+ Terminal ID               ECOKEN02                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 7                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         10.4-0127                               
+ Business Format Code      DF                                      VROL Case Number          1915971416                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         4                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     23
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    300118490977310                         Merchant Volume Indicator                                         
+ Authorized Amount         000000059702                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          484                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                N                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4188984905458833000                     Merchant ZIP Code         00505                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator            N                                       Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200014012222902682                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    10                                      
+ Purchase Date             20200113                                Settlement Flag           0                                       
+ Destination Amount        000000002603                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        096933                                  
+ Source Amount             000000131719                            POS Terminal Capability   0                                       
+ Source Currency Code      608                                     Cardholder ID Method      4                                       
+ Merchant Name             DIRECT PAY ONLINE USD                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    8999                                    Reimbursement Attribute   0                                       
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     24
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000602919                         Installment Payment Count                                         
+ Terminal ID               ECOKEN02                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 7                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         10.4-0128                               
+ Business Format Code      DF                                      VROL Case Number          1916295258                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         4                                       Surcharge Credit/Dbt Ind  CR                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580012826673213                         Merchant Volume Indicator                                         
+ Authorized Amount         000000001317                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          608                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     25
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Required Data                                                          
+                                                                                                                                     
+ Acct Number & Extension   4775750000358478000                     Merchant ZIP Code         00505                                   
+ Floor Limit Indicator                                             Merchant State/Prov. Code                                         
+ CRB/Exception File Ind                                            Requested Payment Service                                         
+ PCAS Indicator                                                    Number of Payment Forms                                           
+ Acquirer Reference Nbr    74210200055053120481205                 Usage Code                9                                       
+ Acquirer's Business ID    00000000                                Chargeback Reason Code    10                                      
+ Purchase Date             20200222                                Settlement Flag           0                                       
+ Destination Amount        000000005112                            Auth Characteristics Ind  N                                       
+ Destination Currency Code 840                                     Authorization Code        616192                                  
+ Source Amount             000019424500                            POS Terminal Capability   0                                       
+ Source Currency Code      800                                     Cardholder ID Method      4                                       
+ Merchant Name             DIRECT PAY ONLINE USD                   Collection-Only Flag                                              
+ Merchant City             NAIROBI                                 POS Entry Mode            01                                      
+ Merchant Country Code     KE                                      Central Processing Date   20200506                                
+ Merchant Category Code    8999                                    Reimbursement Attribute   0                                       
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Additional Data                                                        
+                                                                                                                                     
+ Business Format Code                                              Reserved Data             00                                      
+ Token Assurance Level                                             Acceptance Terminal Ind                                           
+ Chargeback Reference Nbr  000000                                  Prepaid Card Indicator                                            
+ Documentation Indicator                                           Service Development Field                                         
+ Member Message Text                                               AVS Response Code                                                 
+ Special Condition Ind                                             Authorization Source Code                                         
+ Fee Program Indicator                                             Purchase Id Format                                                
+ Issuer Charge                                                     Account Selection         0                                       
+ Card Acceptor ID          404700000602919                         Installment Payment Count                                         
+ Terminal ID               ECOKEN02                                Purchase Identifier                                               
+ Nat'l Reimbursement Fee   000000000000                            Cashback                  000000000                               
+ Mail/Phn/Ecomm & Pymt Ind 7                                       Chip Condition Code                                               
+ Special Chargeback Ind                                            POS Environment                                                   
+ Conversion Date           0127                                                                                                      
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Supplemental VCR Financial Data                                        
+                                                                                                                                     
+ Agent Unique ID                                                   VROL Financial ID         10.4-0128                               
+ Business Format Code      DF                                      VROL Case Number          1916382024                              
+ Network Identification Cd 0002                                    VROL Bundle Case No       0000000000                              
+ Contact for Information                                           Client Case Number                                                
+ Adjustment Processing Ind                                         Dispute Status            F1                                      
+ Message Reason Code                                               Surcharge Amount          00000000                                
+ Dispute Condition         4                                       Surcharge Credit/Dbt Ind  CR                                      
+REPORT EP-715   INCOMING INTERCHANGE                    VISANET EDIT PACKAGE                                             PAGE     26
+ SYSTEM DATE 20/05/06    RELEASE  4.00                 SALES DRAFT CHARGEBACKS                                         CPD   20/05/06
+ ECOBANK                                                    CENTER 404299                                               RUN NO    002
+                                                                                                                                     
+      Chargeback, Sales Draft - First - VCR          ----     Payment Service Data                                                   
+                                                                                                                                     
+ Transaction Identifier    580053446386097                         Merchant Volume Indicator                                         
+ Authorized Amount         000000194245                            ECommerce Goods Indicator                                         
+ Auth Currency Cd          800                                     Merchant Verification Val                                         
+ Authorization Response Cd 00                                      Interchange Fee Amount    000000000000000                         
+ Validation Code                                                   Interchange Fee Sign                                              
+ Excluded Trans ID Rsn                                             Src to Base Curr Ex Rate  00000000                                
+ CRS Processing Code                                               Base to Dest Curr Ex Rate 00000000                                
+ Chargeback Rights Ind                                             Optional Issuer ISA Amt   000000000000                            
+ Multiple Clearing Seq Nbr 00                                      Product Id                F                                       
+ Multiple Clearing Seq Cnt 00                                      Program ID                                                        
+ Market-Specific Auth Data                                         Dynamic Currency Conv Ind                                         
+ Total Authorized Amount   000000000000                            Acct Type Identification                                          
+ Information Indicator                                             Spend Qualified Indicator                                         
+ Merchant Telephone Number                                         PAN Token                 0000000000000000                        
+ Additional Data Indicator                                         CVV2 Result Code                                                  
+                                                                                                                                     
+ TRANSACTION TOTAL RECORD COUNT               17                                                                                     
