@@ -38,20 +38,19 @@
                               </tr>
                             </thead>
                             <tbody>
-
+@if(!empty($data))
                               @foreach($data as $apps)
                            @if(Auth::id() == $apps->captured_by)
                               <tr id='t0'>
 
                             @php
                              $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();
-                             $app = \App\KurraApp::all()->where('token',$apps->token)->first();
-                             $job = \App\Job::all()->where('token',$apps->ref_token)->first();
+                            
                             @endphp
 
                                 <td>{{$apps->app_id}}</td>
-                                <td>{{$job->title}}</td> 
-                                <td>{{$app->fname}} {{$app->lname}}</td>
+                                <td>{{$apps->title}}</td> 
+                                <td>{{$apps->fname}} {{$apps->lname}}</td>
                                 
                               
                                 <td>
@@ -73,6 +72,7 @@
 
                               @endif
                               @endforeach
+                               @endif
 
                             </tbody>
                              

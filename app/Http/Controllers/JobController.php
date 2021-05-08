@@ -35,6 +35,7 @@ class JobController extends Controller
       public function create1()
     {
         $data = Job::all();
+     //   return $data;
         return view('backapp.job',compact('data'));
     }
 
@@ -141,12 +142,20 @@ class JobController extends Controller
           public function show1()
     {
         $data = Jobapp::all()->where('status','Success');
+
+
         return view('data.applicants',compact('data'));
     }
 
        public function showapps()
     {
         $data = Jobapp::all()->where('status','Success');
+        
+        $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
+      ->select('jobs.token','app_id','jobs.title','fname','lname','app_status')->get();;
+
+      // return $job;
+       // return $data;
         return view('data.allapps',compact('data'));
     }
 
