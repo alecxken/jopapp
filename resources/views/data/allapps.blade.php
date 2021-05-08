@@ -39,18 +39,15 @@
                             <tbody>
 
                               @foreach($data as $apps)
-                       
-                              <tr id='t0'>
-
-                            @php
+                         @php
                              $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();
-                             $app = \App\KurraApp::all()->where('token',$apps->token)->first();
-                             $job = \App\Job::all()->where('token',$apps->ref_token)->first();
+                            
                             @endphp
 
+                              <tr id='t0'>
                                 <td>{{$apps->app_id}}</td>
-                                <td>{{$job->title}}</td> 
-                                <td>{{$app->fname}} {{$app->lname}}</td>
+                                <td>{{$apps->title}}</td> 
+                                <td>{{$apps->fname}} {{$apps->lname}}</td>
                                 
                               
                                 <td>

@@ -48,7 +48,7 @@
 
                             <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Town') }}
-                                {{ Form::text('postal_code', 'Postal Code', array('class' => 'form-control input-sm')) }}
+                                {{ Form::text('postal_code', null, array('class' => 'form-control input-sm')) }}
                             </div>
 
                              <div class="form-group col-md-4">

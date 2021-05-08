@@ -22,9 +22,10 @@ class ApplicationController extends Controller
     public function report()
     {
         $data = ApplicantData::all();
+        return $data;
        $name = 'KURA-APPLICANTS-REPORT-'.\Carbon\Carbon::now()->format('d-M-Y').'.xlsx';
       //$file = (new FastExcel($data))->down(storage_path('files/'.$name));
-       return (new FastExcel($data))->download($name);
+       return (new FastExcel($data))->download('KURA-APPLICANTS-REPORT-'.\Carbon\Carbon::now()->format('d-M-Y').'.xlsx');
        //return $file;
        return back()->with('status','succesfully');
     }
