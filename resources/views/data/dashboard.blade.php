@@ -2,6 +2,7 @@
 
 @section('content')
 
+@role('Reports')
 <div class="content">
 	 <div class="row justify-content-center" >
         
@@ -102,5 +103,6 @@
         
     </div>
 </div>
+@endrole
 
 @endsection
