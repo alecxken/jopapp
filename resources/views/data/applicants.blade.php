@@ -43,10 +43,7 @@
                            @if(Auth::id() == $apps->captured_by)
                               <tr id='t0'>
 
-                            @php
-                             $a = \App\ApplicantMark::all()->where('job_token',$apps->token)->first();
-                            
-                            @endphp
+                        
 
                                 <td>{{$apps->app_id}}</td>
                                 <td>{{$apps->title}}</td> 

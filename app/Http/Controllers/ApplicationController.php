@@ -412,7 +412,8 @@ class ApplicationController extends Controller
 
          
                       
-                
+            if(!empty($request->input('edu')))
+                 {
              foreach ($request->input('edu') as $key => $value)
                      {
                         
@@ -422,8 +423,24 @@ class ApplicationController extends Controller
                             $insert = [];
                         }
                          else
-                         {                    
-                        $insert[] =
+                         {  
+                        $updateedu = \App\KuraEducation::where('token', $token)  
+                                                        ->where('edu',$request->input('edu')[$key]) 
+                                                        ->where('cert1',$request->input('cert')[$key])
+                                                        ->first();
+                        if (!empty($updateedu)) 
+                          {
+                             $upd = \App\KuraEducation::findorfail($updateedu->id);
+                              $upd->edu = $request->input('edu')[$key];
+                              $upd->cert1 = $request->input('cert')[$key];
+                              $upd->institution1 = $request->input('institution')[$key];
+                              $upd->year1 = $request->input('year')[$key];
+                              $upd->save();                        
+                          }    
+
+                          else
+                          {
+                            $insert[] =
                                      [
                                       'token' => $token,    
                                       'edu'  => $request->input('edu')[$key],                                  
@@ -431,17 +448,15 @@ class ApplicationController extends Controller
                                       'institution1'  => $request->input('institution')[$key],
                                       'year1'  => $request->input('year')[$key],
                                       ];
+                          }                
+                        
                          }
                     }
+                  }
 
-                    //certificate validation
-                    if (is_null($cert1))
-                     {
-                      $insert1 = [];
-                     }
-                    else
+                    if(!empty($request->input('cert1')))
                     {
-                        foreach ($request->input('cert1') as $key => $value)
+                     foreach ($request->input('cert1') as $key => $value)
                      {
                         $empty1 = $request->input('cert1')[$key];
                         if(is_null($empty1))
@@ -450,24 +465,37 @@ class ApplicationController extends Controller
                         }
                          else
                          {
+                            $updatecert = \App\KuraCert::where('token', $token)  
+                                                        ->where('cert',$request->input('cert1')[$key]) 
+                                                        ->where('institution',$request->input('institution1')[$key])
+                                                        ->first();
+                        if (!empty($updatecert)) 
+                          {
+                             $upd = \App\KuraCert::findorfail($updatecert->id);
+                              $upd->cert = $request->input('cert1')[$key];
+                              $upd->institution = $request->input('institution1')[$key];
+                              $upd->reg_no = $request->input('reg_no')[$key];
+                              $upd->year = $request->input('year1')[$key];
+                              $upd->save();                        
+                          }    
+
+                          else
+                          {
                                              
-                        $insert1[] =
+                              $insert1[] =
                                      [
                                       'token' => $token,       
                                       'cert'  => $request->input('cert1')[$key],
                                       'institution'  => $request->input('institution1')[$key],
+                                       'reg_no'  => $request->input('reg_no')[$key],
                                       'year'  => $request->input('year1')[$key],                             
                                      ];
                             }
+                          }
                      }
-                    }
-                     
-                  if (is_null($member))
-                     {
-                      $insert2 = [];
-                     }
-                    else
-                    {
+                   }
+                       if(!empty($request->input('member')))
+                       {
                      foreach ($request->input('member') as $key => $value)
                      {
                         $empty2 = $request->input('member')[$key];
@@ -477,24 +505,34 @@ class ApplicationController extends Controller
                         }
                          else
                          {
-                                             
-                            $insert2[] =
+                             $updatemember = \App\KuraMembership::where('token', $token)  
+                                                        ->where('member',$request->input('member')[$key]) 
+                                                        ->where('body',$request->input('body')[$key])
+                                                        ->first();
+                        if (!empty($updatemember)) 
+                          {
+                              $upd = \App\KuraMembership::findorfail($updatemember->id);
+                              $upd->member = $request->input('member')[$key];
+                              $upd->body = $request->input('body')[$key];
+                              $upd->save();                        
+                          }
+                          else
+                          {
+                               $insert2[] =
                                      [
                                       'token' => $token,       
                                       'member'  => $request->input('member')[$key],
                                       'body'  => $request->input('body')[$key],
                                       'membno'  => $request->input('membno')[$key],                             
                                      ];
+                          }    
+                                             
+                         
                          }
                      }
-                    }
-
-                 if (is_null($training))
-                     {
-                      $insert3 = [];
-                     }
-                    else
-                    {
+                   }
+                 if(!empty($request->input('training')))
+                 {
                          foreach ($request->input('training') as $key => $value)
                      {
                         $empty = $request->input('training')[$key];
@@ -504,21 +542,36 @@ class ApplicationController extends Controller
                         }
                          else
                          {
-                              $insert3[] =
-                                     [
-                                      'token' => $token,  
-                                       'training'  => $request->input('training')[$key],     
-                                      'cert2'  => $request->input('cert2')[$key],
-                                      'institution2'  => $request->input('institution2')[$key],
-                                      'year2'  => $request->input('year2')[$key], 
-                      
-                                     ];                      # code...
-                         }                    
+                            $updateother = \App\KuraOther::where('token', $token)  
+                                                        ->where('training',$request->input('training')[$key]) 
+                                                        ->where('cert2',$request->input('cert2')[$key])
+                                                              ->first();
+                              if (!empty($updateother)) 
+                                {
+                                    $upd = \App\KuraOther::findorfail($updateother->id);
+                                    $upd->training = $request->input('training')[$key];
+                                    $upd->cert2 = $request->input('cert2')[$key];
+                                    $upd->institution2 = $request->input('institution2')[$key];
+                                    $upd->year2 = $request->input('year2')[$key];
+                                    $upd->save();                        
+                                }
+                                else
+                                {
+                                    $insert3[] =
+                                           [
+                                            'token' => $token,  
+                                             'training'  => $request->input('training')[$key],     
+                                            'cert2'  => $request->input('cert2')[$key],
+                                            'institution2'  => $request->input('institution2')[$key],
+                                            'year2'  => $request->input('year2')[$key], 
+                            
+                                           ];                      # code...
+                                }                          
+                          }                    
                      
                      }
                    }
 
-                      
                     
         
            if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
@@ -1100,6 +1153,9 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
                         
                          }
                     }
+
+                    if(!empty($request->input('cert1')))
+                    {
                      foreach ($request->input('cert1') as $key => $value)
                      {
                         $empty1 = $request->input('cert1')[$key];
@@ -1118,6 +1174,7 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
                              $upd = \App\KuraCert::findorfail($updatecert->id);
                               $upd->cert = $request->input('cert1')[$key];
                               $upd->institution = $request->input('institution1')[$key];
+                              $upd->reg_no = $request->input('reg_no')[$key];
                               $upd->year = $request->input('year1')[$key];
                               $upd->save();                        
                           }    
@@ -1130,11 +1187,15 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
                                       'token' => $token,       
                                       'cert'  => $request->input('cert1')[$key],
                                       'institution'  => $request->input('institution1')[$key],
+                                       'reg_no'  => $request->input('reg_no')[$key],
                                       'year'  => $request->input('year1')[$key],                             
                                      ];
                             }
                           }
                      }
+                   }
+                       if(!empty($request->input('member')))
+                       {
                      foreach ($request->input('member') as $key => $value)
                      {
                         $empty2 = $request->input('member')[$key];
@@ -1169,6 +1230,9 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
                          
                          }
                      }
+                   }
+                 if(!empty($request->input('training')))
+                 {
                          foreach ($request->input('training') as $key => $value)
                      {
                         $empty = $request->input('training')[$key];
@@ -1206,6 +1270,7 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
                           }                    
                      
                      }
+                   }
 
                     
         

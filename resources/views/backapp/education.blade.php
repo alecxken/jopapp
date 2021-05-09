@@ -19,7 +19,7 @@
                                   Education
                                 </th>
                                 <th class="text-center">
-                                  Course
+                                  Area Of Study
                                 </th>
                                  <th class="text-center">
                                   Institution

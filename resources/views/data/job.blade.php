@@ -82,8 +82,10 @@
           </thead>
            <tbody> @if(!empty($data))
            @foreach ($data as $user)
+
+<!--  -->
               <tr>
-                <td>{{$user->token}}</td>
+                <td>{{$user->prefix}}</td>
                 <td>{{$user->title}}</td>            
                 <td>{{$user->deadline}}</td>
                 <td>{{$user->file}}</td>

@@ -147,15 +147,25 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+
+          public function mapps1()
+    {
+        $data = Jobapp::all()->where('status','Success');
+
+        $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->whereNotNull('jobs.title')
+      ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
+        return view('data.applicants',compact('data'));
+    }
 
           public function show1()
     {
         $data = Jobapp::all()->where('status','Success');
 
         $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->whereNotNull('jobs.title')
-      ->select('jobs.token','app_id','jobs.title','fname','lname','app_status')->get();;
+      ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
 
-      return $data;
+      // return $data;
 
 
         return view('data.applicants',compact('data'));
@@ -166,7 +176,7 @@ class JobController extends Controller
         $data = Jobapp::all()->where('status','Success');
         
         $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
-      ->select('jobs.token','app_id','jobs.title','fname','lname','app_status')->get();;
+      ->select('jobs.token','app_id','jobs.title','fname','lname','app_status','captured_by')->get();;
 
       // return $job;
        // return $data;

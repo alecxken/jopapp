@@ -25,7 +25,10 @@
                                   Institution
                                 </th>
                                  <th class="text-center">
-                                  Comp Yr
+                                  Reg Number
+                                </th>
+                                 <th class="text-center">
+                                  Year Of Reg
                                 </th>
                                
                               </tr>
@@ -43,6 +46,9 @@
                                  <td>
                                 <input type="text" name='institution1[]' value="{{$certs->institution}}" placeholder='Institution' class="form-control"/>
                                 </td>
+                                  <td>
+                                <input type="text" name='reg_no[]'  placeholder='Reg No' value="{{$certs->reg_no}}"  class="form-control"/>
+                                </td>
                                  <td>
                                 <input type="number" name='year1[]'value="{{$certs->year}}"  placeholder='Year' class="form-control"/>
                                 </td>
@@ -58,6 +64,9 @@
                                 </td>
                                  <td>
                                 <input type="text" name='institution1[]' placeholder='Institution' class="form-control"/>
+                                </td>
+                                 <td>
+                                <input type="text" name='reg_no[]'  placeholder='Reg No' class="form-control"/>
                                 </td>
                                  <td>
                                 <input type="number" name='year1[]'  placeholder='Year' class="form-control"/>
@@ -101,6 +110,7 @@
                          
                             cols += '<td><input type="text" name="cert1[]" placeholder="Certificate" class="form-control"/></td>';
                                cols += '<td><input type="text" class="form-control"  placeholder="Institution " name="institution1[]"/></td>';
+                                cols += '<td><input type="text" class="form-control"  placeholder="Reg No" name="reg_no[]"/></td>';
                                   cols += '<td><input type="text" class="form-control"  placeholder="Year" name="year1[]"/></td>';
 
                             cols += '<td><input type="button" class="ibtnDelON btn btn-md btn-danger "  value="Delete"></td>';

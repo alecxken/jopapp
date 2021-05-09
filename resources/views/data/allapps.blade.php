@@ -29,6 +29,9 @@
                                  <th class="text-center">
                                   Application Status
                                 </th>
+                                 <th class="text-center">
+                                  Captured_By
+                                </th>
                               
                                  <th class="text-center">
                                  Action
@@ -48,6 +51,7 @@
                                 <td>{{$apps->app_id}}</td>
                                 <td>{{$apps->title}}</td> 
                                 <td>{{$apps->fname}} {{$apps->lname}}</td>
+                                <td>{{$apps->captured_by}}</td>
                                 
                               
                                 <td>
