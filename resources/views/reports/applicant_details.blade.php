@@ -39,8 +39,8 @@
                             
 
                                   <a href="{{url('view-individual-details/'.$apps->token)}}" class="btn btn-xs btn-info" align="center">View Details</a>
-
-                                  <a href="{{url('delete-details/'.$apps->token)}}" class="btn btn-xs btn-danger" align="center">Drop</a>
+                                  @role('Admin')
+                                  <a href="{{url('delete-details/'.$apps->token)}}" class="btn btn-xs btn-danger" align="center">Delete</a>@endrole
                                
 
                                  
