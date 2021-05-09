@@ -3,7 +3,7 @@
 
   <div class="box box-success ">
               <div class="box-heading">
-                <h3><center> APPLICANT {{$data->app_id}} : {{$data->fname}} {{$data->oname}}</center></h3>
+                <h3><a href="{{url('summary-app')}}" class="btn btn-xs btn-success">Click To Go Back</a><center> APPLICANT {{$data->app_id}} : {{$data->fname}} {{$data->oname}}</center></h3>
               </div>
 
               <div class="box-body ">

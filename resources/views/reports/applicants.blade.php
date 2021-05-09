@@ -11,7 +11,8 @@
    <div class="col-md-12">  
        <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Applicants</h3>
+               <span> </span><h3 class="box-title">Applicants</h3>
+
             </div>
  				 <table class="table table-bordered table-hover order-list4  small" id="">
                             <thead class="bg-info small">

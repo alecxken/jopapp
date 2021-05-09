@@ -563,6 +563,72 @@ public function stage($ref,$token)
         return back()->with('danger','Successfully Dropped');     
     }
 
+    public function drop_applicant($token)
+    {
+      $jobapp = Jobapp::all()->where('token',$token)->first();
+      if (!empty($jobapp)) 
+      {
+        $jj = Jobapp::findorfail($jobapp->id);
+        $jj->delete();       
+      }
+      $jobs = KurraApp::all()->where('token',$token)->first();
+       if (!empty($jobs)) 
+      {
+        $jj = KurraApp::findorfail($jobs->id);
+        $jj->delete();       
+      }
+      $kura_ed = \App\KuraEducation::all()->where('token',$token)->first();
+       if (!empty($kura_ed)) 
+      {
+        $jj = KuraEducation::findorfail($kura_ed->id);
+        $jj->delete();       
+      }
+      $certs = \App\KuraCert::all()->where('token',$token)->first();
+       if (!empty($certs)) 
+      {
+        $jj = \App\KuraCert::findorfail($certs->id);
+        $jj->delete();       
+      }
+      $members = \App\KuraMembership::all()->where('token',$token)->first();
+       if (!empty($members)) 
+      {
+        $jj = \App\KuraMembership::findorfail($members->id);
+        $jj->delete();       
+      }
+      $other = \App\KuraOther::all()->where('token',$token)->first();
+       if (!empty($other)) 
+      {
+        $jj = \App\KuraOther::findorfail($other->id);
+        $jj->delete();       
+      }
+      $referee = \App\KuraReferee::all()->where('token',$token)->first();
+       if (!empty($referee)) 
+      {
+        $jj = \App\KuraReferee::findorfail($referee->id);
+        $jj->delete();       
+      }
+      $empls = \App\KuraEmployer::all()->where('token',$token)->first();
+       if (!empty($empls)) 
+      {
+        $jj = \App\KuraEmployer::findorfail($empls->id);
+        $jj->delete();       
+      }
+      $marks = \App\ApplicantMark::all()->where('job_token',$token)->first();
+       if (!empty($marks)) 
+      {
+        $jj = \App\ApplicantMark::findorfail($marks->id);
+        $jj->delete();       
+      }
+      $creteria = \App\ApplicantCreteria::all()->where('job_token',$token)->first();
+       if (!empty($creteria)) 
+      {
+        $jj =  \App\ApplicantCreteria::findorfail($creteria->id);
+        $jj->delete();       
+      }
+
+      return back()->with('error','Dropped Successfully');
+    }
+
 
         // if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
         //    if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}

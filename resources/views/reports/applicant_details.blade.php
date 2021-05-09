@@ -11,7 +11,7 @@
    <div class="col-md-12">  
        <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Applicants Details</h3>
+             <a href="{{url('summary-app')}}" class="btn btn-xs btn-success">Click To Go Back</a> <h3 class="box-title">Applicants Details</h3> 
             </div>
  				 <table class="table table-bordered table-hover order-list4  small" id="">
                             <thead class="bg-info small">
@@ -39,6 +39,8 @@
                             
 
                                   <a href="{{url('view-individual-details/'.$apps->token)}}" class="btn btn-xs btn-info" align="center">View Details</a>
+
+                                  <a href="{{url('delete-details/'.$apps->token)}}" class="btn btn-xs btn-danger" align="center">Drop</a>
                                
 
                                  

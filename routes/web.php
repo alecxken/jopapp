@@ -52,6 +52,7 @@ Route::get('/view-applicant/{id}', 'ApplicationController@reportspecific');
 
 Route::get('/view-job-details/{id}', 'JobController@job_details');
 Route::get('/view-individual-details/{id}', 'JobController@individual_details');
+Route::get('/delete-details/{id}', 'JobController@drop_applicant');
 
 
 
