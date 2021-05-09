@@ -50,6 +50,13 @@ Route::get('/view-checklist', 'ApplicationController@checklist');
 Route::get('/view-applicant/{id}', 'ApplicationController@reportspecific');
 
 
+Route::get('/view-job-details/{id}', 'JobController@job_details');
+Route::get('/view-individual-details/{id}', 'JobController@individual_details');
+
+
+
+Route::get('/summary-app', 'JobController@summary_app');
+Route::get('/summary-applicants', 'ApplicationController@reportsall');
 
 Route::get('/my-apps', 'JobController@show');
 Route::get('/delete-all/{id}', 'ApplicationController@deleteall');

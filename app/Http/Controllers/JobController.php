@@ -10,6 +10,7 @@ use App\Jobapp;
 use App\Creteria;
 use App\KurraApp;
 use App\KuraEducation;
+use App\ApplicantData;
 class JobController extends Controller
 {
     /**
@@ -149,13 +150,49 @@ class JobController extends Controller
      */
     
 
-          public function mapps1()
+          public function summary_app()
     {
-        $data = Jobapp::all()->where('status','Success');
+        $data = \DB::table('applicants_views')->get();
 
-        $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->whereNotNull('jobs.title')
+        return view('reports.applicants',compact('data'));
+    }
+
+                 public function individual_details($id)
+    {
+
+
+        
+         $data = ApplicantData::all()->where('token',$id)->first();
+
+       // return $datas;
+    
+    
+      //   $data = \DB::table('applicants_views')->get();
+
+      //   $job = Job::all()->where('title',$id)->first();
+
+      //     $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$job->token)->whereNotNull('jobs.title')
+      // ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
+
+       
+       // return $data;
+
+        return view('reports.individual',compact('data'));
+    }
+
+              public function job_details($id)
+    {
+        $data = \DB::table('applicants_views')->get();
+
+        $job = Job::all()->where('title',$id)->first();
+
+          $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$job->token)->whereNotNull('jobs.title')
       ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
-        return view('data.applicants',compact('data'));
+
+       
+       // return $data;
+
+        return view('reports.applicant_details',compact('data'));
     }
 
           public function show1()
