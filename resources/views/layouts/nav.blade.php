@@ -1,9 +1,9 @@
   <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+<!--       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
+ -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
@@ -20,7 +20,7 @@
                 {{--   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="images/logo.png" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Number of Mentees
@@ -55,13 +55,13 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-              <img src="{{asset('/images/'.Auth::user()->image)}}" onerror="this.src='../../dist/img/user4-128x128.jpg'" class="user-image" alt="User Image">
+              <img src="{{asset('/images/'.Auth::user()->image)}}" onerror="this.src='../../images/logo.png'" class="user-image" alt="User Image">
               <span class="hidden-xs"> {{(Auth::user()->username)}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('/images/'.Auth::user()->image)}}" onerror="this.src='../../dist/img/user4-128x128.jpg'" class="img-circle" alt="User Image">
+                <img src="{{asset('/images/'.Auth::user()->image)}}" onerror="this.src='../../images/logo.png'" class="img-circle" alt="User Image">
 
                 <p>
                   {{(Auth::user()->username)}}
