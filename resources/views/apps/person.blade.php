@@ -1,4 +1,4 @@
- <div class="col-md-16" width="100%">        
+ <div class="col-md-12" width="100%">        
 
             <div class="panel panel-success p">
               <div class="panel-heading">
@@ -6,10 +6,7 @@
               </div>
               {!! Form::open(['method'=> 'post','url' => 'cert', 'files' => true ]) !!}
               <div class="panel-body ">
-                   
-{{-- 
-                    <div class="row"> --}}
-                        
+                       
                           
                             <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Job Ref') }}

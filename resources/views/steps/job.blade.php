@@ -1,19 +1,29 @@
- <div class="col-md-12" width="100%">        
+@extends('layouts.template')
 
-            <div class="box box-success ">
-               <div class="box-header with-border">
-                   <h5 class="m-0">Personal Information - {{$job_id}}</h5>
-              </div>
-              {!! Form::open(['method'=> 'post','url' => 'cert1', 'files' => true ]) !!}
-               {{ Form::hidden('job_id', $job_id, array('class' => 'form-control input-sm','readonly')) }}
-               {{ Form::hidden('token', $token, array('class' => 'form-control input-sm','readonly')) }}
-              <div class="box-body ">
- 
-                        
-           
-                             <div class="form-group col-md-4">
-                                {{ Form::label('email', 'Applicant Ref') }}
-                                {{ Form::text('app_id', NULL, array('class' => 'form-control input-sm','placeholder'=>'E.G KURA/DE/23/1')) }}
+@section('title', '| Users')
+
+@section('content')
+   <div class="card bd-0">
+                <div class="card-header tx-medium bd-0 tx-white bg-gray-800">
+                      <i class="fa fa-users"></i> {{Auth::user()->name}} Profile  Administration <br>
+                       <center>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{url('user_create')}}" class="btn btn-secondary pd-x-25 {{ (request()->is('steponeuser')) ? 'active' : '' }}"> Step One</a>
+                           <a href="{{url('steptwouser')}}" class="btn btn-secondary pd-x-25  {{ (request()->is('steptwouser')) ? 'active' : '' }}"> Step Two</a>
+                           <a href="{{url('stepthreeuser')}}" class="btn btn-secondary pd-x-25 {{ (request()->is('stepthreeuser')) ? 'active' : '' }}"> Step Three</a>                       
+                      </div>
+                   </center>                    
+                </div>
+
+                <div class="card-body bd bd-t-0">
+                 
+                 {!! Form::open(['method'=> 'post','url' => 'cert', 'files' => true ]) !!}
+              <div class="row ">
+                       
+                          
+                            <div class="form-group col-md-4">
+                                {{ Form::label('email', 'Job Ref') }}
+                                {{ Form::text('token', $token, array('class' => 'form-control input-sm','readonly')) }}
                             </div>
 
                             <div class="form-group col-md-4">
@@ -22,11 +32,7 @@
                                  <option value="">Choose Title</option>
                                  <option>Mr</option>
                                  <option>Mrs</option>
-                                 <option>Ms</option>
                                  <option>Miss</option>
-                                 <option>Prof</option>
-                                 <option>Eng.</option>
-                                 <option>Dr.</option>
                                </select>
                             </div>
 
@@ -52,7 +58,7 @@
 
                             <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Town') }}
-                                {{ Form::text('postal_code', 'Postal Code', array('class' => 'form-control input-sm')) }}
+                                {{ Form::text('postal_code', null, array('class' => 'form-control input-sm')) }}
                             </div>
 
                              <div class="form-group col-md-4">
@@ -63,9 +69,9 @@
                             <div class="form-group col-md-4">
                                 {{ Form::label('name', 'Email Address') }}
                                 @if(!empty($email))
-                                {{ Form::email('email',null, array('class' => 'form-control input-sm','readonly')) }}
+                                {{ Form::email('email',$email, array('class' => 'form-control input-sm','readonly')) }}
                                 @else
-                                {{ Form::email('email',null, array('class' => 'form-control input-sm')) }}
+                                {{ Form::email('email',null, array('class' => 'form-control input-sm','readonly')) }}
                                 @endif
                             </div>
 
@@ -92,7 +98,7 @@
 
                               <div class="form-group col-md-4">
                                 {{ Form::label('email', 'County') }}
-                                <select class="form-control input-sm select2" name="county" required="">
+                                <select class="form-control" name="county" required="">
                                     <option value="">Choose Your County</option>
                                     <option>Mombasa</option>
                                     <option>Kwale</option>
@@ -149,23 +155,10 @@
                             </div>
 
                              <div class="form-group col-md-4">
-                                {{ Form::label('name', ' Ethnicity') }}
+                                {{ Form::label('name', ' Home District') }}
                                 {{ Form::text('district', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
-                             <div class="form-group col-md-4">
-                                {{ Form::label('disability', ' Current Salary') }}
-                                {{ Form::number('current_salary', '', array('class' => 'form-control input-sm')) }}
-                            </div>
-                            <div class="form-group col-md-12">
-                                
-                            </div>
-
-                            <div class="">
-                                   <div class="form-group col-md-4">
-                                {{ Form::label('disability', ' Expected Salary') }}
-                                {{ Form::number('expected_salary', '', array('class' => 'form-control input-sm')) }}
-                            </div>
 
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Any Disability') }}
@@ -176,92 +169,31 @@
                                </select>
                             </div>
 
-                             <div class="form-group col-md-4">
+                            <div class="form-group col-md-4">
                                 {{ Form::label('disability', ' Description Of Disability') }}
                                 {{ Form::text('disability', '', array('class' => 'form-control input-sm')) }}
                             </div>
-
-                            </div>
-                          
-                           
-
-                             <div class="form-group col-md-12">
-                                {{ Form::label('email', 'Have You every been convicted of any criminal offence or a subject of probation?') }}
-                               <select class="form-control input-sm" id="is_convicted"  name="is_convicted" required="" onclick="convicted()">
-                                 <option value="">Choose option</option>
-                                 <option>No</option>
-                                 <option>Yes</option>
-                               </select>
-                            </div>
-
-                              <div class="form-group col-md-12" id="offence" style="display: block;">
-                                {{ Form::label('disability', 'If Yes State Nature of Offence, the year and duration of offence') }}
-                                {{ Form::text('conviction', '', array('class' => 'form-control input-sm')) }}
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                {{ Form::label('disability', ' Have you Ever been Dismissed or otherwise removed from Employment?') }}
-                                <select class="form-control input-sm"  id="is_dismissed" name="is_dismissed" required="" onclick="dismissed()">
-                                 <option value="">Choose option</option>
-                                 <option>No</option>
-                                 <option>Yes</option>
-                               </select>
-                            </div>
-
-                               <div class="form-group col-md-12" id="dismissed" style="display: block;">
-                                {{ Form::label('disability', 'If Yes State State reason (s) for dismissal/removal and effective date (dd/mm/yyyy)') }}
-                                {{ Form::text('dismissed', '', array('class' => 'form-control input-sm')) }}
-                            </div>
-
-                            
-         
-
 
                           
 
                        
 
-   </div> 
-                <div class="box-footer">
+
+                <div class="panel-footer">
                     
-                    {{ Form::submit('Procceed', array('class' => 'btn btn-success pull-right')) }}
+                    {{ Form::submit('Submit & Procceed', array('class' => 'btn btn-success pull-right')) }}
                 </div>
                             
 
-             
+                </div>
 
           {{ Form::close() }}
+
               </div>
-          </div>
-          <script type="text/javascript">
-    function convicted() {
-        var x = document.getElementById("is_convicted").value;
-        var mydiv = document.getElementById('convicted');
 
-        if ( x = "Yes") 
-        {
-            mydiv.style.display = "block";
-        }
-         else
-        {
-            mydiv.style.display = "none";
-        }
+      </div>
+          
+     
+   
 
-      }
-
-         function dismissed() {
-        var x = document.getElementById("is_dismissed").value;
-        var mydiv = document.getElementById('dismissed');
-
-        if ( x = "Yes") 
-        {
-            mydiv.style.display = "block";
-        }
-         else
-        {
-            mydiv.style.display = "none";
-        }
-
-      }
-</script>
-                   
+@endsection

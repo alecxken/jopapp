@@ -73,7 +73,7 @@ class ApplicationController extends Controller
     {
 
       // $email = $request->input('email');
-      $email = $request->input('app_id');
+      $email = $request->input('email');
       $id =  $request->input('job_id');
         $job = Job::all()->where('token',$id)->first();
          $req = \App\Required::all()->where('ref_token',$id);
@@ -82,21 +82,21 @@ class ApplicationController extends Controller
                     // $t = date("Y-M",strtotime("now"));
                     $token = $request->input('token');; 
                     $check = Jobapp::all()->where('ref_token',$id)
-                                          ->where('app_email',$email)
+                                          ->where('app_id',$email)
                                           ->first();
 
                                           //return $check;
                     $check1 = Jobapp::all()->where('ref_token',$id)
-                                          ->where('app_email',$email)
+                                          ->where('app_id',$email)
                                           ->where('app_status','Stage2')
                                           ->first();
                     $check2 = Jobapp::all()->where('ref_token',$id)
-                                          ->where('app_email',$email)
+                                          ->where('app_id',$email)
                                            ->where('app_status','Stage3')
                                           ->first();
 
                      $check3 = Jobapp::all()->where('ref_token',$id)
-                                          ->where('app_email',$email)
+                                          ->where('app_id',$email)
                                            ->where('app_status','Complete')
                                           ->first();
                       
@@ -168,7 +168,7 @@ class ApplicationController extends Controller
         $person->dismissed = $request->input('dismissed');
         $person->save();
 
-      return view('backapp.cert',compact('token','req'));  //
+      return view('backapp.cert',compact('token','req','id'));  //
 
         }
         else
@@ -222,7 +222,7 @@ class ApplicationController extends Controller
         $person->dismissed = $request->input('dismissed');
         $person->save();
 
-      return view('backapp.cert',compact('token','req'));  //
+      return view('backapp.cert',compact('token','req','id'));  //
         }
        
         
@@ -1010,5 +1010,220 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
     //     dd(array_filter($p1));
     }
 
+    public function update_person(Request $request)
+
+    {
+      $check = Jobapp::where('token', $request->input('token'))->first();
+      $data =  Jobapp::findorfail($check->id);
+        $data->ref_token = $check->ref_token;
+        $data->app_date = \Carbon\Carbon::today();
+        $data->app_status = 'Pending';
+         $data->app_id = $request->input('app_id');
+        $data->app_email = $request->input('email');
+        $data->captured_by = Auth::id();
+        $data->status ='Success';
+        $data->save();
+      
+      
+        $app = KurraApp::all()->where('token',$request->input('token'))->first();
+        $person =  KurraApp::findorfail($app->id);
+        $person->token = $request->input('token');
+        $person->title = $request->input('title');
+        $person->fname = $request->input('fname');
+        $person->lname = $request->input('lname');
+        $person->oname = $request->input('oname');
+        $person->po_box = $request->input('po_box');
+        $person->postal_code = $request->input('postal_code');
+        $person->phone_no = $request->input('phone_no');
+        $person->email = $request->input('email');
+        $person->dob = $request->input('dob');
+        $person->gender = $request->input('gender');
+        $person->passport = $request->input('passport');
+        $person->county = $request->input('county');
+        $person->district = $request->input('district');
+        $person->is_disabled = $request->input('is_disabled');
+        $person->disability = $request->input('disability');
+        $person->current_salary = $request->input('current_salary');
+        $person->expected_salary = $request->input('expected_salary');
+        $person->is_convicted = $request->input('is_convicted');
+        $person->convicted = $request->input('convicted');
+         $person->is_dismissed = $request->input('is_dismissed');
+        $person->dismissed = $request->input('dismissed');
+        $person->save();
+
+
+
+        return redirect('my-ref/'.$check->ref_token.'/'.$check->token)->with('status','Applicant Personal Info Updated');
+    }
+
+
+    public function update_cert(Request $request)
+
+    {
+       $token = $request->input('token');
+
+             foreach ($request->input('edu') as $key => $value)
+                     {
+                        
+                         $emptys = $request->input('edu')[$key];
+                        if(is_null($emptys))
+                        {
+                            $insert = [];
+                        }
+                         else
+                         {  
+                        $updateedu = \App\KuraEducation::where('token', $token)  
+                                                        ->where('edu',$request->input('edu')[$key]) 
+                                                        ->where('cert1',$request->input('cert')[$key])
+                                                        ->first();
+                        if (!empty($updateedu)) 
+                          {
+                             $upd = \App\KuraEducation::findorfail($updateedu->id);
+                              $upd->edu = $request->input('edu')[$key];
+                              $upd->cert1 = $request->input('cert')[$key];
+                              $upd->institution1 = $request->input('institution')[$key];
+                              $upd->year1 = $request->input('year')[$key];
+                              $upd->save();                        
+                          }    
+
+                          else
+                          {
+                            $insert[] =
+                                     [
+                                      'token' => $token,    
+                                      'edu'  => $request->input('edu')[$key],                                  
+                                      'cert1'  => $request->input('cert')[$key],
+                                      'institution1'  => $request->input('institution')[$key],
+                                      'year1'  => $request->input('year')[$key],
+                                      ];
+                          }                
+                        
+                         }
+                    }
+                     foreach ($request->input('cert1') as $key => $value)
+                     {
+                        $empty1 = $request->input('cert1')[$key];
+                        if(is_null($empty1))
+                        {
+                            $insert1 = [];
+                        }
+                         else
+                         {
+                            $updatecert = \App\KuraCert::where('token', $token)  
+                                                        ->where('cert',$request->input('cert1')[$key]) 
+                                                        ->where('institution',$request->input('institution1')[$key])
+                                                        ->first();
+                        if (!empty($updatecert)) 
+                          {
+                             $upd = \App\KuraCert::findorfail($updatecert->id);
+                              $upd->cert = $request->input('cert1')[$key];
+                              $upd->institution = $request->input('institution1')[$key];
+                              $upd->year = $request->input('year1')[$key];
+                              $upd->save();                        
+                          }    
+
+                          else
+                          {
+                                             
+                              $insert1[] =
+                                     [
+                                      'token' => $token,       
+                                      'cert'  => $request->input('cert1')[$key],
+                                      'institution'  => $request->input('institution1')[$key],
+                                      'year'  => $request->input('year1')[$key],                             
+                                     ];
+                            }
+                          }
+                     }
+                     foreach ($request->input('member') as $key => $value)
+                     {
+                        $empty2 = $request->input('member')[$key];
+                        if(is_null($empty2))
+                        {
+                            $insert2 = [];
+                        }
+                         else
+                         {
+                             $updatemember = \App\KuraMembership::where('token', $token)  
+                                                        ->where('member',$request->input('member')[$key]) 
+                                                        ->where('body',$request->input('body')[$key])
+                                                        ->first();
+                        if (!empty($updatemember)) 
+                          {
+                              $upd = \App\KuraMembership::findorfail($updatemember->id);
+                              $upd->member = $request->input('member')[$key];
+                              $upd->body = $request->input('body')[$key];
+                              $upd->save();                        
+                          }
+                          else
+                          {
+                               $insert2[] =
+                                     [
+                                      'token' => $token,       
+                                      'member'  => $request->input('member')[$key],
+                                      'body'  => $request->input('body')[$key],
+                                      'membno'  => $request->input('membno')[$key],                             
+                                     ];
+                          }    
+                                             
+                         
+                         }
+                     }
+                         foreach ($request->input('training') as $key => $value)
+                     {
+                        $empty = $request->input('training')[$key];
+                        if(is_null($empty))
+                        {
+                            $insert3 = [];
+                        }
+                         else
+                         {
+                            $updateother = \App\KuraOther::where('token', $token)  
+                                                        ->where('training',$request->input('training')[$key]) 
+                                                        ->where('cert2',$request->input('cert2')[$key])
+                                                              ->first();
+                              if (!empty($updateother)) 
+                                {
+                                    $upd = \App\KuraOther::findorfail($updateother->id);
+                                    $upd->training = $request->input('training')[$key];
+                                    $upd->cert2 = $request->input('cert2')[$key];
+                                    $upd->institution2 = $request->input('institution2')[$key];
+                                    $upd->year2 = $request->input('year2')[$key];
+                                    $upd->save();                        
+                                }
+                                else
+                                {
+                                    $insert3[] =
+                                           [
+                                            'token' => $token,  
+                                             'training'  => $request->input('training')[$key],     
+                                            'cert2'  => $request->input('cert2')[$key],
+                                            'institution2'  => $request->input('institution2')[$key],
+                                            'year2'  => $request->input('year2')[$key], 
+                            
+                                           ];                      # code...
+                                }                          
+                          }                    
+                     
+                     }
+
+                    
+        
+           if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+           if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+           if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
+           if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
+           $check = JobApp::all()->where('token',$token)->first();
+           //  $req = \App\Required::all()->where('ref_token',$id);
+           // if (!empty($app)) 
+           //  {
+           //      $apps = JobApp::findorfail($app->id);
+           //      $apps->app_status = 'Stage2';
+           //      $apps->save();
+           //  }
+
+
+        return redirect('my-ref/'.$check->ref_token.'/'.$check->token)->with('status','Applicant Personal Info Updated');
+    }
 
 }

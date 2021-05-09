@@ -5,6 +5,7 @@
             <div class="box box-primary ">
               <div class="box-heading">
                 <h3><center>STAGE III: EMPLOYMENT/EXPERIENCE DETAILS ({{$token}})</center></h3>
+                  <a href="{{url('jobs-apps-steps-two/'.$token)}}" class="btn btn-success  btn-xs {{ (request()->is('steponeuser')) ? 'active' : '' }}"> Go Back One Step</a>
               </div>
               <div class="box-body ">
                    {!! Form::open(['method'=> 'post','url' => 'referee1', 'files' => true ]) !!}

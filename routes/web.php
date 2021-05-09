@@ -57,6 +57,11 @@ Route::get('/apply-now/{id}', 'JobController@applynow');
 Route::post('/startapp', 'JobController@startapp')->name('cert');
 Route::get('/deletejob/{id}', 'JobController@deletejob');
 
+#update users details()
+
+Route::post('/update-persondetails', 'ApplicationController@update_person');
+Route::post('/update-user-cert', 'ApplicationController@update_cert');
+
 
 Route::post('/job-reg', 'JobController@store')->name('cert');
 Route::post('/cert', 'ApplicationController@cert')->name('cert');
@@ -68,6 +73,18 @@ Route::post('/referee', 'ApplicationController@referee')->name('referee');
 Route::post('/attachment', 'ApplicationController@attach')->name('attach');
 
 Route::get('/jobs-apps', 'JobController@create1');
+
+Route::get('/jobs-apps-steps/{id}', 'JobController@step_one');
+Route::get('/jobs-apps-steps-two/{id}', 'JobController@step_two');
+
+Route::get('/drop-education/{token}', 'JobController@drop_education');
+Route::get('/drop-certs/{token}', 'JobController@drop_certs');
+Route::get('/drop-membership/{token}', 'JobController@drop_membership');
+Route::get('/drop-others/{token}', 'JobController@drop_others');
+
+
+
+
 Route::get('/my-apps1', 'JobController@show1');
 Route::get('/all-apps', 'JobController@showapps');
 Route::get('/show-persons', 'JobController@showpersons');

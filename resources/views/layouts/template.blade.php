@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.min.css')}}"/>
 
-
+  <link rel="stylesheet" href="{{asset('js/toastr/toastr.min.css')}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -91,7 +91,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
 
-       @if (session('status'))
+   <!--     @if (session('status'))
         <div id="erros" class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4>Alert!</h4>
@@ -129,7 +129,7 @@ desired effect
                 <li>{{ $error }}</li>
             @endforeach
             </div>
-@endif
+@endif -->
     {{--   <h1>
         Page Header
         <small>Optional description</small>
@@ -257,6 +257,48 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+    
+ <script src="{{asset('js/toastr/toastr.min.js')}}"></script>
+<script type="text/javascript">
+    toastr.options = {
+      "closeButton": true,
+    "debug": true,
+    "newestOnTop": true,
+    "progressBar": true,
+  // "positionClass": "toast-top-center",
+  "preventDuplicates": true,
+  // "onclick": null,
+  // "showDuration": "300",
+  // "hideDuration": "1000",
+  // "timeOut": "5000",
+  // "extendedTimeOut": "1000",
+   "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+@if(session("danger"))
+  toastr.error("{{ session("danger") }}");
+@elseif(session("status"))
+    toastr.success("{{ session("status") }}");
+@elseif(session("success"))
+    toastr.success("{{ session("success") }}");
+@elseif(session("info"))
+ toastr.info("{{ session("info") }}");
+@elseif(session("error"))
+toastr.error("{{ session("error") }}");
+@elseif(session("warning"))
+ toastr.warning("{{ session("warning") }}");
+
+@endif
+ @if ($errors->any())
+   @foreach ($errors->all() as $error)
+              toastr.warning("{{ $error }}");
+            @endforeach
+
+ @endif
+</script>
      <script>
   $(function () {
     //Initialize Select2 Elements

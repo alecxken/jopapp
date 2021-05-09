@@ -9,6 +9,7 @@ use App\Job;
 use App\Jobapp;
 use App\Creteria;
 use App\KurraApp;
+use App\KuraEducation;
 class JobController extends Controller
 {
     /**
@@ -38,6 +39,14 @@ class JobController extends Controller
      //   return $data;
         return view('backapp.job',compact('data'));
     }
+
+      public function step1()
+    {
+        $data = Job::all();
+     //   return $data;
+        return view('steps.job',compact('data'));
+    }
+
 
       
 
@@ -142,6 +151,11 @@ class JobController extends Controller
           public function show1()
     {
         $data = Jobapp::all()->where('status','Success');
+
+        $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->whereNotNull('jobs.title')
+      ->select('jobs.token','app_id','jobs.title','fname','lname','app_status')->get();;
+
+      return $data;
 
 
         return view('data.applicants',compact('data'));
@@ -443,4 +457,69 @@ public function stage($ref,$token)
     {
         //
     }
+
+    #Step One
+
+    public function step_one($token)
+    {
+
+      
+         $emp = KurraApp::all()->where('token',$token)->first();
+
+         $job = Jobapp::all()->where('token',$token)->first();
+      
+       return view('steps.person',compact('emp','job'));
+    }
+
+    #step-two
+
+        public function step_two($token)
+    {
+
+      
+        $education = KuraEducation::all()->where('token',$token);
+        $membership = \App\KuraMembership::all()->where('token',$token);
+        $certificates = \App\KuraCert::all()->where('token',$token);
+        $others = \App\KuraOther::all()->where('token',$token);
+        $token = $token;
+
+          
+       return view('steps.education',compact('education','token','education','membership','certificates','others'));
+    }
+
+     public function drop_education($token)
+    {
+        $education = KuraEducation::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
+         public function drop_certs($token)
+    {
+        $education = \App\KuraCert::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
+
+     public function drop_membership($token)
+    {
+        $education = \App\KuraMembership::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
+       public function drop_others($token)
+    {
+        $education = \App\KuraOther::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
+
+        // if(!empty($insert)){\DB::table('kura_education')->insert($insert);}
+        //    if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
+        //    if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
+        //    if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
+
 }
