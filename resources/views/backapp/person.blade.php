@@ -37,6 +37,7 @@
 
                             <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Last Name') }}
+
                                 {{ Form::text('lname', '', array('class' => 'form-control input-sm')) }}
                             </div>
 
@@ -51,8 +52,9 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                {{ Form::label('email', 'Town') }}
-                                {{ Form::text('postal_code',, array('class' => 'form-control input-sm')) }}
+                                {{ Form::label('email', 'Town') }}  
+                                       {{-- {{ Form::label('email', 'Last Name') }} --}}
+                                {{ Form::text('postal_code','', array('class' => 'form-control input-sm')) }}
                             </div>
 
                              <div class="form-group col-md-4">
