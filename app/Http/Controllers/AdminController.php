@@ -55,9 +55,7 @@ class AdminController extends Controller
 
       public function applicantdata()
         {
-            $applicantdata = 'APPLICANT-'.date('D-M').'-SUMMARY.xlsx';
-            $datas = \App\ViewApplicant::all();
-            $dta = (new FastExcel($datas))->export(storage_path('summary/'.$applicantdata));
+            
             $path = storage_path('summary/');
             $files = \File::allfiles($path);
 
@@ -71,6 +69,14 @@ class AdminController extends Controller
 
 
            return view('reports.applicantreport',compact('data'));
+        }
+
+        public function updatedata()
+        {
+            $applicantdata = 'APPLICANT-'.date('D-M').'-SUMMARY.xlsx';
+            $datas = \App\ViewApplicant::all();
+            $dta = (new FastExcel($datas))->export(storage_path('summary/'.$applicantdata));
+            return back()->with('status','successfully Completed');
         }
 
 

@@ -18,7 +18,7 @@
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">DAILY APPLICANTS REPORT </h3>
+              <h3 class="box-title">DAILY APPLICANTS REPORT  <a href="{{url('update-data')}}" class="btn btn-success">Update Applicant Data</a></h3>
 
         
             </div>
