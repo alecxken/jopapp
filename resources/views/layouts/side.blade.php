@@ -47,6 +47,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('summary-app')}}"><i class="fa fa-link"></i> <span>Summary Applicants</span></a></li>
+                <li><a href="{{url('get-applicant-summary')}}"><i class="fa fa-link"></i> <span>Download Summary</span></a></li>
             <li><a href="{{url('all-apps')}}"><i class="fa fa-link"></i> <span>View All Applicants</span></a></li>
              <li><a href="{{url('show-persons')}}"><i class="fa fa-link"></i> <span>View Persons</span></a></li>
             <li><a href="{{url('download')}}"><i class="fa fa-download"></i> <span>Download File</span></a></li>

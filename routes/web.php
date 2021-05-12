@@ -54,6 +54,9 @@ Route::get('/view-job-details/{id}', 'JobController@job_details');
 Route::get('/view-individual-details/{id}', 'JobController@individual_details');
 Route::get('/delete-details/{id}', 'JobController@drop_applicant');
 
+Route::get('/get-applicant-summary', 'AdminController@applicantdata');
+Route::post('/download-accounts/{id}', 'AdminController@downloadfile');
+
 
 
 Route::get('/summary-app', 'JobController@summary_app');

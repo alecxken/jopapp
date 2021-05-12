@@ -7,8 +7,12 @@ use App\Job;
 use App\Jobapp;
 use App\KurraApp;
 use App\ApplicantsView;
+use App\ApplicantsData;
  use App\Charts\SampleChart;
   use App\Charts\ApplicantsChart;
+  // use App\Http\Requests\StoreDeviceRequest;
+use Rap2hpoutre\FastExcel\FastExcel;
+// use App\Jobs\EodJob;
 class AdminController extends Controller
 {
     /**
@@ -48,6 +52,37 @@ class AdminController extends Controller
     {
         //
     }
+
+      public function applicantdata()
+        {
+            $applicantdata = 'APPLICANT-'.date('D-M').'-SUMMARY.xlsx';
+            $datas = \App\ViewApplicant::all();
+            $dta = (new FastExcel($datas))->export(storage_path('summary/'.$applicantdata));
+            $path = storage_path('summary/');
+            $files = \File::allfiles($path);
+
+
+           foreach ($files as  $path) 
+             {
+               $file = pathinfo($path);
+
+               $data[] =  $file['basename'];
+             }
+
+
+           return view('reports.applicantreport',compact('data'));
+        }
+
+
+     public function downloadfile($id)
+    {
+
+    //  return public_path('bo/BO/'.$id);
+      if (file_exists(storage_path('summary/'.$id)))
+      {
+return response()->download(storage_path('summary/'.$id));
+      }
+  }
 
        public function analyze()
     {
