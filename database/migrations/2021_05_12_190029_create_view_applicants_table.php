@@ -16,16 +16,18 @@ class CreateViewApplicantsTable extends Migration
       public function up()
     {
         DB::statement("CREATE VIEW view_applicants AS SELECT DISTINCT
-a.token,j.app_id,a.title,a.fname,a.lname,a.oname,a.email,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,CONCAT(a.is_convicted,'-',a.convicted) as convicted, CONCAT(a.is_dismissed,'-',a.dismissed) as dismissed,
+a.token,jb.title as job, j.app_id,a.title,a.fname,a.lname,a.oname,a.email,a.phone_no,a.po_box,a.postal_code,a.dob,a.gender,a.is_disabled,a.current_salary,a.expected_salary,j.signed,CONCAT(a.is_convicted,'-',a.convicted) as convicted, CONCAT(a.is_dismissed,'-',a.dismissed) as dismissed,
 
-GROUP_CONCAT(DISTINCT  CONCAT(e.institution1,'-',e.cert1,'-',e.year1)  ORDER BY e.token ASC SEPARATOR ',') as education, 
-GROUP_CONCAT(DISTINCT CONCAT(m.member,'-',m.body) ORDER BY m.token ASC SEPARATOR ',') as membership, 
-GROUP_CONCAT(DISTINCT CONCAT(c.institution,'-',c.year,'-',c.cert) ORDER BY c.token ASC SEPARATOR ',') as certificates, 
+GROUP_CONCAT(DISTINCT  CONCAT(e.institution1,'-',e.cert1,'-',e.year1)  ORDER BY e.token ASC SEPARATOR ',') as education,
+GROUP_CONCAT(DISTINCT CONCAT(m.member,'-',m.body) ORDER BY m.token ASC SEPARATOR ',') as membership,
+GROUP_CONCAT(DISTINCT CONCAT(c.institution,'-',c.year,'-',c.cert) ORDER BY c.token ASC SEPARATOR ',') as certificates,
 GROUP_CONCAT(DISTINCT CONCAT(em.employer,'-',em.position,' - from ',em.from,' to ',em.to) ORDER BY em.token ASC SEPARATOR ',') as employer,
-GROUP_CONCAT(DISTINCT  CONCAT(o.training,'-',o.cert2,'-',o.year2)  ORDER BY o.token ASC SEPARATOR ',') as other_training, 
+GROUP_CONCAT(DISTINCT  CONCAT(o.training,'-',o.cert2,'-',o.year2)  ORDER BY o.token ASC SEPARATOR ',') as other_training,
 GROUP_CONCAT(DISTINCT  CONCAT(r.ref_name,'-',r.ref_company,'-',r.ref_phone)  ORDER BY r.token ASC SEPARATOR ',') as referees
-FROM 
+FROM
 jobapps j
+LEFT JOIN jobs jb
+    ON jb.token = j.ref_token
 LEFT JOIN kurra_apps a
     ON a.token = j.token
 
