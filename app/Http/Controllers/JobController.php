@@ -11,6 +11,7 @@ use App\Creteria;
 use App\KurraApp;
 use App\KuraEducation;
 use App\ApplicantData;
+use App\ApplicantCreteria;
 class JobController extends Controller
 {
     /**
@@ -533,6 +534,41 @@ public function stage($ref,$token)
           
        return view('steps.education',compact('education','token','education','membership','certificates','others'));
     }
+
+          public function step_three($token)
+    {
+
+        $checklist =ApplicantCreteria::all()->where('app_token',$token);
+        $employer =\App\KuraEmployer::all()->where('token',$token);
+        $referee =\App\KuraReferee::all()->where('token',$token);
+      //return $checklist;
+      
+        $education = KuraEducation::all()->where('token',$token);
+        $membership = \App\KuraMembership::all()->where('token',$token);
+        $certificates = \App\KuraCert::all()->where('token',$token);
+        $others = \App\KuraOther::all()->where('token',$token);
+        $token = $token;
+
+          
+       return view('steps.emp',compact('checklist','token','referee','employer','certificates','others'));
+    }
+
+    
+
+   public function drop_referee($token)
+    {
+        $education = \App\KuraReferee::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
+       public function drop_employer($token)
+    {
+        $education = \App\KuraEmployer::findorfail($token);
+        $education->delete();
+        return back()->with('danger','Successfully Dropped');     
+    }
+
 
      public function drop_education($token)
     {

@@ -62,8 +62,9 @@
                                   @if($apps->app_status == 'Complete')
                                   no action
                                   @else
-                                  <a href="{{url('my-ref/'.$apps->ref_token.'/'.$apps->token)}}" class="btn btn-primary">Proceed</a>
+                                  <a href="{{url('my-ref/'.$apps->ref_token.'/'.$apps->token)}}" class="btn  btn-xs btn-primary">Proceed</a>
                                   @endif
+                                   <a href="{{url('jobs-apps-steps/'.$apps->token)}}" class="btn  btn-xs btn-warning">Edit</a>
                                 </td>                            
                               </tr>
 

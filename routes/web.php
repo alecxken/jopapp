@@ -89,12 +89,14 @@ Route::get('/jobs-apps', 'JobController@create1');
 
 Route::get('/jobs-apps-steps/{id}', 'JobController@step_one');
 Route::get('/jobs-apps-steps-two/{id}', 'JobController@step_two');
+Route::get('/jobs-apps-steps-three/{id}', 'JobController@step_three');
 
 Route::get('/drop-education/{token}', 'JobController@drop_education');
 Route::get('/drop-certs/{token}', 'JobController@drop_certs');
 Route::get('/drop-membership/{token}', 'JobController@drop_membership');
 Route::get('/drop-others/{token}', 'JobController@drop_others');
-
+Route::get('/drop-referee/{token}', 'JobController@drop_referee');
+Route::get('/drop-employer/{token}', 'JobController@drop_employer');
 
 
 

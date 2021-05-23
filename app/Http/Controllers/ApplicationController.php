@@ -693,7 +693,12 @@ class ApplicationController extends Controller
           
               $total = $pass + $fail;
               $percentage = round(($pass*100)/$total);
-               foreach ($request->input('ref_name') as $key => $value)
+
+
+               if(!empty($request->input('ref_name')))
+                 {
+              
+                   foreach ($request->input('ref_name') as $key => $value)
                      {
                         $empty2 = $request->input('ref_name')[$key];
                         if(is_null($empty2))
@@ -702,7 +707,23 @@ class ApplicationController extends Controller
                         }
                          else
                          {
-                                             
+                              
+                             $kuraref = \App\KuraReferee::where('token', $token)  
+                                                        ->where('ref_name',$request->input('ref_name')[$key]) 
+                                                        ->where('ref_company',$request->input('ref_company')[$key])
+                                                              ->first();
+                              if (!empty($kuraref)) 
+                                {
+                                    $upd = \App\KuraReferee::findorfail($kuraref->id);
+                                    $upd->ref_name = $request->input('ref_name')[$key];
+                                    $upd->ref_company = $request->input('ref_company')[$key];
+                                    $upd->ref_position = $request->input('ref_position')[$key];
+                                    $upd->ref_email = $request->input('ref_email')[$key];
+                                       $upd->ref_phone = $request->input('ref_phone')[$key];
+                                    $upd->save();                        
+                                }
+                                else
+                                {
                             $insert2[] =
                                      [
                                       'ref_name'=>$request->input('ref_name')[$key],
@@ -714,6 +735,12 @@ class ApplicationController extends Controller
                                      ];
                          }
                      }
+                    }
+                  }
+
+                     
+                      if(!empty($request->input('employer')))
+                 {
                          foreach ($request->input('employer') as $key => $value)
                      {
                         $empty = $request->input('employer')[$key];
@@ -723,6 +750,22 @@ class ApplicationController extends Controller
                         }
                          else
                          {
+                            $kuraref = \App\KuraEmployer::where('token', $token)  
+                                                        ->where('employer',$request->input('employer')[$key]) 
+                                                        ->where('position',$request->input('position')[$key])
+                                                              ->first();
+                              if (!empty($kuraref)) 
+                                {
+                                    $upd = \App\KuraEmployer::findorfail($kuraref->id);
+                                    $upd->employer = $request->input('employer')[$key];
+                                    $upd->position = $request->input('position')[$key];
+                                    $upd->from = $request->input('from')[$key];
+                                    $upd->to = $request->input('to')[$key];
+                                       $upd->contact_person = $request->input('contact_person')[$key];
+                                    $upd->save();                        
+                                }
+                                else
+                                {
                               $insert3[] =
                                      [
                                       'token' => $token,  
@@ -732,13 +775,17 @@ class ApplicationController extends Controller
                                       'to'  => $request->input('to')[$key],
                                        'contact_person' => $request->input('contact_person')[$key],
                       
-                                     ];                      # code...
+                                     ];  
+                                                        }                    # code...
                          }                    
                      
                      }
+                    }
 
 
- foreach ($request->input('checklist') as $key => $value)
+                      if(!empty($request->input('checklist')))
+                 {
+                   foreach ($request->input('checklist') as $key => $value)
                      {
                         $empty = $request->input('checklist')[$key];
                         if(is_null($empty))
@@ -747,20 +794,35 @@ class ApplicationController extends Controller
                         }
                          else
                          {
-                              $insert4[] =
-                                     [
-                                      'app_token' => $token,  
-                                       'job_token'  => $request->input('job_ref')[$key],     
-                                      'passed'  => $request->input('passed')[$key],
-                                      'requirement'  => $request->input('checklist')[$key],
-                                      'comments'  => $request->input('comments')[$key],
-                                      'created_at' => \Carbon\Carbon::now(),
-                                      
-                      
-                                     ];                      # code...
+                             $updateother = \App\ApplicantCreteria::where('app_token', $token)  
+                                                        ->where('job_token',$request->input('job_ref')[$key]) 
+                                                        ->where('requirement',$request->input('checklist')[$key])
+                                                              ->first();
+                              if (!empty($updateother)) 
+                                {
+                                    $upd = \App\ApplicantCreteria::findorfail($updateother->id);
+                                    $upd->passed = $request->input('passed')[$key];
+                                    $upd->comments = $request->input('comments')[$key];
+                                    $upd->save();                        
+                                }
+                                else
+                                {
+                                  $insert4[] =
+                                        [
+                                          'app_token' => $token,  
+                                          'job_token'  => $request->input('job_ref')[$key],     
+                                          'passed'  => $request->input('passed')[$key],
+                                          'requirement'  => $request->input('checklist')[$key],
+                                          'comments'  => $request->input('comments')[$key],
+                                          'created_at' => \Carbon\Carbon::now(),
+                                          
+                          
+                                        ];   
+                                  }                   # code...
                          }                    
                      
                      }
+                    }
 
                   $re =  \App\ApplicantMark::all()->where('job_token',$token)->first();       
                   if (empty($re)) 
@@ -1106,7 +1168,7 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
 
 
 
-        return redirect('my-ref/'.$check->ref_token.'/'.$check->token)->with('status','Applicant Personal Info Updated');
+        return redirect('jobs-apps-steps-two/'.$check->token)->with('status','Applicant Personal Info Updated');
     }
 
 
@@ -1288,7 +1350,7 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
            //  }
 
 
-        return redirect('my-ref/'.$check->ref_token.'/'.$check->token)->with('status','Applicant Personal Info Updated');
+        return redirect('jobs-apps-steps-three/'.$check->token)->with('status','Applicant Personal Info Updated');
     }
 
 }
