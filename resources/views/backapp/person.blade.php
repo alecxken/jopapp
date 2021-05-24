@@ -2,14 +2,29 @@
 
             <div class="box box-success ">
                <div class="box-header with-border">
-                   <h5 class="m-0">Personal Information - {{$job_id}}</h5>
+                   <h5 class="m-0">Personal Information - {{$token}}</h5>
               </div>
               {!! Form::open(['method'=> 'post','url' => 'cert1', 'files' => true ]) !!}
-               {{ Form::hidden('job_id', $job_id, array('class' => 'form-control input-sm','readonly')) }}
+            
                {{ Form::hidden('token', $token, array('class' => 'form-control input-sm','readonly')) }}
               <div class="box-body ">
+
+                
  
-                        
+                           <div class="form-group col-md-12">
+                            
+                                <label class="text text-danger"> Select Job Position *</label>
+                                  <select class="form-control input-sm select2" name="job_id" required="">
+                                 <option value="">Select Job  Title</option>
+
+                             
+                                @if(!empty($data))
+                                        @foreach ($data as $user)
+                                        <option value="{{$user->token}}">{{$user->title}} - <small>{{$user->prefix}} </small></option>
+                                        @endforeach
+                                 @endif
+                               </select>
+                            </div>
            
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Applicant Ref') }}

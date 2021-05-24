@@ -45,6 +45,11 @@ class JobController extends Controller
       public function create1()
     {
         $data = Job::all();
+
+         $token = Token::Unique('jobs','token',5);
+                    $t = date("Y-M",strtotime("now"));
+                    $token = strtoupper('AP-'.$token.'-'.$t); 
+  return view('apply1',compact('token','data')); 
      //   return $data;
         return view('backapp.job',compact('data'));
     }

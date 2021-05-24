@@ -13,7 +13,25 @@
                {{ Form::hidden('token', $emp->token, array('class' => 'form-control input-sm','readonly')) }}
               <div class="box-body ">
  
-                        
+                           <div class="form-group col-md-12">
+                            
+                                <label class="text text-danger"> Select Job Position *</label>
+                                  <select class="form-control input-sm select2" name="job_id" required="">
+                                 <option value="">Select Job  Title</option>
+                                @php       $data =\App\Job::all(); @endphp
+                               
+                             
+                                @if(!empty($data))
+                                        @foreach ($data as $user)
+                                         @if(!empty($job->ref_token))
+ <option selected value="{{ $job->ref_token}}">{{$user->title}} - <small>{{$user->prefix}} </small></option>
+                                @endif
+                                        <option value="{{$user->token}}">{{$user->title}} - <small>{{$user->prefix}} </small></option>
+                                        @endforeach
+                                 @endif
+                               </select>
+                            </div>
+           
            
                              <div class="form-group col-md-4">
                                 {{ Form::label('email', 'Applicant Ref') }}
