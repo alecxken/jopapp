@@ -676,7 +676,12 @@ class ApplicationController extends Controller
     {
        $token = $request->input('token');
        $signed  =$request->input('signed');
-              $v  =  array_count_values($request->input('passed'));
+       $total =0;
+       $percentage = 0;
+       $pass =0;
+
+       if (!empty($request->input('passed'))) {
+          $v  =  array_count_values($request->input('passed'));
               if (empty($v['Yes'])) {
                 $pass = 0;
               }
@@ -694,6 +699,8 @@ class ApplicationController extends Controller
               $total = $pass + $fail;
               $percentage = round(($pass*100)/$total);
 
+       }
+             
 
                if(!empty($request->input('ref_name')))
                  {
