@@ -18,7 +18,7 @@
     </script>
 </head>
 
-<body class="hold-transition login-page" style=" background-image: linear-gradient(to right,#FAD45B,#FFF,#A0EA4F);">
+<body class="hold-transition login-page" style=" background-image: linear-gradient(to right,#1f96ff,#FFF,#005dae);">
     <div id="app">
         @yield('content')
     </div>

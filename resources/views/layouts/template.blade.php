@@ -63,18 +63,18 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini" >
 <div class="wrapper">
 
   <!-- Main Header -->
-  <header class="main-header">
+  <header class="main-header" >
 
     <!-- Logo -->
-    <a href="{{url('')}}" class="logo">
+    <a href="{{url('')}}" class="logo"  style=" background-image: linear-gradient(to right,#fff,#FFF);">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>KU</b>RA</span>
+      <span class="logo-mini"><b>HR</b>AP</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="{{asset('/images/logo.png')}}" width="50px"><b>KURA</b></span>
+      <span class="logo-lg"><img src="{{asset('/images/logo.gif')}}" width="120px"><b></b></span>
     </a>
 
     <!-- Header Navbar -->

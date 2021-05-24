@@ -8,7 +8,7 @@
  
   </div>
   <div class="login-box-body" style="border-radius: 30px;">
-     <div><center><img src="{{url('/images/logo.png')}}" width="20%" height="20%"></center></div>
+     <div><center><img src="{{url('/images/logo.gif')}}"></center></div>
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form method="POST" action="{{ route('login') }}">
