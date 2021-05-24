@@ -14,6 +14,12 @@ use App\ApplicantData;
 use App\ApplicantCreteria;
 class JobController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +29,7 @@ class JobController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for creating a new resource.

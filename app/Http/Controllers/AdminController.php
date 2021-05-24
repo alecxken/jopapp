@@ -10,6 +10,7 @@ use App\ApplicantsView;
 use App\ApplicantsData;
  use App\Charts\SampleChart;
   use App\Charts\ApplicantsChart;
+  use DB;
   // use App\Http\Requests\StoreDeviceRequest;
 use Rap2hpoutre\FastExcel\FastExcel;
 // use App\Jobs\EodJob;
@@ -24,9 +25,39 @@ class AdminController extends Controller
     {
         $jobs = Job::all()->count();
         $jobapp = Jobapp::all()->count();
-         
+
+        $user_count = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
+        ->select(DB::raw("count(jobapps.id) as count"),'name')
+     ->groupBy('name')->get()->pluck('count');;
+
+     $user_name = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
+        ->select(DB::raw("count(jobapps.id) as count"),'name')
+     ->groupBy('name')->get()->pluck('name');
+
+       $useractivity = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
+        ->select(DB::raw("count(jobapps.id) as count"),'name','jobapps.created_at')
+     ->groupBy('created_at')->get();
+
+     //return $useractivity;
+     // ->select('jobapps.token','name','jobs.title','app_status','captured_by','jobapps.ref_token','jobapps.created_at')
+
+     // return $data;
+
+$c = count($user_count);
+for ($i=0; $i < $c ; $i++) { 
+    # code...
+    $rand_color[] = "#".substr(md5(rand()), 0, 6);;
+}
+
+
+
+
               $post = ApplicantsView::all()->pluck('title');
               $num = ApplicantsView::all()->pluck('num');
+
+
+              
+
 
                //return $post;
                 $chart = new ApplicantsChart;
@@ -34,8 +65,10 @@ class AdminController extends Controller
                 $chart->dataset('Number of Applicants', 'bar', $num);
 
                  $sam = new SampleChart;
-                $sam->labels($post);
-                $sam->dataset('My dataset', 'pie', $num);
+                $sam->labels($user_name);
+                $sam->dataset('Data Capturers', 'bar', $user_count)->backgroundColor($rand_color);
+
+
      
                 // $chart = Chart::create('pie', 'highcharts')
 

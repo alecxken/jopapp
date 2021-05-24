@@ -14,6 +14,12 @@ use App\Checks;
 use Rap2hpoutre\FastExcel\FastExcel;
 class ApplicationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
