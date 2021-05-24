@@ -13,7 +13,9 @@
             <div class="box-header with-border">
               <h3 class="box-title">Applicants</h3>
             </div>
- 				 <table class="table table-bordered table-hover order-list4 " id="">
+ 				 <div class="box-body table-responsive" id="table_wrapper">
+                
+                     <table id="report-table" class="table table-bordered table-hover table-striped small">
                             <thead class="bg-primary small">
                               <tr >
                                 <th class="text-center">
@@ -75,9 +77,30 @@
                             </tbody>
                              
                       </table>
+                    </div>
                   </div>
               </div>
           </div>
+<script type="text/javascript">
+  
+     $(document).ready(function() {
+var table = $('#report-table').DataTable(
+    {
+    paging     : true,
+    lengthChange: true,
+    searching   : true,
+    ordering   : true,
+    info       : true,
+    autoWidth   : true,
+    // buttons: [
+    //    'excel'
+    // ]
+    });
 
+    table.buttons().container()
+        .appendTo( '#table_wrapper .col-sm-6:eq(0)' );
+
+} );
+</script>
 
          @endsection
