@@ -553,14 +553,14 @@ public function stage($ref,$token)
       $job = \App\JobApp::all()->where('token',$token)->first();
       //return $job;
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
-        if ($checklist->isEmpty();) {
+        if ($checklist->isEmpty()) {
           # code...
         
           $checklist = \App\Required::all()->where('ref_token',$job->ref_token);
 
            return $checklist;
         }
-        dd('false');
+      
         $employer =\App\KuraEmployer::all()->where('token',$token);
         $referee =\App\KuraReferee::all()->where('token',$token);
       //return $checklist;
