@@ -24,7 +24,9 @@
                                 @if(!empty($data))
                                         @foreach ($data as $user)
                                          @if(!empty($job->ref_token))
+                                         @if($job->ref_token == $user->token)
  <option selected value="{{ $job->ref_token}}">{{$user->title}} - <small>{{$user->prefix}} </small></option>
+ @endif
                                 @endif
                                         <option value="{{$user->token}}">{{$user->title}} - <small>{{$user->prefix}} </small></option>
                                         @endforeach
