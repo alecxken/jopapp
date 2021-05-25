@@ -48,16 +48,16 @@
                                 <input type="text" name="ref_name[]" value={{$ref->ref_name}}  placeholder="Customer Name" class="form-control"/>
                                 </td>
                                   <td>
-                                <input type="text" name="ref_company[]" value={{$ref->ref_company}}  placeholder="Company" class="form-control"/>
+                                <input type="text" name="ref_company[]" value={{$ref->ref_company}}"  placeholder="Company" class="form-control"/>
                                 </td>
                                  <td>
-                                <input type="text" name="ref_position[]"  value={{$ref->ref_position}} placeholder="Position" class="form-control"/>
+                                <input type="text" name="ref_position[]"  value={{$ref->ref_position}}" placeholder="Position" class="form-control"/>
                                 </td>
                                  <td>
-                              <input type="email" name="ref_email[]" value={{$ref->ref_email}}  placeholder="Email" class="form-control"/>
+                              <input type="email" name="ref_email[]" value={{$ref->ref_email}}"  placeholder="Email" class="form-control"/>
                                 </td>
                                  <td>
-                                <input type="number" name="ref_phone[]" value={{$ref->ref_phone}}  placeholder="Phone" class="form-control"/>
+                                <input type="number" name="ref_phone[]" value={{$ref->ref_phone}}"  placeholder="Phone" class="form-control"/>
                                 </td>
                                   <td><a href="{{url('drop-referee/'.$ref->id)}}" class="badge bg-danger">Drop </a></td>
                                
