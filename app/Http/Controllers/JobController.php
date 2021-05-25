@@ -550,14 +550,18 @@ public function stage($ref,$token)
           public function step_three($token)
     {
 
+      $job = \App\JobApp::all()->where('token',$token)->first();
+      //return $job;
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
         if (empty($checklist)) {
           # code...
-          return $token;
-          $checklist = \App\Required::all()->where('ref_token',$token);
+        
+          $checklist = \App\Required::all()->where('ref_token',$job->ref_token);
+
+           //return $checklist;
         }
         
-        return $checklist;
+      //  return $checklist;
         $employer =\App\KuraEmployer::all()->where('token',$token);
         $referee =\App\KuraReferee::all()->where('token',$token);
       //return $checklist;
