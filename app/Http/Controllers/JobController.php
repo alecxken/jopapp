@@ -551,7 +551,7 @@ public function stage($ref,$token)
     {
 
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
-        if (!empty($checklist)) {
+        if (empty($checklist)) {
           # code...
           $checklist = \App\Required::all()->where('ref_token',$token);
         }
