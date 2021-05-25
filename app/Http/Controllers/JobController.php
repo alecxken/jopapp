@@ -572,7 +572,7 @@ public function stage($ref,$token)
         $token = $token;
 
           
-       return view('steps.emp',compact('checklist','token','referee','employer','certificates','others'));
+       return view('steps.emp',compact('checklist','token','referee','employer','certificates','others','req'));
     }
 
     
