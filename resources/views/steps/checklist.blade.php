@@ -51,6 +51,25 @@
 
                               </tr>
                               @endforeach
+
+                              @if(!empty($req))
+                              @foreach($req as $item)
+                               <tr>
+                                <input type="hidden" name="job_ref[]" value="{{$item->ref_token}}">
+                                <td class="bg-info"><input type="hidden" name="checklist[]" value="{{$item->requirement}}">{{$item->requirement}}</td>
+                                <td >
+                                <select required="" name="passed[]">
+                                  <option value="">Choose</option>
+                                  <option>Yes</option>
+                                  <option>No</option>
+                                </select>
+                              </td>
+                                <td ><input type="text" name="comments[]"></td>
+
+
+                              </tr>
+                              @endforeach
+                              @endif
                             
                             </tbody>
                           </table>

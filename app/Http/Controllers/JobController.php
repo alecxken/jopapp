@@ -556,9 +556,9 @@ public function stage($ref,$token)
         if ($checklist->isEmpty()) {
           # code...
         
-          $checklist = \App\Required::all()->where('ref_token',$job->ref_token);
+          $req = \App\Required::all()->where('ref_token',$job->ref_token);
 
-           return $checklist;
+         //  return $checklist;
         }
       
         $employer =\App\KuraEmployer::all()->where('token',$token);
