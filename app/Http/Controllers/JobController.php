@@ -553,6 +553,7 @@ public function stage($ref,$token)
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
         if (empty($checklist)) {
           # code...
+          return $token;
           $checklist = \App\Required::all()->where('ref_token',$token);
         }
         
