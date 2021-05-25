@@ -42,6 +42,36 @@
                             <tbody>
 @if(!empty($data))
                               @foreach($data as $apps)
+                              @role('Admin')
+
+                              <tr id='t0'>
+
+                        
+
+                                <td>{{$apps->app_id}}</td>
+                                <td>{{$apps->title}}</td> 
+                                <td>{{$apps->fname}} {{$apps->lname}}</td>
+                                
+                              
+                                <td>
+                                   @if($apps->app_status == 'Complete')                  
+                  
+                                   <label class="label label-success"> {{$apps->app_status}}</label>
+                                  @else
+                                  <label class="label label-warning"> {{$apps->app_status}}</label>
+                                  @endif
+                                </td>  
+                                <td>
+                                  @if($apps->app_status == 'Complete')
+                                  no action
+                                  @else
+                                  <a href="{{url('my-ref/'.$apps->ref_token.'/'.$apps->token)}}" class="btn  btn-xs btn-primary">Proceed</a>
+                                  @endif
+                                   <a href="{{url('jobs-apps-steps/'.$apps->token)}}" class="btn  btn-xs btn-warning">Edit</a>
+                                </td>                            
+                              </tr>
+                              @else
+
                            @if(Auth::id() == $apps->captured_by)
                               <tr id='t0'>
 
@@ -71,6 +101,7 @@
                               </tr>
 
                               @endif
+                              @endrole
                               @endforeach
                                @endif
 
