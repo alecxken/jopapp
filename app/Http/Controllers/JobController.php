@@ -551,6 +551,11 @@ public function stage($ref,$token)
     {
 
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
+        if (!empty($checklist)) {
+          # code...
+          $checklist = \App\Required::all()->where('ref_token',$token);
+        }
+        
         return $checklist;
         $employer =\App\KuraEmployer::all()->where('token',$token);
         $referee =\App\KuraReferee::all()->where('token',$token);
