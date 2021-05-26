@@ -552,6 +552,7 @@ public function stage($ref,$token)
 
       $job = \App\JobApp::all()->where('token',$token)->first();
       //return $job;
+      $req =[];
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
         if ($checklist->isEmpty()) {
           # code...
