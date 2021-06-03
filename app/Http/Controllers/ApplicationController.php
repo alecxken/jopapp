@@ -1143,11 +1143,12 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
     {
       $check = Jobapp::where('token', $request->input('token'))->first();
       $data =  Jobapp::findorfail($check->id);
-        $data->ref_token = $check->ref_token;
+        $data->ref_token = $request->input('job_id');
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
          $data->app_id = $request->input('app_id');
         $data->app_email = $request->input('email');
+       
         $data->captured_by = Auth::id();
         $data->status ='Success';
         $data->save();

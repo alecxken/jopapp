@@ -62,9 +62,7 @@
                                  <a href="{{url('view-app/'.$apps->token)}}" class="label label-primary btn-sm">View </a> <span> |</span>
                                
                                 </td>    --}}                         
-                              </tr>
-
-                       
+                              </tr>                       
                               @endforeach
 
                             </tbody>
