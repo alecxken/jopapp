@@ -175,22 +175,20 @@ class JobController extends Controller
 
 
         
-         $data = ApplicantData::all()->where('token',$id)->first();
+          $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('kurra_apps.token',$id)->whereNotNull('jobs.title')
+      ->select('kurra_apps.*','app_id','jobs.title','fname','lname')->first();;
 
-       // return $datas;
+      $token = $data->token;
+       $education = KuraEducation::all()->where('token',$token);
+        $membership = \App\KuraMembership::all()->where('token',$token);
+        $certificates = \App\KuraCert::all()->where('token',$token);
+        $others = \App\KuraOther::all()->where('token',$token);
+  //  return $education;
+  //    return $data;
+
     
-    
-      //   $data = \DB::table('applicants_views')->get();
 
-      //   $job = Job::all()->where('title',$id)->first();
-
-      //     $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$job->token)->whereNotNull('jobs.title')
-      // ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
-
-       
-       // return $data;
-
-        return view('reports.individual',compact('data'));
+        return view('reports.individual',compact('data','education','membership','certificates','others'));
     }
 
               public function job_details($id)
@@ -227,6 +225,7 @@ class JobController extends Controller
         
         $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
       ->select('jobs.token','app_id','jobs.title','fname','lname','app_status','captured_by')->get();;
+      
 
       // return $job;
        // return $data;
