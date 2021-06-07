@@ -325,7 +325,7 @@
                             </div>
                               @endif
 
-                                @if(!empty($data->referees))
+                                @if(!empty($referee))
                               <div class="col-sm-12">
                                   
                                <dt class="label label-primary">Referees Details</dt>
@@ -353,7 +353,7 @@
                             </thead>
                             <tbody>
 
-                              @if(!empty($referee))
+                             
 
                                 @foreach($referee as $ref)
 
@@ -366,19 +366,19 @@
                                                        
                                
                               </tr>
-                              </tbody>
-                              </table>
+                           
 
 
                                 @endforeach
-                            </div>    @endif
+                       
+                               </tbody>
+                              </table>  
+                               @endif
+                              
+                                </div>  
 
                          
 
-
-                        </dl>
-                        </div>
-                      
                            
               </div>
 
