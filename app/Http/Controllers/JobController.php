@@ -183,12 +183,15 @@ class JobController extends Controller
         $membership = \App\KuraMembership::all()->where('token',$token);
         $certificates = \App\KuraCert::all()->where('token',$token);
         $others = \App\KuraOther::all()->where('token',$token);
+        $checklist =ApplicantCreteria::all()->where('app_token',$token);
+$employer =\App\KuraEmployer::all()->where('token',$token);
+        $referee =\App\KuraReferee::all()->where('token',$token);
   //  return $education;
   //    return $data;
 
     
 
-        return view('reports.individual',compact('data','education','membership','certificates','others'));
+        return view('reports.individual',compact('data','education','membership','certificates','others','employer','checklist','referee'));
     }
 
               public function job_details($id)
@@ -234,7 +237,12 @@ class JobController extends Controller
 
     public function showpersons()
     {
-        $data = KurraApp::all();
+        // $data = KurraApp::all();
+           $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('applicant_marks', 'applicant_marks.job_token', '=', 'jobapps.token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
+      ->select('kurra_apps.*','total','passed','percentage','app_id','jobs.title','captured_by')->get();;
+    
+     // return $data;
+
         return view('data.persons',compact('data'));
     }
 

@@ -19,7 +19,7 @@
  				 
                             <thead class="bg-primary small">
                               <tr >
-                               
+                               <th>APPID</th>
                                 <th class="text-center">
                                   Title
                                 </th>
@@ -48,6 +48,15 @@
                                 <th class="text-center">
                                   Email Address
                                 </th>
+                                    <th class="text-center">
+                                  Pass
+                                </th>
+                                    <th class="text-center">
+                                 Fail
+                                </th>
+                                    <th class="text-center">
+                                 Pecentage
+                                </th>
                                
                               {{--    <th class="text-center">
                                  Action
@@ -60,6 +69,7 @@
                               @foreach($data as $apps)
                        
                                <tr id='t0'>
+                               <td>{{$apps->app_id}}</td>
                                   <td>{{$apps->title}}</td>
                                    <td>{{$apps->lname}}</td>
                                    <td>{{$apps->fname}}</td>
@@ -69,6 +79,12 @@
                                    <td>{{$apps->po_box}}</td>
                                    <td>{{$apps->postal_code}}</td>
                                    <td>{{$apps->email}}</td>
+                                     <td>{{$apps->passed}}</td>
+                                       <td>{{$apps->failed}}</td>
+                                         <td>
+                                      <label class="label label-info">  {{$apps->percentage}}%</label>
+                                       
+                                         </td>
                              {{--    <td>                                 
                                  <a href="{{url('view-app/'.$apps->token)}}" class="label label-primary btn-sm">View </a> <span> |</span>
                                
