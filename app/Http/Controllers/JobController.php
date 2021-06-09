@@ -209,6 +209,32 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
         return view('reports.applicant_details',compact('data'));
     }
 
+    public function jobchecklist()
+    {
+      $data =Job::all();
+      return view('data.reports.checklist',compact('data'));
+
+    }
+
+public function checklist_details($id)
+    {
+      $job = \App\Required::all()->where('ref_token',$id);
+
+    // return $job;
+        $listing = \DB::table('applicant_creterias')->where('job_token',$id)->groupby('requirement','app_token')->get();
+
+
+      //  return  count($data);
+      //  $job = Job::all()->where('title',$id)->first();
+
+          $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('applicant_creterias', 'applicant_creterias.token', '=', 'jobapps.token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$id)->whereNotNull('jobs.title')
+      ->select('jobapps.token','jobs.title','jobapps.app_id','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
+
+       
+       // return $data;
+
+        return view('data.reports.myapp',compact('data','job','listing'));
+    }
           public function show1()
     {
         $data = Jobapp::all()->where('status','Success');
