@@ -71,7 +71,7 @@ Route::post('/startapp', 'JobController@startapp')->name('cert');
 Route::get('/deletejob/{id}', 'JobController@deletejob');
 
 Route::get('/job_checks', 'JobController@jobchecklist');
-Route::get('/job_check/{id}', 'JobController@checklist_details');
+Route::post('/store-checklist-filter', 'JobController@checklist_details');
 #update users details()
 
 Route::post('/update-persondetails', 'ApplicationController@update_person');

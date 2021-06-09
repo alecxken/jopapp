@@ -211,13 +211,15 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
 
     public function jobchecklist()
     {
-      $data =Job::all();
-      return view('data.reports.checklist',compact('data'));
+      $post =Job::all();
+      return view('data.reports.myapp',compact('post'));
 
     }
 
-public function checklist_details($id)
+public function checklist_details(Request $request)
     {
+      $id = $request->input('post');
+      $post =Job::all();
       $job = \App\Required::all()->where('ref_token',$id);
 
     // return $job;
@@ -233,7 +235,7 @@ public function checklist_details($id)
        
        // return $data;
 
-        return view('data.reports.myapp',compact('data','job','listing'));
+        return view('data.reports.myapp',compact('data','job','listing','post'));
     }
           public function show1()
     {

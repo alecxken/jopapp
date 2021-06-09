@@ -4,7 +4,29 @@
   
 
 <div class="box-body">
-  
+   {!! Form::open(['method'=> 'post','url' => 'store-checklist-filter', 'files' => true ]) !!}
+        <div class="box-body"> 
+
+           <div class="form-group col-md-8 center">
+             {!! Form::label('weight', 'Job Position ', ['class' => 'awesome'])!!}
+             <select class="form-control" name="post" id="residence">
+               <option  value="">SELECT JOB POSITION</option>
+               @foreach($post as  $columns)
+                    <option>{{$columns->title}}</option>
+               @endforeach
+             </select>
+           </div>   
+         
+          <div class="form-group col-md-4 center">
+             {!! Form::label('weight', 'ACTION ', ['class' => 'awesome'])!!}
+             <br>
+             <button class="btn btn-success form-control" type="Submit">Click To Filter</button>
+          </div>
+          </div>
+            {!!Form::close()!!}
+        
+    
+   
 <div class="row">
 
 
