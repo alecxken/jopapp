@@ -17,7 +17,7 @@
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.4",
         "rap2hpoutre/fast-excel": "^5.0",
-        "spatie/laravel-permission": "^5.0",
+        "spatie/laravel-permission": "^6.24",
         "symfony/css-selector": "^7.0",
         "wyndow/fuzzywuzzy": "^0.6.0"
     },
