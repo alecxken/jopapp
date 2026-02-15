@@ -27,16 +27,16 @@ class AdminController extends Controller
         $jobapp = Jobapp::all()->count();
 
         $user_count = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
-        ->select(DB::raw("count(jobapps.id) as count"),'name')
-     ->groupBy('name')->get()->pluck('count');;
+        ->select(DB::raw("count(jobapps.id) as count"),'users.name')
+     ->groupBy('users.name')->get()->pluck('count');;
 
      $user_name = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
-        ->select(DB::raw("count(jobapps.id) as count"),'name')
-     ->groupBy('name')->get()->pluck('name');
+        ->select(DB::raw("count(jobapps.id) as count"),'users.name')
+     ->groupBy('users.name')->get()->pluck('name');
 
        $useractivity = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('users', 'users.id', '=', 'jobapps.captured_by')->whereNotNull('jobs.title')
-        ->select(DB::raw("count(jobapps.id) as count"),'name','jobapps.created_at')
-     ->groupBy('created_at')->get();
+        ->select(DB::raw("count(jobapps.id) as count"),'users.name','jobapps.created_at')
+     ->groupBy('jobapps.created_at')->get();
 
      //return $useractivity;
      // ->select('jobapps.token','name','jobs.title','app_status','captured_by','jobapps.ref_token','jobapps.created_at')
