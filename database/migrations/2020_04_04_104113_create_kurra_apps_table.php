@@ -31,6 +31,12 @@ class CreateKurraAppsTable extends Migration
             $table->string('district')->nullable();
             $table->string('is_disabled')->nullable();
             $table->string('disability')->nullable();
+            $table->string('current_salary')->nullable();
+            $table->string('expected_salary')->nullable();
+            $table->string('is_convicted')->nullable();
+            $table->string('convicted')->nullable();
+            $table->string('is_dismissed')->nullable();
+            $table->string('dismissed')->nullable();
             $table->timestamps();
         });
     }
