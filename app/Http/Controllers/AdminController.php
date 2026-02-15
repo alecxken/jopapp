@@ -29,6 +29,13 @@ public function index()
     // Fast counts (no full table load)
     $jobs   = Job::count();
     $jobapp = Jobapp::count();
+    $todayApps = Jobapp::whereDate('created_at', \Carbon\Carbon::today())->count();
+    $activeJobs = Job::where('status', 'Active')->count();
+    $pendingApps = Jobapp::where('app_status', 'Pending')->count();
+    $completedApps = Jobapp::where('app_status', 'Completed')->count();
+    $thisWeek = Jobapp::whereBetween('created_at', [\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek()])->count();
+    $thisMonth = Jobapp::whereMonth('created_at', \Carbon\Carbon::now()->month)->count();
+    $avgPerJob = $jobs > 0 ? round($jobapp / $jobs, 2) : 0;
 
     // One query for user stats
     $userStats = Jobapp::query()
@@ -68,7 +75,19 @@ public function index()
     $sam->dataset('Data Capturers', 'bar', $user_count->toArray())
         ->backgroundColor($rand_color);
 
-    return view('data.dashboard', compact('jobs', 'jobapp', 'chart', 'sam'));
+    return view('data.dashboard', compact(
+        'jobs',
+        'jobapp',
+        'todayApps',
+        'activeJobs',
+        'pendingApps',
+        'completedApps',
+        'thisWeek',
+        'thisMonth',
+        'avgPerJob',
+        'chart',
+        'sam'
+    ));
 }
 
     /**
