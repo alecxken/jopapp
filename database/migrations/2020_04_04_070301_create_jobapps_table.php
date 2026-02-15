@@ -20,8 +20,9 @@ class CreateJobappsTable extends Migration
             $table->string('app_date')->nullable();
             $table->string('app_status')->nullable();
             $table->string('app_email')->nullable();
-            $table->string('app_id')->nullable();  
-            $table->string('status')->nullable();          
+            $table->string('app_id')->nullable();
+            $table->string('status')->nullable();
+            $table->string('signed')->nullable();
             $table->timestamps();
         });
     }
