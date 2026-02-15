@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Dashboard API Routes
-Route::middleware('auth')->prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->group(function () {
     Route::get('/summary-stats', 'App\Http\Controllers\DashboardApiController@summaryStats');
     Route::get('/application-status', 'App\Http\Controllers\DashboardApiController@applicationStatusBreakdown');
     Route::get('/applications-by-job', 'App\Http\Controllers\DashboardApiController@applicationsByJob');
