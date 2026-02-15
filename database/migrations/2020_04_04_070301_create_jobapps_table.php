@@ -23,6 +23,7 @@ class CreateJobappsTable extends Migration
             $table->string('app_id')->nullable();
             $table->string('status')->nullable();
             $table->string('signed')->nullable();
+            $table->unsignedBigInteger('captured_by')->nullable();
             $table->timestamps();
         });
     }
