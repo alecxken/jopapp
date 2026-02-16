@@ -10,7 +10,7 @@
 
   
     <link href="{{asset('/css/app.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
