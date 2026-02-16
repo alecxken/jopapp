@@ -55,22 +55,30 @@ public function __construct() {
     {
       //Validate name, email and password fields
       $this->validate($request, [
-              'username'=>'required|max:120',
+              'name'=>'required|max:120',
               'email'=>'required|email|unique:users',
               'password'=>'required|min:6|confirmed'
           ]);
-          //Retrieving only the email and password data
-          $user = User::create($request->only('email', 'username', 'password'));
+
+          // Create user with hashed password
+          $user = User::create([
+              'name' => $request->name,
+              'username' => $request->name, // Use name as username for compatibility
+              'email' => $request->email,
+              'phone' => $request->phone,
+              'password' => Hash::make($request->password),
+          ]);
+
           //Retrieving the roles field
           $roles = $request['roles'];
           //Checking if a role was selected
           if (isset($roles)) {
-
             foreach ($roles as $role) {
-            $role_r = Role::where('id', '=', $role)->firstOrFail();
-            $user->assignRole($role_r); //Assigning role to user
+                $role_r = Role::where('id', '=', $role)->firstOrFail();
+                $user->assignRole($role_r); //Assigning role to user
             }
-        }
+          }
+
         //Redirect to the users.index view and display message
         return redirect()->route('admin.index')
             ->with('status',
@@ -162,26 +170,40 @@ public function stores(Request $request)
      */
     public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id); //Get user specified by id
 
-          $user = User::findOrFail($id); //Get role specified by id
+        // Validate input
+        $rules = [
+            'username' => 'sometimes|max:120',
+            'email' => 'sometimes|email|unique:users,email,'.$id,
+        ];
 
-    //Validate name, email and password fields
-        // $this->validate($request, [
-        //     'name'=>'required|max:120',
-        //     'email'=>'required|email|unique:users,email,',
-        //
-        // ]);
-        $input = $request->only(['username', 'email']); //Retreive the name, email and password fields
-        $roles = $request['roles']; //Retreive all roles
+        // Only validate password if it's being changed
+        if ($request->filled('password')) {
+            $rules['password'] = 'min:6|confirmed';
+        }
+
+        $this->validate($request, $rules);
+
+        // Update basic fields
+        $input = $request->only(['username', 'email']);
+
+        // Update password if provided
+        if ($request->filled('password')) {
+            $input['password'] = Hash::make($request->password);
+        }
+
         $user->fill($input)->save();
 
+        // Handle roles
+        $roles = $request['roles'];
         if (isset($roles)) {
             $user->roles()->sync($roles);  //If one or more role is selected associate user to roles
+        } else {
+            $user->roles()->detach(); //If no role is selected remove existing role associated to a user
         }
-        else {
-            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
-        }
-        return redirect('user_index')->with('status','User successfully edited.');
+
+        return redirect('user_index')->with('status','User successfully updated.');
     }
 
     /**
