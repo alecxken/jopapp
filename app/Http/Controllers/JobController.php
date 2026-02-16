@@ -585,7 +585,7 @@ public function stage($ref,$token)
           public function step_three($token)
     {
 
-      $job = \App\JobApp::all()->where('token',$token)->first();
+      $job = \App\Jobapp::all()->where('token',$token)->first();
       //return $job;
       $req =[];
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
