@@ -48,7 +48,7 @@
      </div>
 
    
- <script nonce="{{ $cspNonce ?? '' }}">
+ <script>
 
 
   $(function () {

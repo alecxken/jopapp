@@ -373,7 +373,7 @@
 @role('Reports|Admin')
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script nonce="{{ $cspNonce ?? '' }}">
+<script>
 $(document).ready(function() {
     // Base URL for API
     const apiBase = '/api/dashboard';

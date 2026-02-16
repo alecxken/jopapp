@@ -260,7 +260,7 @@ desired effect
 
     
  <script src="{{asset('js/toastr/toastr.min.js')}}"></script>
-<script type="text/javascript" nonce="{{ $cspNonce ?? '' }}">
+<script type="text/javascript">
     toastr.options = {
       "closeButton": true,
     "debug": true,
@@ -299,7 +299,7 @@ toastr.error("{{ session("error") }}");
 
  @endif
 </script>
-     <script nonce="{{ $cspNonce ?? '' }}">
+     <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
