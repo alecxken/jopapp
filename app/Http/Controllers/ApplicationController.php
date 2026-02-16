@@ -83,25 +83,25 @@ class ApplicationController extends Controller
       $id =  $request->input('job_id');
         $job = Job::all()->where('token',$id)->first();
          $req = \App\Required::all()->where('ref_token',$id);
-           $app = Jobapp::all()->where('ref_token',$id)->count() +1;
+           $app = JobApp::all()->where('ref_token',$id)->count() +1;
                     // $token = Token::Unique('jobs','token',5);
                     // $t = date("Y-M",strtotime("now"));
                     $token = $request->input('token');; 
-                    $check = Jobapp::all()->where('ref_token',$id)
+                    $check = JobApp::all()->where('ref_token',$id)
                                           ->where('app_id',$email)
                                           ->first();
 
                                           //return $check;
-                    $check1 = Jobapp::all()->where('ref_token',$id)
+                    $check1 = JobApp::all()->where('ref_token',$id)
                                           ->where('app_id',$email)
                                           ->where('app_status','Stage2')
                                           ->first();
-                    $check2 = Jobapp::all()->where('ref_token',$id)
+                    $check2 = JobApp::all()->where('ref_token',$id)
                                           ->where('app_id',$email)
                                            ->where('app_status','Stage3')
                                           ->first();
 
-                     $check3 = Jobapp::all()->where('ref_token',$id)
+                     $check3 = JobApp::all()->where('ref_token',$id)
                                           ->where('app_id',$email)
                                            ->where('app_status','Complete')
                                           ->first();
@@ -131,7 +131,7 @@ class ApplicationController extends Controller
             return view('backapp.cert',compact('token','req'));
         }
 
-        $data =  Jobapp::findorfail($check->id);
+        $data =  JobApp::findorfail($check->id);
         $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
@@ -184,7 +184,7 @@ class ApplicationController extends Controller
           
             return view('backapp.cert',compact('token','req'));
         }
-        $data = new Jobapp();
+        $data = new JobApp();
         $data->token = $token;
         $data->ref_token = $id;
         $data->app_date = \Carbon\Carbon::today();
@@ -598,7 +598,7 @@ class ApplicationController extends Controller
      public function deleteall($id)
     {
       if ($id == 'EKE') {
-       \DB::table('jobapps')->truncate();
+       \DB::table('JobApps')->truncate();
           \DB::table('kurra_apps')->truncate();
           \DB::table('kura_education')->truncate();
            \DB::table('kura_certs')->truncate();
@@ -1141,8 +1141,8 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
     public function update_person(Request $request)
 
     {
-      $check = Jobapp::where('token', $request->input('token'))->first();
-      $data =  Jobapp::findorfail($check->id);
+      $check = JobApp::where('token', $request->input('token'))->first();
+      $data =  JobApp::findorfail($check->id);
         $data->ref_token = $request->input('job_id');
         $data->app_date = \Carbon\Carbon::today();
         $data->app_status = 'Pending';
