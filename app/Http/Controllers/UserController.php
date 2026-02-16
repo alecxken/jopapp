@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -61,13 +62,23 @@ public function __construct() {
           ]);
 
           // Create user with hashed password
-          $user = User::create([
+          $userData = [
               'name' => $request->name,
-              'username' => $request->name, // Use name as username for compatibility
               'email' => $request->email,
-              'phone' => $request->phone,
               'password' => Hash::make($request->password),
-          ]);
+          ];
+
+          // Add optional fields if they exist in the request
+          if ($request->filled('phone')) {
+              $userData['phone'] = $request->phone;
+          }
+
+          // Add username if column exists (after migration)
+          if (Schema::hasColumn('users', 'username')) {
+              $userData['username'] = $request->name;
+          }
+
+          $user = User::create($userData);
 
           //Retrieving the roles field
           $roles = $request['roles'];
