@@ -58,7 +58,7 @@
                 
               </div>
           </div>
-                    <script type="text/javascript">
+                    <script type="text/javascript" nonce="{{ $cspNonce ?? '' }}">
                         $(document).ready(function () {
                         var counter = 2;
 
@@ -67,9 +67,9 @@
                             var cols = "";
 
                             cols += '<td>'+ counter +'</td>';
-                         
+
                             cols += '<td><input type="text" name="name[]" placeholder="Requirement Name" class="form-control"/></td>';
-                         
+
 
                             cols += '<td><input type="button" class="ibtnDelref btn btn-md btn-danger "  value="Delete"></td>';
                             newRow.append(cols);
@@ -80,7 +80,7 @@
 
 
                         $("table.order-listref").on("click", ".ibtnDelref", function (event) {
-                            $(this).closest("tr").remove();       
+                            $(this).closest("tr").remove();
                             counter -= 1
                         });
 
@@ -89,6 +89,6 @@
 
 
 
-                  
+
                     </script>
                  
