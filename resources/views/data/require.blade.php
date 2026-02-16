@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<script nonce="{{ csp_nonce() }}">
+<script >
 $(document).ready(function () {
     var counter = 2;
     
