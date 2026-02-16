@@ -37,6 +37,21 @@ Route::get('/applynow', function () {
 });
 Auth::routes();
 
+// Logout routes (GET and POST)
+Route::get('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login')->with('status', 'You have been logged out successfully.');
+})->name('logout.get');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login')->with('status', 'You have been logged out successfully.');
+})->name('logout');
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'AdminController@index')->name('Dashboard');
 Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
