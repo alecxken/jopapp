@@ -39,45 +39,50 @@
     </div>
 </div>
 
-<script >
-$(document).ready(function () {
-    var counter = 2;
-    
-    $("#addrowref").on("click", function () {
-        var newRow = $("<tr id='t" + counter + "'>");
-        var cols = "";
+<script nonce="">
+// Ensure jQuery is loaded from local source
+if (typeof jQuery === 'undefined') {
+    console.error('jQuery is not loaded!');
+} else {
+    $(document).ready(function () {
+        var counter = 2;
         
-        cols += '<td class="text-center">' + counter + '</td>';
-        cols += '<td><input type="text" name="name[]" placeholder="Enter requirement name" class="form-control"/></td>';
-        cols += '<td class="text-center"><button type="button" class="btn btn-sm btn-danger ibtnDelref"><i class="fa fa-trash"></i> Delete</button></td>';
-        
-        newRow.append(cols);
-        $("table.order-listref tbody").append(newRow);
-        counter++;
-        
-        // Enable delete on first row when more than 1 row
-        if ($("table.order-listref tbody tr").length > 1) {
-            $("table.order-listref tbody tr:first .ibtnDelref").prop('disabled', false);
-        }
-    });
-    
-    $("table.order-listref").on("click", ".ibtnDelref", function (event) {
-        var rowCount = $("table.order-listref tbody tr").length;
-        
-        if (rowCount > 1) {
-            $(this).closest("tr").remove();
+        $("#addrowref").on("click", function () {
+            var newRow = $("<tr id='t" + counter + "'>");
+            var cols = "";
             
-            // Re-number rows
-            $("table.order-listref tbody tr").each(function(index) {
-                $(this).find('td:first').text(index + 1);
-            });
-            counter = $("table.order-listref tbody tr").length + 1;
+            cols += '<td class="text-center">' + counter + '</td>';
+            cols += '<td><input type="text" name="name[]" placeholder="Enter requirement name" class="form-control"/></td>';
+            cols += '<td class="text-center"><button type="button" class="btn btn-sm btn-danger ibtnDelref"><i class="fa fa-trash"></i> Delete</button></td>';
             
-            // Disable delete on first row if only 1 row left
-            if ($("table.order-listref tbody tr").length === 1) {
-                $("table.order-listref tbody tr:first .ibtnDelref").prop('disabled', true);
+            newRow.append(cols);
+            $("table.order-listref tbody").append(newRow);
+            counter++;
+            
+            // Enable delete on first row when more than 1 row
+            if ($("table.order-listref tbody tr").length > 1) {
+                $("table.order-listref tbody tr:first .ibtnDelref").prop('disabled', false);
             }
-        }
+        });
+        
+        $("table.order-listref").on("click", ".ibtnDelref", function (event) {
+            var rowCount = $("table.order-listref tbody tr").length;
+            
+            if (rowCount > 1) {
+                $(this).closest("tr").remove();
+                
+                // Re-number rows
+                $("table.order-listref tbody tr").each(function(index) {
+                    $(this).find('td:first').text(index + 1);
+                });
+                counter = $("table.order-listref tbody tr").length + 1;
+                
+                // Disable delete on first row if only 1 row left
+                if ($("table.order-listref tbody tr").length === 1) {
+                    $("table.order-listref tbody tr:first .ibtnDelref").prop('disabled', true);
+                }
+            }
+        });
     });
-});
+}
 </script>
