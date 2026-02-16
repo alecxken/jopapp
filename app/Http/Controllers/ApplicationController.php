@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\KurraApp;
-use App\JobApp;
+use App\Jobapp;
 use App\Job;
 use Auth;
 use App\KuraAttachment;
@@ -391,11 +391,11 @@ class ApplicationController extends Controller
            if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
            if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
-           $app = JobApp::all()->where('token',$token)->first();
+           $app = Jobapp::all()->where('token',$token)->first();
             $req = \App\Required::all()->where('ref_token',$id);
            if (!empty($app)) 
             {
-                $apps = JobApp::findorfail($app->id);
+                $apps = Jobapp::findorfail($app->id);
                 $apps->app_status = 'Stage2';
                 $apps->save();
             }
@@ -410,7 +410,7 @@ class ApplicationController extends Controller
              $cert1 = array_filter($request->input('cert1'));
              $member = array_filter($request->input('member')); 
              $training = array_filter($request->input('training'));
-             $id = JobApp::all()->where('token',$token)->first();
+             $id = Jobapp::all()->where('token',$token)->first();
             // return $id;
 
               $req = \App\Required::all()->where('ref_token',$id->ref_token);
@@ -585,10 +585,10 @@ class ApplicationController extends Controller
            if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
       
-           $app = JobApp::all()->where('token',$token)->first();
+           $app = Jobapp::all()->where('token',$token)->first();
            if (!empty($app)) 
             {
-                $apps = JobApp::findorfail($app->id);
+                $apps = Jobapp::findorfail($app->id);
                 $apps->app_status = 'Stage2';
                 $apps->save();
             }
@@ -668,10 +668,10 @@ class ApplicationController extends Controller
            // if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
            if(!empty($insert2)){\DB::table('kura_referees')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_employers')->insert($insert3);}
-           $app = JobApp::all()->where('token',$token)->first();
+           $app = Jobapp::all()->where('token',$token)->first();
            if (!empty($app)) 
             {
-                $apps = JobApp::findorfail($app->id);
+                $apps = Jobapp::findorfail($app->id);
                 $apps->app_status = 'Stage3';
                 $apps->save();
             }
@@ -865,10 +865,10 @@ class ApplicationController extends Controller
            // if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
            if(!empty($insert2)){\DB::table('kura_referees')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_employers')->insert($insert3);}
-           $app = JobApp::all()->where('token',$token)->first();
+           $app = Jobapp::all()->where('token',$token)->first();
            if (!empty($app)) 
             {
-                $apps = JobApp::findorfail($app->id);
+                $apps = Jobapp::findorfail($app->id);
                 $apps->signed = $signed;
                 $apps->comments = $request->input('user_comments');
                 $apps->app_status = 'Complete';
@@ -921,10 +921,10 @@ class ApplicationController extends Controller
               $upl->file = implode(';', $files1);
               $upl->save();
              }
-         $app = JobApp::all()->where('token',$token)->first();
+         $app = Jobapp::all()->where('token',$token)->first();
            if (!empty($app)) 
             {
-                $apps = JobApp::findorfail($app->id);
+                $apps = Jobapp::findorfail($app->id);
                 $apps->app_status = 'Complete';
                 $apps->save();
             }
@@ -1354,11 +1354,11 @@ foreach(array_combine($arr, $arr4) as $f => $n) {
            if(!empty($insert1)){\DB::table('kura_certs')->insert($insert1);}
            if(!empty($insert2)){\DB::table('kura_memberships')->insert($insert2);}
            if(!empty($insert3)){\DB::table('kura_others')->insert($insert3);}
-           $check = JobApp::all()->where('token',$token)->first();
+           $check = Jobapp::all()->where('token',$token)->first();
            //  $req = \App\Required::all()->where('ref_token',$id);
            // if (!empty($app)) 
            //  {
-           //      $apps = JobApp::findorfail($app->id);
+           //      $apps = Jobapp::findorfail($app->id);
            //      $apps->app_status = 'Stage2';
            //      $apps->save();
            //  }
