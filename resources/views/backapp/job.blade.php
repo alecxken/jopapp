@@ -48,7 +48,7 @@
      </div>
 
    
- <script >
+ <script nonce="{{ $cspNonce ?? '' }}">
 
 
   $(function () {
@@ -61,10 +61,10 @@
     })
 
  $('.textarea').summernote()
-   
+
   })
 
- 
+
 </script>
 
 @endsection
