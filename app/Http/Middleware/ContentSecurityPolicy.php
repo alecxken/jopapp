@@ -18,12 +18,8 @@ class ContentSecurityPolicy
     {
         $response = $next($request);
 
-        // Generate nonce for inline scripts
-        $nonce = base64_encode(random_bytes(16));
-        $request->attributes->set('csp_nonce', $nonce);
-
         // Build CSP header
-        $csp = $this->buildCspHeader($nonce);
+        $csp = $this->buildCspHeader();
 
         $response->headers->set('Content-Security-Policy', $csp);
 
@@ -33,14 +29,14 @@ class ContentSecurityPolicy
     /**
      * Build the CSP header
      */
-    private function buildCspHeader($nonce)
+    private function buildCspHeader()
     {
         $policies = [
             // Default source
             "default-src 'self' http: https: data: blob:",
 
             // Scripts - allow self, inline, eval (for DataTables), and CDNs
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'nonce-{$nonce}' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://code.highcharts.com https://maxcdn.bootstrapcdn.com",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://code.highcharts.com https://maxcdn.bootstrapcdn.com",
 
             // Styles - allow inline styles
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com",
