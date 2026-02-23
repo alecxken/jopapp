@@ -19,7 +19,8 @@
         "rap2hpoutre/fast-excel": "^5.0",
         "spatie/laravel-permission": "^6.24",
         "symfony/css-selector": "^7.0",
-        "wyndow/fuzzywuzzy": "^0.6.0"
+        "wyndow/fuzzywuzzy": "^0.6.0",
+        "yajra/laravel-datatables-oracle": "^10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

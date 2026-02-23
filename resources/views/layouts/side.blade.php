@@ -55,8 +55,20 @@
              <li><a href="{{url('view-experience')}}"><i class="fa fa-link"></i> <span>View Experience</span></a></li>
                  <li><a href="{{url('job_checks')}}"><i class="fa fa-link"></i> <span>Checklist Per Position</span></a></li>
               <li><a href="{{url('view-checklist')}}"><i class="fa fa-link"></i> <span>View Checklist</span></a></li>
-           
-          
+              <li class="{{ (request()->is('reports') || request()->is('reports/*')) ? 'active' : '' }}">
+                <a href="{{url('reports')}}">
+                  <i class="fa fa-bar-chart text-green"></i>
+                  <span>Report Module</span>
+                  <span class="pull-right-container">
+                    <span class="label label-success pull-right">NEW</span>
+                  </span>
+                </a>
+              </li>
+              <li class="{{ request()->is('reports/checklist') ? 'active' : '' }}">
+                <a href="{{url('reports/checklist')}}">
+                  <i class="fa fa-list-alt text-aqua"></i> <span>Checklist Report</span>
+                </a>
+              </li>
             </ul>
           </li>
           @endrole
