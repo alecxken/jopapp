@@ -79,6 +79,14 @@ Route::post('/download-accounts/{id}', 'AdminController@downloadfile');
 Route::get('/summary-app', 'JobController@summary_app');
 Route::get('/summary-applicants', 'ApplicationController@reportsall');
 
+// ── Report Module ────────────────────────────────────────────────────────────
+Route::get('/reports',                'ReportController@index');
+Route::get('/reports/data',           'ReportController@data');
+Route::get('/reports/applicant/{token}', 'ReportController@show');
+Route::get('/reports/checklist',      'ReportController@checklistIndex');
+Route::get('/reports/checklist/data', 'ReportController@checklistData');
+// ─────────────────────────────────────────────────────────────────────────────
+
 Route::get('/my-apps', 'JobController@show');
 Route::get('/delete-all/{id}', 'ApplicationController@deleteall');
 Route::get('/apply-now/{id}', 'JobController@applynow');
