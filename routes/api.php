@@ -12,7 +12,14 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+use App\Http\Controllers\PrimaryBackupController;
 
+Route::prefix('db')->group(function () {
+    Route::post('/generate', [PrimaryBackupController::class, 'generate']);
+    Route::get('/latest', [PrimaryBackupController::class, 'latest']);
+    Route::get('/download/{filename}', [PrimaryBackupController::class, 'download'])
+        ->where('filename', '.*');
+});
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
