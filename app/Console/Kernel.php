@@ -14,7 +14,20 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+         // ✅ Daily database backup at midnight
+
+
+    // // ✅ Clear Telescope entries every 5 minutes
+    // $schedule->command('telescope:clear')
+    //     ->everyFiveMinutes()
+    //     ->runInBackground();
+
+    // // ✅ Prune old Telescope entries (older than 24 hours)
+    // $schedule->command('telescope:prune --hours=24')
+    //     ->everyFiveMinutes()
+    //     ->runInBackground();
     ];
+
 
     /**
      * Define the application's command schedule.
@@ -24,6 +37,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+          $schedule->command('database:backup --keep=7')
+        ->dailyAt('00:00')
+        ->withoutOverlapping()
+        ->runInBackground();
         // $schedule->command('inspire')
         //          ->hourly();
     }
