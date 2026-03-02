@@ -219,23 +219,56 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
 public function checklist_details(Request $request)
     {
       $id = $request->input('post');
-      $post =Job::all();
-      $job = \App\Required::all()->where('ref_token',$id);
+      $post = Job::all();
+      $job = \App\Required::all()->where('ref_token', $id);
 
-    // return $job;
-        $listing = \DB::table('applicant_creterias')->where('job_token',$id)->groupby('requirement','app_token')->get();
+      // Get all checklist requirements grouped by app_token
+      $listing = \DB::table('applicant_creterias')
+          ->where('job_token', $id)
+          ->orderBy('app_token')
+          ->orderBy('requirement')
+          ->get();
 
+      // Get applicants with full details including disability, employer, etc.
+      $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')
+          ->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')
+          ->leftJoin(\DB::raw('(SELECT token, employer, position FROM kura_employers WHERE id IN (SELECT MAX(id) FROM kura_employers GROUP BY token)) as latest_employer'),
+              'latest_employer.token', '=', 'jobapps.token')
+          ->where('jobapps.ref_token', $id)
+          ->whereNotNull('jobs.title')
+          ->select(
+              'jobapps.token',
+              'jobapps.app_id',
+              'jobs.title',
+              'kurra_apps.fname',
+              'kurra_apps.lname',
+              'kurra_apps.oname',
+              'kurra_apps.is_disabled',
+              'kurra_apps.disability',
+              'kurra_apps.dob',
+              'kurra_apps.phone_no',
+              'kurra_apps.po_box',
+              'kurra_apps.postal_code',
+              'kurra_apps.email',
+              'latest_employer.employer as current_employer',
+              'latest_employer.position as current_position',
+              'jobapps.app_status',
+              'jobapps.captured_by',
+              'jobapps.ref_token'
+          )
+          ->distinct()
+          ->get();
 
-      //  return  count($data);
-      //  $job = Job::all()->where('title',$id)->first();
+      // Group checklist by app_token for easier access
+      $checklistByApplicant = [];
+      foreach ($listing as $item) {
+          if (!isset($checklistByApplicant[$item->app_token])) {
+              $checklistByApplicant[$item->app_token] = [];
+          }
+          $checklistByApplicant[$item->app_token][$item->requirement] = $item->passed;
+      }
 
-          $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('applicant_creterias', 'applicant_creterias.token', '=', 'jobapps.token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$id)->whereNotNull('jobs.title')
-      ->select('jobapps.token','jobs.title','jobapps.app_id','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
-
-       
-       // return $data;
-
-        return view('data.reports.myapp',compact('data','job','listing','post'));
+      return view('data.reports.myapp', compact('data', 'job', 'listing', 'post', 'checklistByApplicant'));
     }
           public function show1()
     {
