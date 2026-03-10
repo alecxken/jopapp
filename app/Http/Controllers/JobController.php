@@ -220,9 +220,31 @@ public function checklist_details(Request $request)
     {
       $id = $request->input('post');
       $post = Job::all();
-      $job = \App\Required::all()->where('ref_token', $id);
 
-      // Get all checklist requirements grouped by app_token
+      // CRITICAL FIX: Get unique requirements directly from applicant_creterias table
+      // This ensures we show all requirements that were actually assessed, not just what's in requireds table
+      $job = \DB::table('applicant_creterias')
+          ->where('job_token', $id)
+          ->distinct()
+          ->select('requirement')
+          ->orderBy('requirement')
+          ->get();
+
+      // Fallback: If no checklist data exists in applicant_creterias, try requireds table
+      if ($job->isEmpty()) {
+          $requiredsData = \App\Required::where('ref_token', $id)->get();
+          $job = $requiredsData->map(function($item) {
+              // Ensure we have 'requirement' field
+              if (!isset($item->requirement) && isset($item->name)) {
+                  $obj = new \stdClass();
+                  $obj->requirement = $item->name;
+                  return $obj;
+              }
+              return $item;
+          });
+      }
+
+      // Get all checklist requirements with their status
       $listing = \DB::table('applicant_creterias')
           ->where('job_token', $id)
           ->orderBy('app_token')
@@ -268,7 +290,17 @@ public function checklist_details(Request $request)
           $checklistByApplicant[$item->app_token][$item->requirement] = $item->passed;
       }
 
-      return view('data.reports.myapp', compact('data', 'job', 'listing', 'post', 'checklistByApplicant'));
+      // Debug info to help identify gaps
+      $debugInfo = [
+          'job_token' => $id,
+          'requirements_found' => $job->count(),
+          'checklist_entries' => $listing->count(),
+          'applicants_found' => $data->count(),
+          'unique_app_tokens_in_checklist' => $listing->pluck('app_token')->unique()->count(),
+          'source' => $job->isEmpty() ? 'none' : ($listing->isEmpty() ? 'requireds_table' : 'applicant_creterias')
+      ];
+
+      return view('data.reports.myapp', compact('data', 'job', 'listing', 'post', 'checklistByApplicant', 'debugInfo'));
     }
           public function show1()
     {

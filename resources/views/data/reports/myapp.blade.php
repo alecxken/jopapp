@@ -36,6 +36,11 @@
                 @if(!empty($data) && count($data) > 0)
                   <span class="badge bg-light-blue" style="font-size:13px;">{{ count($data) }} applicant(s)</span>
                 @endif
+                @if(isset($debugInfo))
+                  <button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#debugModal">
+                    <i class="fa fa-info-circle"></i> Debug Info
+                  </button>
+                @endif
               </div>
             </div>
        		 <div class="box-body table-responsive" id="table_wrapper" style="padding:15px;">
@@ -156,6 +161,102 @@
        </div>
      </div>
    </div>
+
+{{-- Debug Modal --}}
+@if(isset($debugInfo))
+<div class="modal fade" id="debugModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-bug"></i> Debug Information</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <th style="width:50%;">Job Token</th>
+            <td><code>{{ $debugInfo['job_token'] }}</code></td>
+          </tr>
+          <tr>
+            <th>Requirements Found</th>
+            <td>
+              <strong>{{ $debugInfo['requirements_found'] }}</strong>
+              @if($debugInfo['requirements_found'] == 0)
+                <span class="label label-danger">NO REQUIREMENTS!</span>
+              @else
+                <span class="label label-success">OK</span>
+              @endif
+            </td>
+          </tr>
+          <tr>
+            <th>Checklist Entries</th>
+            <td>
+              <strong>{{ $debugInfo['checklist_entries'] }}</strong>
+              @if($debugInfo['checklist_entries'] == 0)
+                <span class="label label-warning">NO CHECKLIST DATA!</span>
+              @else
+                <span class="label label-success">OK</span>
+              @endif
+            </td>
+          </tr>
+          <tr>
+            <th>Applicants Found</th>
+            <td>
+              <strong>{{ $debugInfo['applicants_found'] }}</strong>
+              @if($debugInfo['applicants_found'] == 0)
+                <span class="label label-warning">NO APPLICANTS!</span>
+              @else
+                <span class="label label-success">OK</span>
+              @endif
+            </td>
+          </tr>
+          <tr>
+            <th>Unique Applicants in Checklist</th>
+            <td><strong>{{ $debugInfo['unique_app_tokens_in_checklist'] }}</strong></td>
+          </tr>
+          <tr>
+            <th>Data Source</th>
+            <td>
+              <code>{{ $debugInfo['source'] }}</code>
+              @if($debugInfo['source'] === 'requireds_table')
+                <br><small class="text-warning">⚠ Using fallback requireds table (no checklist data found)</small>
+              @elseif($debugInfo['source'] === 'none')
+                <br><small class="text-danger">❌ No data in either table!</small>
+              @else
+                <br><small class="text-success">✓ Using actual checklist data</small>
+              @endif
+            </td>
+          </tr>
+        </table>
+
+        <div class="alert alert-info" style="margin-top:15px;">
+          <h5><i class="fa fa-lightbulb-o"></i> What to check if empty:</h5>
+          <ol style="margin:0; padding-left:20px; font-size:12px;">
+            <li><strong>No Requirements:</strong> Check if requirements were defined in job creation</li>
+            <li><strong>No Checklist Data:</strong> Check <em>applicant_creterias</em> table for this job_token</li>
+            <li><strong>No Applicants:</strong> Check if anyone applied to this job position</li>
+            <li><strong>Mismatch:</strong> Ensure app_token in checklist matches jobapps.token</li>
+          </ol>
+        </div>
+
+        @if(!empty($job) && $debugInfo['requirements_found'] > 0)
+        <div style="margin-top:10px;">
+          <strong>Requirements List:</strong>
+          <ol style="font-size:11px; max-height:150px; overflow-y:auto;">
+            @foreach($job as $req)
+              <li>{{ $req->requirement }}</li>
+            @endforeach
+          </ol>
+        </div>
+        @endif
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 
 <script type="text/javascript">
   $(document).ready(function() {
