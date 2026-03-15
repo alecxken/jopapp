@@ -48,8 +48,8 @@ class JobController extends Controller
 
          $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
-                    $token = strtoupper('AP-'.$token.'-'.$t); 
-  return view('apply1',compact('token','data')); 
+                    $token = strtoupper('AP-'.$token.'-'.$t);
+  return view('apply1',compact('token','data'));
      //   return $data;
         return view('backapp.job',compact('data'));
     }
@@ -62,7 +62,7 @@ class JobController extends Controller
     }
 
 
-      
+
 
     /**
      * Store a newly created resource in storage.
@@ -74,7 +74,7 @@ class JobController extends Controller
     {
           $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
-                    $token = strtoupper('KURA-'.$token.'-'.$t); 
+                    $token = strtoupper('KURA-'.$token.'-'.$t);
 
         $this->validate($request, [
                                       // 'ref_token' => 'required|unique:data_entries',
@@ -83,7 +83,7 @@ class JobController extends Controller
                                      'qualification' => 'required',
                                       'deadline' => 'required'
                                   ]
-                                ); 
+                                );
         $job = new Job();
         $job->token = $token;
         $job->title = $request->input('title');
@@ -94,10 +94,10 @@ class JobController extends Controller
         $job->applicants = $request->input('applicants');
         $job->status = 'Active';
         $job->applicants =0;
-         $media = $request->file('file');               
+         $media = $request->file('file');
 
                           if($request->hasfile('file'))
-                          {  
+                          {
                                 if (!empty($media)) {
                                     $destinationPath = storage_path('files');
                                     $filename = time().'.'.$media->getClientOriginalExtension();
@@ -105,7 +105,7 @@ class JobController extends Controller
                                     $files = $filename;
                                     $job->file = $files;
                                   }
-                                 
+
                              }
                              $requires = [];
              foreach ($request->input('name') as $key => $value)
@@ -113,14 +113,14 @@ class JobController extends Controller
                                 $requires[] = $request->input('name')[$key];
                                $insert[] =
                                      [
-                                      'ref_token' => $token,                                      
+                                      'ref_token' => $token,
                                       'requirement'  => $request->input('name')[$key],
                                       'status'  => 'ok'
                                      ];
                                  }
              $rq = implode('||', $requires);
             $job->requirements = $rq;
-         
+
         $critic = new Creteria();
         $critic->ref_token = $token;
         $critic->cert_state = $request->input('cert_state');
@@ -135,7 +135,7 @@ class JobController extends Controller
       //  $critic->status = 'Cheers';
         $critic->save();
         $job->save();
-        $critic->save(); 
+        $critic->save();
         $requires = \DB::table('requireds')->insert($insert);
 
 
@@ -161,7 +161,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
           public function summary_app()
     {
@@ -174,7 +174,7 @@ class JobController extends Controller
     {
 
 
-        
+
           $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('kurra_apps.token',$id)->whereNotNull('jobs.title')
       ->select('kurra_apps.*','app_id','jobs.title','fname','lname')->first();;
 
@@ -189,7 +189,7 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
   //  return $education;
   //    return $data;
 
-    
+
 
         return view('reports.individual',compact('data','education','membership','certificates','others','employer','checklist','referee'));
     }
@@ -203,7 +203,7 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
           $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('ref_token',$job->token)->whereNotNull('jobs.title')
       ->select('jobapps.token','app_id','jobs.title','fname','lname','app_status','captured_by','jobapps.ref_token')->get();;
 
-       
+
        // return $data;
 
         return view('reports.applicant_details',compact('data'));
@@ -217,92 +217,277 @@ $employer =\App\KuraEmployer::all()->where('token',$token);
     }
 
 public function checklist_details(Request $request)
-    {
-      $id = $request->input('post');
-      $post = Job::all();
+{
+    $id = $request->input('post');
+    $post = Job::all();
 
-      // CRITICAL FIX: Get unique requirements directly from applicant_creterias table
-      // This ensures we show all requirements that were actually assessed, not just what's in requireds table
-      $job = \DB::table('applicant_creterias')
-          ->where('job_token', $id)
-          ->distinct()
-          ->select('requirement')
-          ->orderBy('requirement')
-          ->get();
+    /*
+    |--------------------------------------------------------------------------
+    | 1. Get all checklist entries actually filled for this job
+    |--------------------------------------------------------------------------
+    */
+    $listing = \DB::table('applicant_creterias')
+        ->where('job_token', $id)
+        ->select('id', 'job_token', 'app_token', 'requirement', 'passed')
+        ->orderBy('app_token')
+        ->orderBy('requirement')
+        ->get();
 
-      // Fallback: If no checklist data exists in applicant_creterias, try requireds table
-      if ($job->isEmpty()) {
-          $requiredsData = \App\Required::where('ref_token', $id)->get();
-          $job = $requiredsData->map(function($item) {
-              // Ensure we have 'requirement' field
-              if (!isset($item->requirement) && isset($item->name)) {
-                  $obj = new \stdClass();
-                  $obj->requirement = $item->name;
-                  return $obj;
-              }
-              return $item;
-          });
-      }
+    /*
+    |--------------------------------------------------------------------------
+    | 2. Build the full requirement list from BOTH:
+    |    - applicant_creterias (actual assessed items)
+    |    - requireds (template items)
+    |--------------------------------------------------------------------------
+    */
+    $requirementsChecklist = \DB::table('applicant_creterias')
+        ->where('job_token', $id)
+        ->pluck('requirement')
+        ->filter(function ($value) {
+            return !is_null($value) && trim($value) !== '';
+        })
+        ->map(function ($value) {
+            return trim($value);
+        });
 
-      // Get all checklist requirements with their status
-      $listing = \DB::table('applicant_creterias')
-          ->where('job_token', $id)
-          ->orderBy('app_token')
-          ->orderBy('requirement')
-          ->get();
+    $requirementsRequireds = \App\Required::where('ref_token', $id)
+        ->get()
+        ->map(function ($item) {
+            if (isset($item->requirement) && trim($item->requirement) !== '') {
+                return trim($item->requirement);
+            }
 
-      // Get applicants with full details including disability, employer, etc.
-      $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')
-          ->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')
-          ->leftJoin(\DB::raw('(SELECT token, employer, position FROM kura_employers WHERE id IN (SELECT MAX(id) FROM kura_employers GROUP BY token)) as latest_employer'),
-              'latest_employer.token', '=', 'jobapps.token')
-          ->where('jobapps.ref_token', $id)
-          ->whereNotNull('jobs.title')
-          ->select(
-              'jobapps.token',
-              'jobapps.app_id',
-              'jobapps.signed',
-              'jobs.title',
-              'kurra_apps.fname',
-              'kurra_apps.lname',
-              'kurra_apps.oname',
-              'kurra_apps.is_disabled',
-              'kurra_apps.disability',
-              'kurra_apps.dob',
-              'kurra_apps.phone_no',
-              'kurra_apps.po_box',
-              'kurra_apps.postal_code',
-              'kurra_apps.email',
-              'latest_employer.employer as current_employer',
-              'latest_employer.position as current_position',
-              'jobapps.app_status',
-              'jobapps.captured_by',
-              'jobapps.ref_token'
-          )
-          ->distinct()
-          ->get();
+            if (isset($item->name) && trim($item->name) !== '') {
+                return trim($item->name);
+            }
 
-      // Group checklist by app_token for easier access
-      $checklistByApplicant = [];
-      foreach ($listing as $item) {
-          if (!isset($checklistByApplicant[$item->app_token])) {
-              $checklistByApplicant[$item->app_token] = [];
-          }
-          $checklistByApplicant[$item->app_token][$item->requirement] = $item->passed;
-      }
+            return null;
+        })
+        ->filter();
 
-      // Debug info to help identify gaps
-      $debugInfo = [
-          'job_token' => $id,
-          'requirements_found' => $job->count(),
-          'checklist_entries' => $listing->count(),
-          'applicants_found' => $data->count(),
-          'unique_app_tokens_in_checklist' => $listing->pluck('app_token')->unique()->count(),
-          'source' => $job->isEmpty() ? 'none' : ($listing->isEmpty() ? 'requireds_table' : 'applicant_creterias')
-      ];
+    $allRequirementNames = $requirementsChecklist
+        ->merge($requirementsRequireds)
+        ->filter()
+        ->unique(function ($value) {
+            return mb_strtolower(trim($value));
+        })
+        ->sort()
+        ->values();
 
-      return view('data.reports.myapp', compact('data', 'job', 'listing', 'post', 'checklistByApplicant', 'debugInfo'));
+    // Keep the same structure your Blade already expects: objects with ->requirement
+    $job = $allRequirementNames->map(function ($requirement) {
+        $obj = new \stdClass();
+        $obj->requirement = $requirement;
+        return $obj;
+    })->values();
+
+    /*
+    |--------------------------------------------------------------------------
+    | 3. Pull normal applicants from jobapps
+    |--------------------------------------------------------------------------
+    */
+    $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')
+        ->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')
+        ->leftJoin(
+            \DB::raw('
+                (
+                    SELECT token, employer, position
+                    FROM kura_employers
+                    WHERE id IN (
+                        SELECT MAX(id)
+                        FROM kura_employers
+                        GROUP BY token
+                    )
+                ) as latest_employer
+            '),
+            'latest_employer.token',
+            '=',
+            'jobapps.token'
+        )
+        ->where('jobapps.ref_token', $id)
+        ->whereNotNull('jobs.title')
+        ->select(
+            'jobapps.token',
+            'jobapps.app_id',
+            'jobs.title',
+            'kurra_apps.fname',
+            'kurra_apps.lname',
+            'kurra_apps.oname',
+            'kurra_apps.is_disabled',
+            'kurra_apps.disability',
+            'kurra_apps.dob',
+            'kurra_apps.phone_no',
+            'kurra_apps.po_box',
+            'kurra_apps.postal_code',
+            'kurra_apps.email',
+            'latest_employer.employer as current_employer',
+            'latest_employer.position as current_position',
+            'jobapps.app_status',
+            'jobapps.captured_by',
+            'jobapps.ref_token'
+        )
+        ->distinct()
+        ->get();
+
+    /*
+    |--------------------------------------------------------------------------
+    | 4. Detect checklist applicants missing from jobapps and add them
+    |    so filled checklists do not disappear from the report
+    |--------------------------------------------------------------------------
+    */
+    $jobTitle = \DB::table('jobs')->where('token', $id)->value('title');
+
+    $dataTokens = $data->pluck('token')->filter()->unique();
+    $checklistTokens = $listing->pluck('app_token')->filter()->unique();
+
+    $missingChecklistTokens = $checklistTokens->diff($dataTokens)->values();
+
+    if ($missingChecklistTokens->isNotEmpty()) {
+        $missingApplicants = \DB::table('kurra_apps')
+            ->leftJoin(
+                \DB::raw('
+                    (
+                        SELECT token, employer, position
+                        FROM kura_employers
+                        WHERE id IN (
+                            SELECT MAX(id)
+                            FROM kura_employers
+                            GROUP BY token
+                        )
+                    ) as latest_employer
+                '),
+                'latest_employer.token',
+                '=',
+                'kurra_apps.token'
+            )
+            ->whereIn('kurra_apps.token', $missingChecklistTokens)
+            ->select(
+                'kurra_apps.token',
+                'kurra_apps.fname',
+                'kurra_apps.lname',
+                'kurra_apps.oname',
+                'kurra_apps.is_disabled',
+                'kurra_apps.disability',
+                'kurra_apps.dob',
+                'kurra_apps.phone_no',
+                'kurra_apps.po_box',
+                'kurra_apps.postal_code',
+                'kurra_apps.email',
+                'latest_employer.employer as current_employer',
+                'latest_employer.position as current_position'
+            )
+            ->get()
+            ->map(function ($item) use ($id, $jobTitle) {
+                $obj = new \stdClass();
+                $obj->token = $item->token;
+                $obj->app_id = null;
+                $obj->title = $jobTitle;
+                $obj->fname = $item->fname;
+                $obj->lname = $item->lname;
+                $obj->oname = $item->oname;
+                $obj->is_disabled = $item->is_disabled;
+                $obj->disability = $item->disability;
+                $obj->dob = $item->dob;
+                $obj->phone_no = $item->phone_no;
+                $obj->po_box = $item->po_box;
+                $obj->postal_code = $item->postal_code;
+                $obj->email = $item->email;
+                $obj->current_employer = $item->current_employer;
+                $obj->current_position = $item->current_position;
+                $obj->app_status = 'Checklist available';
+                $obj->captured_by = null;
+                $obj->ref_token = $id;
+                return $obj;
+            });
+
+        $data = $data->concat($missingApplicants)->unique('token')->values();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | 5. Build checklist matrix EXACTLY as Blade expects:
+    |    $checklistByApplicant[app_token][requirement] = passed
+    |--------------------------------------------------------------------------
+    */
+    $checklistByApplicant = [];
+    $duplicateChecklistRows = [];
+
+    foreach ($listing as $item) {
+        $appToken = $item->app_token;
+        $rawRequirement = trim((string) $item->requirement);
+
+        if ($rawRequirement === '') {
+            continue;
+        }
+
+        if (!isset($checklistByApplicant[$appToken])) {
+            $checklistByApplicant[$appToken] = [];
+        }
+
+        if (array_key_exists($rawRequirement, $checklistByApplicant[$appToken])) {
+            $duplicateChecklistRows[] = [
+                'app_token' => $appToken,
+                'requirement' => $rawRequirement,
+                'existing_value' => $checklistByApplicant[$appToken][$rawRequirement],
+                'new_value' => $item->passed,
+                'row_id' => $item->id ?? null,
+            ];
+        }
+
+        $checklistByApplicant[$appToken][$rawRequirement] = $item->passed;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | 6. Ensure every applicant has every requirement key
+    |    so Blade does not miss cells for some applicants
+    |--------------------------------------------------------------------------
+    */
+    foreach ($data as $applicant) {
+        $token = $applicant->token;
+
+        if (!isset($checklistByApplicant[$token])) {
+            $checklistByApplicant[$token] = [];
+        }
+
+        foreach ($job as $req) {
+            if (!array_key_exists($req->requirement, $checklistByApplicant[$token])) {
+                $checklistByApplicant[$token][$req->requirement] = null;
+            }
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | 7. Optional debug information
+    |--------------------------------------------------------------------------
+    */
+    $debugInfo = [
+        'job_token' => $id,
+        'requirements_found' => $job->count(),
+        'requirements_from_checklist' => $requirementsChecklist->count(),
+        'requirements_from_requireds' => $requirementsRequireds->count(),
+        'checklist_entries' => $listing->count(),
+        'applicants_found' => $data->count(),
+        'unique_app_tokens_in_checklist' => $checklistTokens->count(),
+        'missing_checklist_tokens_added' => $missingChecklistTokens->values()->all(),
+        'missing_checklist_tokens_added_count' => $missingChecklistTokens->count(),
+        'duplicate_checklist_rows_count' => count($duplicateChecklistRows),
+        'duplicate_checklist_rows' => $duplicateChecklistRows,
+        'source' => $listing->isNotEmpty()
+            ? 'applicant_creterias + requireds'
+            : ($job->isNotEmpty() ? 'requireds_only' : 'none'),
+    ];
+
+    return view('data.reports.myapp', compact(
+        'data',
+        'job',
+        'listing',
+        'post',
+        'checklistByApplicant',
+        'debugInfo'
+    ));
+}
           public function show1()
     {
         $data = Jobapp::all()->where('status','Success');
@@ -319,10 +504,10 @@ public function checklist_details(Request $request)
        public function showapps()
     {
         $data = Jobapp::all()->where('status','Success');
-        
+
         $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
       ->select('jobs.token','app_id','jobs.title','fname','lname','app_status','captured_by')->get();;
-      
+
 
       // return $job;
        // return $data;
@@ -334,7 +519,7 @@ public function checklist_details(Request $request)
         // $data = KurraApp::all();
            $data = Jobapp::leftJoin('jobs', 'jobs.token', '=', 'jobapps.ref_token')->leftJoin('applicant_marks', 'applicant_marks.job_token', '=', 'jobapps.token')->leftJoin('kurra_apps', 'kurra_apps.token', '=', 'jobapps.token')->where('jobapps.status','Success')->whereNotNull('jobs.title')
       ->select('kurra_apps.*','total','passed','percentage','app_id','jobs.title','captured_by')->get();;
-    
+
      // return $data;
 
         return view('data.persons',compact('data'));
@@ -377,7 +562,7 @@ public function stage($ref,$token)
                                            ->where('app_status','Stage3')
                                           ->first();
 
-                     
+
          if (!empty($check2) ){
              $token = $check->token;
             return view('backapp.attach',compact('token'));
@@ -386,7 +571,7 @@ public function stage($ref,$token)
              $token = $check->token;
             return view('backapp.employee',compact('token','req'));
         }
-                           
+
         if (!empty($check)) {
          $exist = KurraApp::all()->where('token',$check->token)->first();
 
@@ -407,10 +592,10 @@ public function stage($ref,$token)
 
     public function applynow($id)
     {
-       
+
                     $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
-                    $token = strtoupper('AP-'.$token.'-'.$t); 
+                    $token = strtoupper('AP-'.$token.'-'.$t);
                     $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('app_id',\Auth::id())
                                           ->first();
@@ -432,7 +617,7 @@ public function stage($ref,$token)
              $token = $check->token;
             return view('apps.employee',compact('token','req'));
         }
-                           
+
         if (!empty($check)) {
          $exist = KurraApp::all()->where('token',$check->token)->first();
 
@@ -448,7 +633,7 @@ public function stage($ref,$token)
         $data->app_id = \Auth::id();
         $data->status ='Success';
         $data->save();
-      
+
         }
         else
         {
@@ -462,7 +647,7 @@ public function stage($ref,$token)
         $data->status ='Success';
         $data->save();
         }
-       
+
         $email=\Auth::user()->email;
 
         return view('apply',compact('token','email'));
@@ -472,20 +657,20 @@ public function stage($ref,$token)
     {
                     $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
-                    $token = strtoupper('AP-'.$token.'-'.$t); 
-                    
+                    $token = strtoupper('AP-'.$token.'-'.$t);
+
                     $job_id = $id;
-                    return view('apply1',compact('token','job_id')); 
+                    return view('apply1',compact('token','job_id'));
 
     }
-     
+
 
       public function applynow1($id)
     {
-       
+
                     $token = Token::Unique('jobs','token',5);
                     $t = date("Y-M",strtotime("now"));
-                    $token = strtoupper('AP-'.$token.'-'.$t); 
+                    $token = strtoupper('AP-'.$token.'-'.$t);
                     $check = Jobapp::all()->where('ref_token',$id)
                                           ->where('app_id',\Auth::id())
                                           ->first();
@@ -510,7 +695,7 @@ public function stage($ref,$token)
              $token = $check->token;
             return view('backapp.employee',compact('token','req'));
         }
-                           
+
         if (!empty($check)) {
          $exist = KurraApp::all()->where('token',$check->token)->first();
 
@@ -526,7 +711,7 @@ public function stage($ref,$token)
         $data->app_id = \Auth::id();
         $data->status ='Success';
         $data->save();
-      
+
         }
         else
         {
@@ -540,7 +725,7 @@ public function stage($ref,$token)
         $data->status ='Success';
         $data->save();
         }
-       
+
         $email=\Auth::user()->email;
 
         return view('apply1',compact('token','email'));
@@ -575,7 +760,7 @@ public function stage($ref,$token)
     {
         $user = Jobapp::all()->where('id',$id)->first();
         $kura = KurraApp::all()->where('id',$id)->first();
-   
+
 
         return $kura;
     }
@@ -587,7 +772,7 @@ public function stage($ref,$token)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-           
+
     public function update(Request $request, $id)
     {
             $applicant = new KurraApp();
@@ -624,11 +809,11 @@ public function stage($ref,$token)
     public function step_one($token)
     {
 
-      
+
          $emp = KurraApp::all()->where('token',$token)->first();
 
          $job = Jobapp::all()->where('token',$token)->first();
-      
+
        return view('steps.person',compact('emp','job'));
     }
 
@@ -637,14 +822,14 @@ public function stage($ref,$token)
         public function step_two($token)
     {
 
-      
+
         $education = KuraEducation::all()->where('token',$token);
         $membership = \App\KuraMembership::all()->where('token',$token);
         $certificates = \App\KuraCert::all()->where('token',$token);
         $others = \App\KuraOther::all()->where('token',$token);
         $token = $token;
 
-          
+
        return view('steps.education',compact('education','token','education','membership','certificates','others'));
     }
 
@@ -657,40 +842,40 @@ public function stage($ref,$token)
         $checklist =ApplicantCreteria::all()->where('app_token',$token);
         if ($checklist->isEmpty()) {
           # code...
-        
+
           $req = \App\Required::all()->where('ref_token',$job->ref_token);
 
          //  return $checklist;
         }
-      
+
         $employer =\App\KuraEmployer::all()->where('token',$token);
         $referee =\App\KuraReferee::all()->where('token',$token);
       //return $checklist;
-      
+
         $education = KuraEducation::all()->where('token',$token);
         $membership = \App\KuraMembership::all()->where('token',$token);
         $certificates = \App\KuraCert::all()->where('token',$token);
         $others = \App\KuraOther::all()->where('token',$token);
         $token = $token;
 
-          
+
        return view('steps.emp',compact('checklist','token','referee','employer','certificates','others','req'));
     }
 
-    
+
 
    public function drop_referee($token)
     {
         $education = \App\KuraReferee::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
        public function drop_employer($token)
     {
         $education = \App\KuraEmployer::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
 
@@ -698,14 +883,14 @@ public function stage($ref,$token)
     {
         $education = KuraEducation::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
          public function drop_certs($token)
     {
         $education = \App\KuraCert::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
 
@@ -713,77 +898,77 @@ public function stage($ref,$token)
     {
         $education = \App\KuraMembership::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
        public function drop_others($token)
     {
         $education = \App\KuraOther::findorfail($token);
         $education->delete();
-        return back()->with('danger','Successfully Dropped');     
+        return back()->with('danger','Successfully Dropped');
     }
 
     public function drop_applicant($token)
     {
       $jobapp = Jobapp::all()->where('token',$token)->first();
-      if (!empty($jobapp)) 
+      if (!empty($jobapp))
       {
         $jj = Jobapp::findorfail($jobapp->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $jobs = KurraApp::all()->where('token',$token)->first();
-       if (!empty($jobs)) 
+       if (!empty($jobs))
       {
         $jj = KurraApp::findorfail($jobs->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $kura_ed = \App\KuraEducation::all()->where('token',$token)->first();
-       if (!empty($kura_ed)) 
+       if (!empty($kura_ed))
       {
         $jj = KuraEducation::findorfail($kura_ed->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $certs = \App\KuraCert::all()->where('token',$token)->first();
-       if (!empty($certs)) 
+       if (!empty($certs))
       {
         $jj = \App\KuraCert::findorfail($certs->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $members = \App\KuraMembership::all()->where('token',$token)->first();
-       if (!empty($members)) 
+       if (!empty($members))
       {
         $jj = \App\KuraMembership::findorfail($members->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $other = \App\KuraOther::all()->where('token',$token)->first();
-       if (!empty($other)) 
+       if (!empty($other))
       {
         $jj = \App\KuraOther::findorfail($other->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $referee = \App\KuraReferee::all()->where('token',$token)->first();
-       if (!empty($referee)) 
+       if (!empty($referee))
       {
         $jj = \App\KuraReferee::findorfail($referee->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $empls = \App\KuraEmployer::all()->where('token',$token)->first();
-       if (!empty($empls)) 
+       if (!empty($empls))
       {
         $jj = \App\KuraEmployer::findorfail($empls->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $marks = \App\ApplicantMark::all()->where('job_token',$token)->first();
-       if (!empty($marks)) 
+       if (!empty($marks))
       {
         $jj = \App\ApplicantMark::findorfail($marks->id);
-        $jj->delete();       
+        $jj->delete();
       }
       $creteria = \App\ApplicantCreteria::all()->where('job_token',$token)->first();
-       if (!empty($creteria)) 
+       if (!empty($creteria))
       {
         $jj =  \App\ApplicantCreteria::findorfail($creteria->id);
-        $jj->delete();       
+        $jj->delete();
       }
 
       return back()->with('error','Dropped Successfully');
