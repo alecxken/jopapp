@@ -133,13 +133,17 @@
                                         <td>{{ $user->current_employer ?? '-' }}</td>
                                         <td>{{ $user->current_position ?? '-' }}</td>
                                         <td class="text-center">
-                                            @if($user->signed)
+                                            @if(isset($user->signed) && $user->signed)
                                                 <span class="label label-success">
                                                     <i class="fa fa-check-circle"></i> Signed
                                                 </span>
-                                            @else
+                                            @elseif(isset($user->signed))
                                                 <span class="label label-warning">
                                                     <i class="fa fa-clock-o"></i> Pending
+                                                </span>
+                                            @else
+                                                <span class="label label-default">
+                                                    <i class="fa fa-minus"></i> N/A
                                                 </span>
                                             @endif
                                         </td>
