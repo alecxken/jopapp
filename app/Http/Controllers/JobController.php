@@ -382,6 +382,7 @@ public function checklist_details(Request $request)
                 $obj = new \stdClass();
                 $obj->token = $item->token;
                 $obj->app_id = null;
+                $obj->signed = null; // Add signed field for missing applicants
                 $obj->title = $jobTitle;
                 $obj->fname = $item->fname;
                 $obj->lname = $item->lname;
