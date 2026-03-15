@@ -261,6 +261,7 @@ public function checklist_details(Request $request)
           ->select(
               'jobapps.token',
               'jobapps.app_id',
+              'jobapps.signed',
               'jobs.title',
               'kurra_apps.fname',
               'kurra_apps.lname',

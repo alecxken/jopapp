@@ -59,11 +59,13 @@
                                     <th class="text-center" style="vertical-align:middle;">Email Address</th>
                                     <th class="text-center" style="vertical-align:middle;">Current Employer</th>
                                     <th class="text-center" style="vertical-align:middle;">Position</th>
+                                    <th class="text-center" style="vertical-align:middle;">Signed</th>
                                     @foreach ($job as $jb)
                                         <th class="text-center" style="vertical-align:middle; min-width:220px; max-width:300px; white-space:normal;">
                                             {{ $jb->requirement }}
                                         </th>
                                     @endforeach
+                                    <th class="text-center" style="vertical-align:middle; min-width:200px;">Comments</th>
                                     <th class="text-center" style="vertical-align:middle; font-weight:bold; background:#00a65a;">Remarks</th>
                                 </tr>
                             </thead>
@@ -111,6 +113,17 @@
                                         <td>{{ $user->email ?? '-' }}</td>
                                         <td>{{ $user->current_employer ?? '-' }}</td>
                                         <td>{{ $user->current_position ?? '-' }}</td>
+                                        <td class="text-center">
+                                            @if($user->signed)
+                                                <span class="label label-success">
+                                                    <i class="fa fa-check-circle"></i> Signed
+                                                </span>
+                                            @else
+                                                <span class="label label-warning">
+                                                    <i class="fa fa-clock-o"></i> Pending
+                                                </span>
+                                            @endif
+                                        </td>
 
                                         @foreach ($job as $jb)
                                             @php
@@ -132,6 +145,28 @@
                                                 @endif
                                             </td>
                                         @endforeach
+
+                                        @php
+                                            // Collect all comments from checklist for this applicant
+                                            $allComments = [];
+                                            $checklistData = DB::table('applicant_creterias')
+                                                ->where('app_token', $user->token)
+                                                ->whereNotNull('comments')
+                                                ->where('comments', '!=', '')
+                                                ->get();
+                                            foreach ($checklistData as $item) {
+                                                if (trim($item->comments)) {
+                                                    $allComments[] = '• ' . $item->requirement . ': ' . $item->comments;
+                                                }
+                                            }
+                                        @endphp
+                                        <td style="font-size:10px;">
+                                            @if(count($allComments) > 0)
+                                                {!! nl2br(implode("\n", $allComments)) !!}
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </td>
 
                                         <td class="text-center" style="font-weight:bold; background:{{ $allMet ? '#d4edda' : '#f8d7da' }};">
                                             @if($allMet)
