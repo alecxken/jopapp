@@ -1,11 +1,14 @@
 @extends('layouts.template')
 @section('content')
 
+{{-- DataTables Buttons CDN Dependencies --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+
 <div class="box-body">
    {!! Form::open(['method'=> 'post','url' => 'store-checklist-filter', 'files' => true ]) !!}
         <div class="box-body">
 
-           <div class="form-group col-md-8 center">
+           <div class="form-group col-md-6 center">
              {!! Form::label('weight', 'Job Position ', ['class' => 'awesome'])!!}
              <select class="form-control select2" name="post" id="residence" required>
                <option  value="">SELECT JOB POSITION</option>
@@ -15,12 +18,28 @@
              </select>
            </div>
 
-          <div class="form-group col-md-4 center">
+          <div class="form-group col-md-3 center">
              {!! Form::label('weight', 'ACTION ', ['class' => 'awesome'])!!}
              <br>
-             <button class="btn btn-success form-control" type="Submit">
-               <i class="fa fa-filter"></i> Click To Filter
+             <button class="btn btn-success btn-block" type="Submit">
+               <i class="fa fa-filter"></i> Filter Results
              </button>
+          </div>
+
+          <div class="form-group col-md-3 center">
+             {!! Form::label('weight', 'EXPORT DATA', ['class' => 'awesome'])!!}
+             <br>
+             <div class="btn-group btn-block" id="export-buttons">
+               <button type="button" class="btn btn-success" id="export-excel" disabled title="Export to Excel">
+                 <i class="fa fa-file-excel-o"></i> Excel
+               </button>
+               <button type="button" class="btn btn-info" id="export-csv" disabled title="Export to CSV">
+                 <i class="fa fa-file-text-o"></i> CSV
+               </button>
+               <button type="button" class="btn btn-danger" id="export-pdf" disabled title="Export to PDF">
+                 <i class="fa fa-file-pdf-o"></i> PDF
+               </button>
+             </div>
           </div>
           </div>
             {!!Form::close()!!}
@@ -59,11 +78,13 @@
                                     <th class="text-center" style="vertical-align:middle;">Email Address</th>
                                     <th class="text-center" style="vertical-align:middle;">Current Employer</th>
                                     <th class="text-center" style="vertical-align:middle;">Position</th>
+                                    <th class="text-center" style="vertical-align:middle;">Signed</th>
                                     @foreach ($job as $jb)
                                         <th class="text-center" style="vertical-align:middle; min-width:220px; max-width:300px; white-space:normal;">
                                             {{ $jb->requirement }}
                                         </th>
                                     @endforeach
+                                    <th class="text-center" style="vertical-align:middle; min-width:200px;">Comments</th>
                                     <th class="text-center" style="vertical-align:middle; font-weight:bold; background:#00a65a;">Remarks</th>
                                 </tr>
                             </thead>
@@ -111,6 +132,17 @@
                                         <td>{{ $user->email ?? '-' }}</td>
                                         <td>{{ $user->current_employer ?? '-' }}</td>
                                         <td>{{ $user->current_position ?? '-' }}</td>
+                                        <td class="text-center">
+                                            @if($user->signed)
+                                                <span class="label label-success">
+                                                    <i class="fa fa-check-circle"></i> Signed
+                                                </span>
+                                            @else
+                                                <span class="label label-warning">
+                                                    <i class="fa fa-clock-o"></i> Pending
+                                                </span>
+                                            @endif
+                                        </td>
 
                                         @foreach ($job as $jb)
                                             @php
@@ -132,6 +164,28 @@
                                                 @endif
                                             </td>
                                         @endforeach
+
+                                        @php
+                                            // Collect all comments from checklist for this applicant
+                                            $allComments = [];
+                                            $checklistData = DB::table('applicant_creterias')
+                                                ->where('app_token', $user->token)
+                                                ->whereNotNull('comments')
+                                                ->where('comments', '!=', '')
+                                                ->get();
+                                            foreach ($checklistData as $item) {
+                                                if (trim($item->comments)) {
+                                                    $allComments[] = '• ' . $item->requirement . ': ' . $item->comments;
+                                                }
+                                            }
+                                        @endphp
+                                        <td style="font-size:10px;">
+                                            @if(count($allComments) > 0)
+                                                {!! nl2br(implode("\n", $allComments)) !!}
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </td>
 
                                         <td class="text-center" style="font-weight:bold; background:{{ $allMet ? '#d4edda' : '#f8d7da' }};">
                                             @if($allMet)
@@ -258,6 +312,14 @@
 </div>
 @endif
 
+{{-- DataTables Buttons Extensions --}}
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
 <script type="text/javascript">
   $(document).ready(function() {
     @if(!empty($data) && count($data) > 0)
@@ -275,32 +337,49 @@
           leftColumns: 3
         },
         dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
-             '<"row"<"col-sm-12"B>>' +
              '<"row"<"col-sm-12"tr>>' +
              '<"row"<"col-sm-5"i><"col-sm-7"p>>',
         buttons: [
           {
-            extend: 'excel',
-            text: '<i class="fa fa-file-excel-o"></i> Export to Excel',
+            extend: 'excelHtml5',
+            text: '<i class="fa fa-file-excel-o"></i> Excel',
             className: 'btn btn-success btn-sm',
+            title: 'Job Checklist Report - ' + new Date().toLocaleDateString(),
+            exportOptions: {
+              columns: ':visible',
+              orthogonal: 'export'
+            }
+          },
+          {
+            extend: 'csvHtml5',
+            text: '<i class="fa fa-file-text-o"></i> CSV',
+            className: 'btn btn-info btn-sm',
+            title: 'Job Checklist Report - ' + new Date().toLocaleDateString(),
             exportOptions: {
               columns: ':visible'
             }
           },
           {
-            extend: 'pdf',
-            text: '<i class="fa fa-file-pdf-o"></i> Export to PDF',
+            extend: 'pdfHtml5',
+            text: '<i class="fa fa-file-pdf-o"></i> PDF',
             className: 'btn btn-danger btn-sm',
             orientation: 'landscape',
             pageSize: 'A3',
+            title: 'Job Checklist Report',
             exportOptions: {
               columns: ':visible'
+            },
+            customize: function(doc) {
+              doc.defaultStyle.fontSize = 8;
+              doc.styles.tableHeader.fontSize = 9;
+              doc.styles.title.fontSize = 14;
             }
           },
           {
             extend: 'print',
             text: '<i class="fa fa-print"></i> Print',
             className: 'btn btn-primary btn-sm',
+            title: 'Job Checklist Report',
             exportOptions: {
               columns: ':visible'
             }
@@ -312,6 +391,23 @@
           zeroRecords: '<i class="fa fa-search fa-2x text-muted"></i><br>No matching records found.'
         }
       });
+
+      // Enable all export buttons and wire them to DataTables buttons
+      $('#export-excel').prop('disabled', false).on('click', function() {
+        table.button('.buttons-excel').trigger();
+      });
+
+      $('#export-csv').prop('disabled', false).on('click', function() {
+        table.button('.buttons-csv').trigger();
+      });
+
+      $('#export-pdf').prop('disabled', false).on('click', function() {
+        table.button('.buttons-pdf').trigger();
+      });
+
+    @else
+      // Keep export buttons disabled if no data
+      $('#export-buttons button').prop('disabled', true);
     @endif
   });
 </script>
