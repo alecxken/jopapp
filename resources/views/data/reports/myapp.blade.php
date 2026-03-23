@@ -43,9 +43,72 @@
           </div>
           </div>
             {!!Form::close()!!}
-<div class="row">
 
-   <div class="col-md-12">
+{{-- Demographics Dashboard --}}
+@if(!empty($data) && count($data) > 0 && isset($demographics))
+<div class="row" style="margin-top:15px;">
+   {{-- Demographics Sidebar --}}
+   <div class="col-md-3">
+      <div class="box box-success" style="border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1); margin-bottom:10px;">
+         <div class="box-header with-border" style="background:linear-gradient(135deg,#00a65a,#008d4c); border-radius:6px 6px 0 0; padding:8px 15px;">
+            <h3 class="box-title" style="color:#fff; font-size:13px;">
+               <i class="fa fa-pie-chart"></i> Demographics
+            </h3>
+            <div class="box-tools pull-right">
+               <span class="badge bg-white" style="color:#00a65a; font-size:10px;">{{ $demographics['total'] }}</span>
+            </div>
+         </div>
+         <div class="box-body" style="padding:10px;">
+            {{-- Gender Chart --}}
+            <div id="genderChart" style="height:140px; margin-bottom:10px;"></div>
+            <div style="text-align:center; margin-bottom:5px;">
+               <strong style="font-size:11px; color:#666;">Gender Distribution</strong>
+            </div>
+            <div style="border-bottom:1px solid #eee; margin:5px 0;"></div>
+
+            {{-- Age Bands Chart --}}
+            <div id="ageBandsChart" style="height:140px; margin-bottom:10px;"></div>
+            <div style="text-align:center; margin-bottom:5px;">
+               <strong style="font-size:11px; color:#666;">Age Bands</strong>
+            </div>
+            <div style="border-bottom:1px solid #eee; margin:5px 0;"></div>
+
+            {{-- Ethnicity Chart --}}
+            <div id="ethnicityChart" style="height:160px; margin-bottom:5px;"></div>
+            <div style="text-align:center;">
+               <strong style="font-size:11px; color:#666;">Ethnicity</strong>
+            </div>
+         </div>
+      </div>
+
+      {{-- Quick Stats --}}
+      <div class="box box-info" style="border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1);">
+         <div class="box-header with-border" style="background:linear-gradient(135deg,#00c0ef,#00a7d0); border-radius:6px 6px 0 0; padding:8px 15px;">
+            <h3 class="box-title" style="color:#fff; font-size:13px;">
+               <i class="fa fa-bar-chart"></i> Quick Stats
+            </h3>
+         </div>
+         <div class="box-body" style="padding:10px;">
+            <table class="table table-condensed" style="margin:0; font-size:11px;">
+               <tr>
+                  <td style="padding:4px;"><i class="fa fa-male text-blue"></i> Male</td>
+                  <td style="padding:4px; text-align:right;"><strong>{{ $demographics['gender']['male'] }}</strong></td>
+               </tr>
+               <tr>
+                  <td style="padding:4px;"><i class="fa fa-female text-red"></i> Female</td>
+                  <td style="padding:4px; text-align:right;"><strong>{{ $demographics['gender']['female'] }}</strong></td>
+               </tr>
+               <tr style="border-top:2px solid #ddd;">
+                  <td style="padding:4px;"><i class="fa fa-users text-green"></i> Total</td>
+                  <td style="padding:4px; text-align:right;"><strong>{{ $demographics['total'] }}</strong></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </div>
+
+   {{-- Main Content --}}
+   <div class="col-md-9">
        <div class="box box-primary" style="border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1);">
             <div class="box-header with-border" style="background:linear-gradient(135deg,#3c8dbc,#367fa9); border-radius:6px 6px 0 0;">
               <h3 class="box-title" style="color:#fff;">
@@ -218,7 +281,29 @@
            </div>
        </div>
      </div>
+   </div> {{-- End col-md-9 --}}
+</div> {{-- End row with demographics --}}
+@else
+{{-- No demographics - show full width --}}
+<div class="row">
+   <div class="col-md-12">
+       <div class="box box-primary" style="border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1);">
+            <div class="box-header with-border" style="background:linear-gradient(135deg,#3c8dbc,#367fa9); border-radius:6px 6px 0 0;">
+              <h3 class="box-title" style="color:#fff;">
+                <i class="fa fa-table"></i> &nbsp;Checklist Results View
+              </h3>
+            </div>
+       		 <div class="box-body table-responsive" id="table_wrapper" style="padding:15px;">
+                <div class="text-center text-muted" style="padding:40px 20px;">
+                    <i class="fa fa-filter fa-3x"></i>
+                    <h4 style="margin-top:15px;">No results yet</h4>
+                    <p>Please select a job position from the dropdown above and click "Filter Results" to view checklist results.</p>
+                </div>
+            </div>
+       </div>
    </div>
+</div>
+@endif
 
 {{-- Debug Modal --}}
 @if(isset($debugInfo))
@@ -415,5 +500,205 @@
     @endif
   });
 </script>
+
+{{-- Demographics Charts --}}
+@if(!empty($data) && count($data) > 0 && isset($demographics))
+<script>
+$(document).ready(function() {
+    // Gender Distribution Chart
+    Highcharts.chart('genderChart', {
+        chart: {
+            type: 'pie',
+            height: 140,
+            backgroundColor: 'transparent'
+        },
+        title: {
+            text: null
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y}</b> ({point.percentage:.1f}%)'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y}',
+                    style: {
+                        fontSize: '10px'
+                    }
+                },
+                showInLegend: false,
+                size: '90%'
+            }
+        },
+        series: [{
+            name: 'Applicants',
+            colorByPoint: true,
+            data: [
+                {
+                    name: 'Male',
+                    y: {{ $demographics['gender']['male'] }},
+                    color: '#3498db'
+                },
+                {
+                    name: 'Female',
+                    y: {{ $demographics['gender']['female'] }},
+                    color: '#e74c3c'
+                }
+                @if($demographics['gender']['other'] > 0)
+                ,{
+                    name: 'Other',
+                    y: {{ $demographics['gender']['other'] }},
+                    color: '#95a5a6'
+                }
+                @endif
+            ]
+        }]
+    });
+
+    // Age Bands Chart
+    Highcharts.chart('ageBandsChart', {
+        chart: {
+            type: 'column',
+            height: 140,
+            backgroundColor: 'transparent'
+        },
+        title: {
+            text: null
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            categories: ['18-25', '26-35', '36-45', '46-55', '56+'],
+            labels: {
+                style: {
+                    fontSize: '9px'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                style: {
+                    fontSize: '9px'
+                }
+            },
+            allowDecimals: false
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y}</b> applicant(s)'
+        },
+        plotOptions: {
+            column: {
+                colorByPoint: true,
+                colors: ['#2ecc71', '#3498db', '#9b59b6', '#f39c12', '#e74c3c'],
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '9px',
+                        fontWeight: 'bold'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Applicants',
+            data: [
+                {{ $demographics['ageBands']['18-25'] }},
+                {{ $demographics['ageBands']['26-35'] }},
+                {{ $demographics['ageBands']['36-45'] }},
+                {{ $demographics['ageBands']['46-55'] }},
+                {{ $demographics['ageBands']['56+'] }}
+            ]
+        }]
+    });
+
+    // Ethnicity Distribution Chart
+    @php
+        $ethnicityData = [];
+        $colors = ['#1abc9c', '#3498db', '#9b59b6', '#f39c12', '#e74c3c', '#34495e', '#16a085', '#27ae60'];
+        $colorIndex = 0;
+        foreach($demographics['ethnicity'] as $ethnicity => $count) {
+            if ($count > 0) {
+                $ethnicityData[] = [
+                    'name' => $ethnicity,
+                    'y' => $count,
+                    'color' => $colors[$colorIndex % count($colors)]
+                ];
+                $colorIndex++;
+            }
+        }
+    @endphp
+
+    Highcharts.chart('ethnicityChart', {
+        chart: {
+            type: 'bar',
+            height: 160,
+            backgroundColor: 'transparent'
+        },
+        title: {
+            text: null
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                style: {
+                    fontSize: '9px'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                style: {
+                    fontSize: '9px'
+                }
+            },
+            allowDecimals: false
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y}</b> applicant(s)'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '9px',
+                        fontWeight: 'bold'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Applicants',
+            colorByPoint: true,
+            data: {!! json_encode($ethnicityData) !!}
+        }]
+    });
+});
+</script>
+@endif
 
 @endsection
