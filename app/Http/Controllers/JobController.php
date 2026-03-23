@@ -314,6 +314,7 @@ public function checklist_details(Request $request)
             'kurra_apps.fname',
             'kurra_apps.lname',
             'kurra_apps.oname',
+            'kurra_apps.gender',
             'kurra_apps.is_disabled',
             'kurra_apps.disability',
             'kurra_apps.dob',
@@ -321,6 +322,7 @@ public function checklist_details(Request $request)
             'kurra_apps.po_box',
             'kurra_apps.postal_code',
             'kurra_apps.email',
+            'kurra_apps.district',
             'latest_employer.employer as current_employer',
             'latest_employer.position as current_position',
             'jobapps.app_status',
@@ -367,6 +369,7 @@ public function checklist_details(Request $request)
                 'kurra_apps.fname',
                 'kurra_apps.lname',
                 'kurra_apps.oname',
+                'kurra_apps.gender',
                 'kurra_apps.is_disabled',
                 'kurra_apps.disability',
                 'kurra_apps.dob',
@@ -374,6 +377,7 @@ public function checklist_details(Request $request)
                 'kurra_apps.po_box',
                 'kurra_apps.postal_code',
                 'kurra_apps.email',
+                'kurra_apps.district',
                 'latest_employer.employer as current_employer',
                 'latest_employer.position as current_position'
             )
@@ -461,7 +465,99 @@ public function checklist_details(Request $request)
 
     /*
     |--------------------------------------------------------------------------
-    | 7. Optional debug information
+    | 7. Calculate Demographics Data
+    |--------------------------------------------------------------------------
+    */
+    // Get full applicant data with gender, dob, and ethnicity
+    $applicantTokens = $data->pluck('token')->toArray();
+    $fullApplicants = \DB::table('kurra_apps')
+        ->whereIn('token', $applicantTokens)
+        ->select('token', 'gender', 'dob', 'district')
+        ->get();
+
+    // Gender distribution
+    $genderStats = [
+        'male' => 0,
+        'female' => 0,
+        'other' => 0
+    ];
+
+    // Age band distribution
+    $ageBands = [
+        '18-25' => 0,
+        '26-35' => 0,
+        '36-45' => 0,
+        '46-55' => 0,
+        '56+' => 0,
+        'Unknown' => 0
+    ];
+
+    // Ethnicity distribution
+    $ethnicityStats = [];
+
+    foreach ($fullApplicants as $applicant) {
+        // Gender
+        $gender = strtolower(trim($applicant->gender ?? ''));
+        if ($gender === 'male' || $gender === 'm') {
+            $genderStats['male']++;
+        } elseif ($gender === 'female' || $gender === 'f') {
+            $genderStats['female']++;
+        } elseif (!empty($gender)) {
+            $genderStats['other']++;
+        }
+
+        // Age calculation
+        if (!empty($applicant->dob)) {
+            try {
+                $dob = new \DateTime($applicant->dob);
+                $now = new \DateTime();
+                $age = $now->diff($dob)->y;
+
+                if ($age >= 18 && $age <= 25) {
+                    $ageBands['18-25']++;
+                } elseif ($age >= 26 && $age <= 35) {
+                    $ageBands['26-35']++;
+                } elseif ($age >= 36 && $age <= 45) {
+                    $ageBands['36-45']++;
+                } elseif ($age >= 46 && $age <= 55) {
+                    $ageBands['46-55']++;
+                } elseif ($age > 55) {
+                    $ageBands['56+']++;
+                } else {
+                    $ageBands['Unknown']++;
+                }
+            } catch (\Exception $e) {
+                $ageBands['Unknown']++;
+            }
+        } else {
+            $ageBands['Unknown']++;
+        }
+
+        // Ethnicity (stored in district field)
+        $ethnicity = trim($applicant->district ?? 'Not Specified');
+        if (empty($ethnicity)) {
+            $ethnicity = 'Not Specified';
+        }
+
+        if (!isset($ethnicityStats[$ethnicity])) {
+            $ethnicityStats[$ethnicity] = 0;
+        }
+        $ethnicityStats[$ethnicity]++;
+    }
+
+    // Sort ethnicity by count descending
+    arsort($ethnicityStats);
+
+    $demographics = [
+        'gender' => $genderStats,
+        'ageBands' => $ageBands,
+        'ethnicity' => $ethnicityStats,
+        'total' => count($fullApplicants)
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | 8. Optional debug information
     |--------------------------------------------------------------------------
     */
     $debugInfo = [
@@ -487,7 +583,8 @@ public function checklist_details(Request $request)
         'listing',
         'post',
         'checklistByApplicant',
-        'debugInfo'
+        'debugInfo',
+        'demographics'
     ));
 }
           public function show1()
