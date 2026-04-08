@@ -97,16 +97,21 @@ class DashboardApiController extends Controller
      */
     public function geographicDistribution()
     {
-        $geoData = KurraApp::select('county', DB::raw('count(*) as count'))
+        $geoData = KurraApp::select(
+                DB::raw('TRIM(county) as county'),
+                DB::raw('count(*) as count')
+            )
             ->whereNotNull('county')
             ->where('county', '!=', '')
-            ->groupBy('county')
+            ->groupBy(DB::raw('LOWER(TRIM(county))'))
             ->orderByDesc('count')
             ->limit(15)
             ->get();
 
         $data = [
-            'categories' => $geoData->pluck('county')->toArray(),
+            'categories' => $geoData->pluck('county')->map(function($c) {
+                return ucwords(strtolower(trim($c)));
+            })->toArray(),
             'series' => [[
                 'name' => 'Applicants',
                 'data' => $geoData->pluck('count')->map(function($item) {
@@ -129,14 +134,63 @@ class DashboardApiController extends Controller
             ->groupBy('gender')
             ->get();
 
-        $seriesData = $genderData->map(function($item) {
+        // Normalize gender values: m/male → Male, f/female → Female, anything else → Other
+        $normalized = ['Male' => 0, 'Female' => 0, 'Other' => 0];
+        foreach ($genderData as $item) {
+            $g = strtolower(trim($item->gender));
+            if ($g === 'male' || $g === 'm') {
+                $normalized['Male'] += (int) $item->count;
+            } elseif ($g === 'female' || $g === 'f') {
+                $normalized['Female'] += (int) $item->count;
+            } elseif (!empty($g)) {
+                $normalized['Other'] += (int) $item->count;
+            }
+        }
+
+        $pointData = [];
+        foreach ($normalized as $name => $count) {
+            $pointData[] = ['name' => $name, 'y' => $count];
+        }
+
+        return response()->json([
+            'series' => [[
+                'name' => 'Gender',
+                'colorByPoint' => true,
+                'data' => $pointData
+            ]]
+        ]);
+    }
+
+    /**
+     * Get ethnicity distribution (stored in district field)
+     */
+    public function ethnicityDistribution()
+    {
+        $ethnicityData = KurraApp::select(
+                DB::raw('TRIM(district) as district'),
+                DB::raw('count(*) as count')
+            )
+            ->whereNotNull('district')
+            ->where('district', '!=', '')
+            ->groupBy(DB::raw('LOWER(TRIM(district))'))
+            ->orderByDesc('count')
+            ->limit(15)
+            ->get();
+
+        $pointData = $ethnicityData->map(function($item) {
             return [
-                'name' => ucfirst($item->gender),
+                'name' => ucwords(strtolower(trim($item->district))),
                 'y' => (int) $item->count
             ];
         })->toArray();
 
-        return response()->json(['series' => $seriesData]);
+        return response()->json([
+            'series' => [[
+                'name' => 'Ethnicity',
+                'colorByPoint' => true,
+                'data' => $pointData
+            ]]
+        ]);
     }
 
     /**
