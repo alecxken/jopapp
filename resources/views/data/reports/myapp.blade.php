@@ -130,6 +130,7 @@
                      <table id="report-table" class="table table-bordered table-hover table-striped" style="font-size:11px; width:100%;">
                             <thead style="background:#3c8dbc; color:#fff; font-size:11px;">
                                 <tr>
+                                    <th class="text-center" style="vertical-align:middle; background:#2c6f9e;">App Ref</th>
                                     <th class="text-center" style="vertical-align:middle;">Last Name</th>
                                     <th class="text-center" style="vertical-align:middle;">First Name</th>
                                     <th class="text-center" style="vertical-align:middle;">Other Names</th>
@@ -175,6 +176,9 @@
                                         $allMet = ($totalRequirements > 0 && $passedRequirements === $totalRequirements);
                                     @endphp
                                     <tr>
+                                        <td class="text-center" style="font-weight:600; color:#2c6f9e; white-space:nowrap;">
+                                            {{ $user->app_id ?? '-' }}
+                                        </td>
                                         <td>{{ $user->lname ?? '-' }}</td>
                                         <td>{{ $user->fname ?? '-' }}</td>
                                         <td>{{ $user->oname ?? '-' }}</td>
@@ -423,7 +427,7 @@
         lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
         scrollX: true,
         fixedColumns: {
-          leftColumns: 3
+          leftColumns: 4
         },
         dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
              '<"row"<"col-sm-12"tr>>' +
