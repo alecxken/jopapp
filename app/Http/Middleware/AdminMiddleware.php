@@ -16,14 +16,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-         // $user = User::all()->count();
-        // if (!($user == 1)) {
-        //     if (!Auth::user()->hasPermissionTo('Administer roles & permissions')) //If user does //not have this permission
-        // {
-        //          abort('401');
-        //         //return redirect('home')->with('danger','Access Denied ..trying to hack !!  contact Admin');
-        //     }
-        // }
+        if (!Auth::check() || !Auth::user()->hasRole('Admin')) {
+            abort(403, 'Access denied. Admin privileges required.');
+        }
         return $next($request);
     }
 }
