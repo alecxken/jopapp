@@ -200,6 +200,28 @@
     </div>
 
     <div class="row">
+        <!-- Ethnicity Distribution -->
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><b>Ethnicity Distribution</b></h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div id="chart-ethnicity-distribution" style="min-height: 300px;"></div>
+                </div>
+                <div class="overlay" id="loader-ethnicity" style="display: none;">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <!-- Data Entry Productivity -->
         <div class="col-md-6">
             <div class="box box-primary">
@@ -487,6 +509,26 @@ $(document).ready(function() {
                     format: '<b>{point.name}</b>: {point.percentage:.1f}%'
                 }
             }
+        }
+    });
+
+    // Ethnicity Distribution (Bar Chart)
+    loadChart('/ethnicity-distribution', 'chart-ethnicity-distribution', 'loader-ethnicity', {
+        chart: { type: 'bar' },
+        title: { text: null },
+        xAxis: {
+            title: { text: 'Ethnicity' },
+            type: 'category'
+        },
+        yAxis: { title: { text: 'Number of Applicants' } },
+        plotOptions: {
+            bar: {
+                colorByPoint: true,
+                dataLabels: { enabled: true }
+            }
+        },
+        tooltip: {
+            valueSuffix: ' applicants'
         }
     });
 

@@ -41,4 +41,5 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/experience-distribution', 'App\Http\Controllers\DashboardApiController@experienceDistribution');
     Route::get('/monthly-trends', 'App\Http\Controllers\DashboardApiController@monthlyTrends');
     Route::get('/disability-stats', 'App\Http\Controllers\DashboardApiController@disabilityStats');
+    Route::get('/ethnicity-distribution', 'App\Http\Controllers\DashboardApiController@ethnicityDistribution');
 });
