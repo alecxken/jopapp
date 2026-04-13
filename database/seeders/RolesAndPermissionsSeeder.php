@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,19 +19,37 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create permissions
         $permissions = [
+            // Dashboard
             'view-dashboard',
+
+            // Jobs
             'view-jobs',
             'create-job',
             'edit-job',
             'delete-job',
+
+            // Applications / Applicants
             'view-applications',
             'create-application',
             'edit-application',
             'delete-application',
+
+            // Selection module
+            'view-selection',          // Access Selection section
+            'view-applicant-details',  // View individual applicant details
+            'view-checklist',          // View & run checklists
+
+            // Reports module
+            'view-reports',
+            'export-data',
+
+            // User management (Admin only)
             'view-users',
             'create-user',
             'edit-user',
             'delete-user',
+
+            // Role/Permission management (Admin only)
             'view-roles',
             'create-role',
             'edit-role',
@@ -41,85 +58,54 @@ class RolesAndPermissionsSeeder extends Seeder
             'create-permission',
             'edit-permission',
             'delete-permission',
-            'view-reports',
-            'export-data',
+
+            // Legacy permission kept for backward compatibility
+            'Administer roles & permissions',
         ];
 
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
 
-        // Create roles
-        $roles = [
-            'Super Admin' => Permission::all(),
-            'Admin' => [
-                'view-dashboard',
-                'view-jobs',
-                'create-job',
-                'edit-job',
-                'delete-job',
-                'view-applications',
-                'create-application',
-                'edit-application',
-                'delete-application',
-                'view-users',
-                'create-user',
-                'edit-user',
-                'view-reports',
-                'export-data',
-            ],
-            'Manager' => [
-                'view-dashboard',
-                'view-jobs',
-                'create-job',
-                'edit-job',
-                'view-applications',
-                'edit-application',
-                'view-reports',
-            ],
-            'HR Officer' => [
-                'view-dashboard',
-                'view-jobs',
-                'view-applications',
-                'edit-application',
-                'view-reports',
-            ],
-            'Recruiter' => [
-                'view-dashboard',
-                'view-jobs',
-                'view-applications',
-            ],
-            'User' => [
-                'view-dashboard',
-                'view-jobs',
-            ],
-        ];
+        // ── Roles ──────────────────────────────────────────────────────────────
 
-        foreach ($roles as $roleName => $rolePermissions) {
-            $role = Role::firstOrCreate(['name' => $roleName]);
+        // Admin — full access
+        $admin = Role::firstOrCreate(['name' => 'Admin']);
+        $admin->syncPermissions(Permission::all());
 
-            if ($rolePermissions instanceof \Illuminate\Database\Eloquent\Collection) {
-                $role->syncPermissions($rolePermissions);
-            } else {
-                $role->syncPermissions($rolePermissions);
-            }
-        }
+        // Selection — recruitment team: evaluate & shortlist applicants
+        $selection = Role::firstOrCreate(['name' => 'Selection']);
+        $selection->syncPermissions([
+            'view-dashboard',
+            'view-jobs',
+            'view-applications',
+            'create-application',
+            'edit-application',
+            'view-selection',
+            'view-applicant-details',
+            'view-checklist',
+        ]);
 
-        // Assign all roles to user 1
+        // Reports — reporting & data export only
+        $reports = Role::firstOrCreate(['name' => 'Reports']);
+        $reports->syncPermissions([
+            'view-dashboard',
+            'view-jobs',
+            'view-applications',
+            'view-reports',
+            'export-data',
+        ]);
+
+        // Assign Admin role to user 1 if exists
         $user = User::find(1);
-
         if ($user) {
-            // Get all roles
-            $allRoles = Role::all();
-
-            // Assign all roles to user 1
-            $user->syncRoles($allRoles);
-
-            $this->command->info('All roles assigned to User 1 (' . $user->name . ')');
+            $user->syncRoles(['Admin']);
+            $this->command->info('Admin role assigned to User 1 (' . $user->name . ')');
         } else {
             $this->command->warn('User with ID 1 not found. Please create a user first.');
         }
 
         $this->command->info('Roles and permissions seeded successfully!');
+        $this->command->info('Roles created: Admin, Selection, Reports');
     }
 }
