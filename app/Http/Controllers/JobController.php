@@ -323,6 +323,7 @@ public function checklist_details(Request $request)
             'kurra_apps.postal_code',
             'kurra_apps.email',
             'kurra_apps.district',
+            'kurra_apps.county',
             'latest_employer.employer as current_employer',
             'latest_employer.position as current_position',
             'jobapps.app_status',
@@ -378,6 +379,7 @@ public function checklist_details(Request $request)
                 'kurra_apps.postal_code',
                 'kurra_apps.email',
                 'kurra_apps.district',
+                'kurra_apps.county',
                 'latest_employer.employer as current_employer',
                 'latest_employer.position as current_position'
             )
@@ -398,6 +400,8 @@ public function checklist_details(Request $request)
                 $obj->po_box = $item->po_box;
                 $obj->postal_code = $item->postal_code;
                 $obj->email = $item->email;
+                $obj->district = $item->district;
+                $obj->county = $item->county;
                 $obj->current_employer = $item->current_employer;
                 $obj->current_position = $item->current_position;
                 $obj->app_status = 'Checklist available';

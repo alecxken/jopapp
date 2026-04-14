@@ -134,6 +134,8 @@
                                     <th class="text-center" style="vertical-align:middle;">Last Name</th>
                                     <th class="text-center" style="vertical-align:middle;">First Name</th>
                                     <th class="text-center" style="vertical-align:middle;">Other Names</th>
+                                    <th class="text-center" style="vertical-align:middle;">Ethnicity</th>
+                                    <th class="text-center" style="vertical-align:middle;">County</th>
                                     <th class="text-center" style="vertical-align:middle;">Disability</th>
                                     <th class="text-center" style="vertical-align:middle;">DOB</th>
                                     <th class="text-center" style="vertical-align:middle;">Phone No</th>
@@ -182,6 +184,8 @@
                                         <td>{{ $user->lname ?? '-' }}</td>
                                         <td>{{ $user->fname ?? '-' }}</td>
                                         <td>{{ $user->oname ?? '-' }}</td>
+                                        <td>{{ $user->district ? ucwords(strtolower(trim($user->district))) : '-' }}</td>
+                                        <td>{{ $user->county ? ucwords(strtolower(trim($user->county))) : '-' }}</td>
                                         <td class="text-center">
                                             @if($user->is_disabled || strtolower($user->disability) === 'yes')
                                                 <span class="label label-info">Yes</span>
